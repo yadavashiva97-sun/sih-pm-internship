@@ -90,6 +90,7 @@ const internshipSchema = new mongoose.Schema(
             default: "Active"
         }
     },
+
     {
         timestamps: true
     }

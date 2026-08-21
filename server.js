@@ -12,19 +12,24 @@ const app = express();
 
 const PORT = process.env.PORT || 7000;
 
+// Middleware
 app.use(cors());
 app.use(express.json());
 
+// Routes
 app.use("/api/internships", internshipRoutes);
 app.use("/api/students", studentRoutes);
 
+// Home route
 app.get("/", (req, res) => {
     res.json({
         message: "PM Internship Assistant Backend is running"
     });
 });
 
-mongoose.connect(process.env.MONGO_URI)
+// MongoDB connection
+mongoose
+    .connect(process.env.MONGO_URI)
     .then(() => {
         console.log("MongoDB connected");
 
