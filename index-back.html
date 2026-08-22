@@ -52,9 +52,7 @@
             color: inherit;
         }
 
-        /* =========================
-           NAVBAR
-        ========================= */
+        /* NAVBAR */
 
         .nav {
             height: 72px;
@@ -118,10 +116,6 @@
             color: var(--green);
         }
 
-        /* =========================
-           COMMON
-        ========================= */
-
         .container {
             width: 88%;
             max-width: 1200px;
@@ -176,9 +170,7 @@
                 0 5px 20px rgba(18, 35, 63, 0.04);
         }
 
-        /* =========================
-           HERO
-        ========================= */
+        /* HERO */
 
         .hero {
             padding: 75px 0 55px;
@@ -256,9 +248,7 @@
             font-size: 95px;
         }
 
-        /* =========================
-           FEATURES
-        ========================= */
+        /* FEATURES */
 
         .features {
             padding: 35px 0;
@@ -289,9 +279,7 @@
             color: var(--muted);
         }
 
-        /* =========================
-           STATS
-        ========================= */
+        /* STATS */
 
         .stats {
             display: grid;
@@ -313,9 +301,7 @@
             color: var(--muted);
         }
 
-        /* =========================
-           SECTION TITLE
-        ========================= */
+        /* SECTION */
 
         .section-title {
             text-align: center;
@@ -332,9 +318,7 @@
             margin-top: 5px;
         }
 
-        /* =========================
-           FORM
-        ========================= */
+        /* FORM */
 
         .form-card {
             margin: 35px auto;
@@ -382,9 +366,7 @@
                 0 0 0 3px rgba(8, 168, 120, 0.08);
         }
 
-        /* =========================
-           LOCATION
-        ========================= */
+        /* LOCATION */
 
         .location-wrapper {
             position: relative;
@@ -415,6 +397,26 @@
             display: block;
         }
 
+        .location-message {
+            display: none;
+
+            margin-top: 8px;
+
+            padding: 8px 10px;
+
+            border-radius: 7px;
+
+            background: #f0f7ff;
+
+            color: #40516b;
+
+            font-size: 12px;
+        }
+
+        .location-message.show {
+            display: block;
+        }
+
         .search-row {
             display: flex;
             gap: 10px;
@@ -425,9 +427,7 @@
             flex: 1;
         }
 
-        /* =========================
-           RESULTS
-        ========================= */
+        /* RESULTS */
 
         .results-head {
             display: flex;
@@ -552,97 +552,7 @@
             font-size: 12px;
         }
 
-        /* =========================
-           FUNCTIONAL DASHBOARD PAGES
-        ========================= */
-        .dashboard-page {
-            padding: 35px 0 55px;
-        }
-
-        .workspace-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 18px;
-        }
-
-        .workspace-card {
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 20px;
-            background: white;
-        }
-
-        .workspace-card h3 {
-            margin-bottom: 8px;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 45px 20px;
-            color: var(--muted);
-        }
-
-        .saved-badge {
-            color: #d97706;
-            font-weight: 700;
-        }
-
-        .dashboard-item {
-            display: flex;
-            justify-content: space-between;
-            gap: 15px;
-            align-items: center;
-            padding: 16px 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .dashboard-item:last-child {
-            border-bottom: 0;
-        }
-
-        .progress-wrap {
-            margin-top: 10px;
-        }
-
-        .progress-label {
-            display: flex;
-            justify-content: space-between;
-            font-size: 13px;
-            margin-bottom: 5px;
-        }
-
-        .progress-track {
-            height: 8px;
-            background: #e8edf2;
-            border-radius: 20px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: var(--green);
-            border-radius: 20px;
-        }
-
-        .status-pill {
-            display: inline-block;
-            padding: 5px 9px;
-            border-radius: 20px;
-            background: #e9faf5;
-            color: #087f5b;
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        @media (max-width: 800px) {
-            .workspace-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* =========================
-           DASHBOARD
-        ========================= */
+        /* DASHBOARD */
 
         .dashboard {
             display: grid;
@@ -771,9 +681,7 @@
             border-radius: 10px;
         }
 
-        /* =========================
-           STEPS
-        ========================= */
+        /* STEPS */
 
         .steps {
             display: grid;
@@ -811,9 +719,7 @@
             font-size: 20px;
         }
 
-        /* =========================
-           ABOUT
-        ========================= */
+        /* ABOUT */
 
         .about {
             padding: 55px 0;
@@ -828,9 +734,7 @@
             gap: 25px;
         }
 
-        /* =========================
-           FOOTER
-        ========================= */
+        /* FOOTER */
 
         footer {
             background: var(--dark);
@@ -880,9 +784,7 @@
             font-size: 12px;
         }
 
-        /* =========================
-           MODAL
-        ========================= */
+        /* MODAL */
 
         .modal {
             display: none;
@@ -949,10 +851,6 @@
             color: #40516b;
         }
 
-        /* =========================
-           LOADING / ERROR
-        ========================= */
-
         .loading {
             text-align: center;
 
@@ -973,33 +871,7 @@
             margin-bottom: 10px;
         }
 
-        /* =========================
-           LOCATION MESSAGE
-        ========================= */
-
-        .location-message {
-            display: none;
-
-            margin-top: 8px;
-
-            padding: 8px 10px;
-
-            border-radius: 7px;
-
-            background: #f0f7ff;
-
-            color: #40516b;
-
-            font-size: 12px;
-        }
-
-        .location-message.show {
-            display: block;
-        }
-
-        /* =========================
-           RESPONSIVE
-        ========================= */
+        /* RESPONSIVE */
 
         @media (max-width: 850px) {
 
@@ -1036,7 +908,6 @@
                 grid-template-columns:
                     1fr 1fr;
             }
-
         }
 
         @media (max-width: 560px) {
@@ -1089,20 +960,15 @@
 
                 gap: 15px;
             }
-
         }
 
     </style>
 
 </head>
 
-
 <body>
 
-
-<!-- =========================
-     NAVBAR
-========================= -->
+<!-- ================= NAVBAR ================= -->
 
 <nav class="nav">
 
@@ -1120,46 +986,29 @@
 
     </div>
 
-
     <div class="navlinks">
 
-        <a
-            href="#"
-            onclick="showPage('home'); return false;"
-        >
+        <a href="#" onclick="showPage('home'); return false;">
             Home
         </a>
 
-        <a
-            href="#"
-            onclick="showPage('find'); return false;"
-        >
+        <a href="#" onclick="showPage('find'); return false;">
             Find Internships
         </a>
 
-        <a
-            href="#"
-            onclick="showPage('how'); return false;"
-        >
+        <a href="#" onclick="showPage('how'); return false;">
             How It Works
         </a>
 
-        <a
-            href="#"
-            onclick="showPage('resources'); return false;"
-        >
+        <a href="#" onclick="showPage('resources'); return false;">
             Resources
         </a>
 
-        <a
-            href="#"
-            onclick="showPage('about'); return false;"
-        >
+        <a href="#" onclick="showPage('about'); return false;">
             About
         </a>
 
     </div>
-
 
     <div class="nav-actions">
 
@@ -1177,10 +1026,7 @@
 
 <main>
 
-
-<!-- =========================
-     HOME
-========================= -->
+<!-- ================= HOME ================= -->
 
 <section
     id="home"
@@ -1225,7 +1071,6 @@
 
             </div>
 
-
             <div class="hero-art">
 
                 <div class="illustration">
@@ -1245,9 +1090,7 @@
 
             <div class="card feature">
 
-                <div class="icon">
-                    🧠
-                </div>
+                <div class="icon">🧠</div>
 
                 <h3>
                     AI Powered Match
@@ -1263,9 +1106,7 @@
 
             <div class="card feature">
 
-                <div class="icon">
-                    💼
-                </div>
+                <div class="icon">💼</div>
 
                 <h3>
                     Internship Opportunities
@@ -1281,9 +1122,7 @@
 
             <div class="card feature">
 
-                <div class="icon">
-                    📊
-                </div>
+                <div class="icon">📊</div>
 
                 <h3>
                     Skill Insights
@@ -1299,9 +1138,7 @@
 
             <div class="card feature">
 
-                <div class="icon">
-                    🎯
-                </div>
+                <div class="icon">🎯</div>
 
                 <h3>
                     Easy Application
@@ -1377,9 +1214,7 @@
 </section>
 
 
-<!-- =========================
-     FIND INTERNSHIPS
-========================= -->
+<!-- ================= FIND ================= -->
 
 <section
     id="find"
@@ -1431,8 +1266,16 @@
                         BCA
                     </option>
 
+                    <option value="BBA">
+                        BBA
+                    </option>
+
                     <option value="MBA">
                         MBA
+                    </option>
+
+                    <option value="B.Com">
+                        B.Com
                     </option>
 
                     <option value="Any">
@@ -1452,6 +1295,10 @@
                         Technology
                     </option>
 
+                    <option value="Software Development">
+                        Software Development
+                    </option>
+
                     <option value="Web Development">
                         Web Development
                     </option>
@@ -1464,8 +1311,24 @@
                         Backend Development
                     </option>
 
+                    <option value="Full Stack Development">
+                        Full Stack Development
+                    </option>
+
+                    <option value="Mobile App Development">
+                        Mobile App Development
+                    </option>
+
                     <option value="Data Analytics">
                         Data Analytics
+                    </option>
+
+                    <option value="Data Science">
+                        Data Science
+                    </option>
+
+                    <option value="Data">
+                        Data
                     </option>
 
                     <option value="Artificial Intelligence">
@@ -1476,8 +1339,20 @@
                         Machine Learning
                     </option>
 
-                    <option value="Data">
-                        Data
+                    <option value="Cyber Security">
+                        Cyber Security
+                    </option>
+
+                    <option value="Cloud Computing">
+                        Cloud Computing
+                    </option>
+
+                    <option value="DevOps">
+                        DevOps
+                    </option>
+
+                    <option value="UI UX Design">
+                        UI/UX Design
                     </option>
 
                     <option value="Marketing">
@@ -1486,6 +1361,26 @@
 
                     <option value="Finance">
                         Finance
+                    </option>
+
+                    <option value="Human Resources">
+                        Human Resources
+                    </option>
+
+                    <option value="Business Development">
+                        Business Development
+                    </option>
+
+                    <option value="Content Writing">
+                        Content Writing
+                    </option>
+
+                    <option value="Research">
+                        Research
+                    </option>
+
+                    <option value="Operations">
+                        Operations
                     </option>
 
                 </select>
@@ -1506,55 +1401,7 @@
                         autocomplete="off"
                     >
 
-                    <datalist id="locationSuggestions">
-
-                        <option value="Any Location"></option>
-
-                        <option value="Delhi"></option>
-                        <option value="New Delhi"></option>
-                        <option value="Mumbai"></option>
-                        <option value="Bangalore"></option>
-                        <option value="Bengaluru"></option>
-                        <option value="Hyderabad"></option>
-                        <option value="Chennai"></option>
-                        <option value="Pune"></option>
-                        <option value="Noida"></option>
-                        <option value="Greater Noida"></option>
-                        <option value="Gurugram"></option>
-                        <option value="Gurgaon"></option>
-                        <option value="Kolkata"></option>
-                        <option value="Ahmedabad"></option>
-                        <option value="Jaipur"></option>
-                        <option value="Lucknow"></option>
-                        <option value="Chandigarh"></option>
-                        <option value="Indore"></option>
-                        <option value="Bhopal"></option>
-                        <option value="Patna"></option>
-                        <option value="Ranchi"></option>
-                        <option value="Hazaribagh"></option>
-                        <option value="Jamshedpur"></option>
-                        <option value="Dhanbad"></option>
-                        <option value="Mathura"></option>
-                        <option value="Agra"></option>
-                        <option value="Kanpur"></option>
-                        <option value="Varanasi"></option>
-                        <option value="Prayagraj"></option>
-                        <option value="Meerut"></option>
-                        <option value="Ghaziabad"></option>
-                        <option value="Faridabad"></option>
-                        <option value="Kochi"></option>
-                        <option value="Bhubaneswar"></option>
-                        <option value="Guwahati"></option>
-                        <option value="Nagpur"></option>
-                        <option value="Surat"></option>
-                        <option value="Vadodara"></option>
-                        <option value="Coimbatore"></option>
-                        <option value="Visakhapatnam"></option>
-                        <option value="Mysore"></option>
-                        <option value="Dehradun"></option>
-                        <option value="Remote"></option>
-
-                    </datalist>
+                    <datalist id="locationSuggestions"></datalist>
 
                     <span class="location-hint">
                         Type any city or choose a suggestion
@@ -1623,7 +1470,7 @@
         <div id="results">
 
             <div class="card loading">
-                Loading internships...
+                Connecting to internship server...
             </div>
 
         </div>
@@ -1633,9 +1480,7 @@
 </section>
 
 
-<!-- =========================
-     DASHBOARD
-========================= -->
+<!-- ================= DASHBOARD ================= -->
 
 <section
     id="dashboard"
@@ -1648,31 +1493,31 @@
 
             <aside class="side">
 
-                <a class="active" href="#" onclick="openDashboardPage('dashboard', this); return false;">
+                <a class="active">
                     📊 Overview
                 </a>
 
-                <a href="#" onclick="openDashboardPage('profilePage', this); return false;">
+                <a>
                     👤 Profile
                 </a>
 
-                <a href="#" onclick="openDashboardPage('matchesPage', this); return false;">
+                <a>
                     💚 My Matches
                 </a>
 
-                <a href="#" onclick="openDashboardPage('savedPage', this); return false;">
+                <a>
                     🔖 Saved
                 </a>
 
-                <a href="#" onclick="openDashboardPage('applicationsPage', this); return false;">
+                <a>
                     📨 Applications
                 </a>
 
-                <a href="#" onclick="openDashboardPage('skillsPage', this); return false;">
+                <a>
                     📈 Skill Analysis
                 </a>
 
-                <a href="#" onclick="openDashboardPage('settingsPage', this); return false;">
+                <a>
                     ⚙️ Settings
                 </a>
 
@@ -1695,7 +1540,6 @@
                         </p>
 
                     </div>
-
 
                     <button
                         class="btn primary"
@@ -1737,7 +1581,7 @@
 
                     <div class="metric">
 
-                        <strong id="dashboardSaved">
+                        <strong>
                             0
                         </strong>
 
@@ -1750,7 +1594,7 @@
 
                     <div class="metric">
 
-                        <strong id="dashboardApplications">
+                        <strong>
                             0
                         </strong>
 
@@ -1864,59 +1708,7 @@
 </section>
 
 
-<!-- =========================
-     FUNCTIONAL DASHBOARD PAGES
-========================= -->
-<section id="profilePage" class="page dashboard-page">
-    <div class="container">
-        <div class="section-title"><h2>My Profile</h2><p>Your information used for internship matching.</p></div>
-        <div class="card" id="profileContent"></div>
-    </div>
-</section>
-
-<section id="matchesPage" class="page dashboard-page">
-    <div class="container">
-        <div class="section-title"><h2>My Matches</h2><p>Internships ranked using your skills, education, interest and location.</p></div>
-        <div id="matchesContent"></div>
-    </div>
-</section>
-
-<section id="savedPage" class="page dashboard-page">
-    <div class="container">
-        <div class="section-title"><h2>Saved Internships</h2><p>Your shortlisted opportunities are stored in this browser.</p></div>
-        <div id="savedContent"></div>
-    </div>
-</section>
-
-<section id="applicationsPage" class="page dashboard-page">
-    <div class="container">
-        <div class="section-title"><h2>My Applications</h2><p>Track internships you have applied to.</p></div>
-        <div id="applicationsContent"></div>
-    </div>
-</section>
-
-<section id="skillsPage" class="page dashboard-page">
-    <div class="container">
-        <div class="section-title"><h2>Skill Analysis</h2><p>Understand your current skills and what can improve your internship matches.</p></div>
-        <div id="skillsContent"></div>
-    </div>
-</section>
-
-<section id="settingsPage" class="page dashboard-page">
-    <div class="container">
-        <div class="section-title"><h2>Settings</h2><p>Manage your local dashboard data.</p></div>
-        <div class="card">
-            <h3>Dashboard Data</h3>
-            <p style="color:var(--muted);margin:8px 0 18px">Saved internships, applications and profile information are stored locally in your browser.</p>
-            <button class="btn outline" onclick="clearDashboardData()">Clear Saved Data</button>
-        </div>
-    </div>
-</section>
-
-
-<!-- =========================
-     HOW IT WORKS
-========================= -->
+<!-- ================= HOW IT WORKS ================= -->
 
 <section
     id="how"
@@ -2040,9 +1832,7 @@
 </section>
 
 
-<!-- =========================
-     RESOURCES
-========================= -->
+<!-- ================= RESOURCES ================= -->
 
 <section
     id="resources"
@@ -2142,9 +1932,7 @@
 </section>
 
 
-<!-- =========================
-     ABOUT
-========================= -->
+<!-- ================= ABOUT ================= -->
 
 <section
     id="about"
@@ -2216,9 +2004,7 @@
 </main>
 
 
-<!-- =========================
-     FOOTER
-========================= -->
+<!-- ================= FOOTER ================= -->
 
 <footer>
 
@@ -2345,9 +2131,7 @@
 </footer>
 
 
-<!-- =========================
-     MODAL
-========================= -->
+<!-- ================= MODAL ================= -->
 
 <div
     id="modal"
@@ -2373,11 +2157,14 @@
 <script>
 
 /* =====================================================
-   BACKEND API
+   DEPLOYED BACKEND
 ===================================================== */
 
+const API_BASE_URL =
+    "https://sih-pm-internship.onrender.com";
+
 const API_URL =
-      "https://sih-pm-internship.onrender.com/api/internships";
+    `${API_BASE_URL}/api/internships`;
 
 
 /* =====================================================
@@ -2390,11 +2177,12 @@ let currentResults = [];
 
 
 /* =====================================================
-   COMMON LOCATION SUGGESTIONS
+   COMMON LOCATIONS
 ===================================================== */
 
 const commonLocations = [
 
+    "Any Location",
     "Delhi",
     "New Delhi",
     "Mumbai",
@@ -2419,6 +2207,10 @@ const commonLocations = [
     "Hazaribagh",
     "Jamshedpur",
     "Dhanbad",
+    "Bokaro",
+    "Ramgarh",
+    "Chatra",
+    "Giridih",
     "Mathura",
     "Agra",
     "Kanpur",
@@ -2451,6 +2243,241 @@ const commonLocations = [
 
 
 /* =====================================================
+   SMART NEARBY LOCATIONS
+===================================================== */
+
+const nearbyLocations = {
+
+    "hazaribagh": [
+        "hazaribagh",
+        "ranchi",
+        "dhanbad",
+        "bokaro",
+        "ramgarh",
+        "chatra",
+        "giridih",
+        "jamshedpur",
+        "remote"
+    ],
+
+    "ranchi": [
+        "ranchi",
+        "hazaribagh",
+        "ramgarh",
+        "bokaro",
+        "jamshedpur",
+        "dhanbad",
+        "remote"
+    ],
+
+    "dhanbad": [
+        "dhanbad",
+        "bokaro",
+        "ranchi",
+        "giridih",
+        "hazaribagh",
+        "remote"
+    ],
+
+    "bokaro": [
+        "bokaro",
+        "dhanbad",
+        "ranchi",
+        "hazaribagh",
+        "jamshedpur",
+        "remote"
+    ],
+
+    "jamshedpur": [
+        "jamshedpur",
+        "ranchi",
+        "bokaro",
+        "dhanbad",
+        "remote"
+    ],
+
+    "delhi": [
+        "delhi",
+        "new delhi",
+        "noida",
+        "greater noida",
+        "gurugram",
+        "gurgaon",
+        "faridabad",
+        "ghaziabad",
+        "remote"
+    ],
+
+    "new delhi": [
+        "delhi",
+        "new delhi",
+        "noida",
+        "greater noida",
+        "gurugram",
+        "gurgaon",
+        "faridabad",
+        "ghaziabad",
+        "remote"
+    ],
+
+    "noida": [
+        "noida",
+        "greater noida",
+        "delhi",
+        "new delhi",
+        "ghaziabad",
+        "gurugram",
+        "remote"
+    ],
+
+    "greater noida": [
+        "greater noida",
+        "noida",
+        "delhi",
+        "new delhi",
+        "ghaziabad",
+        "gurugram",
+        "remote"
+    ],
+
+    "mumbai": [
+        "mumbai",
+        "pune",
+        "remote"
+    ],
+
+    "pune": [
+        "pune",
+        "mumbai",
+        "remote"
+    ],
+
+    "lucknow": [
+        "lucknow",
+        "kanpur",
+        "prayagraj",
+        "varanasi",
+        "remote"
+    ],
+
+    "kanpur": [
+        "kanpur",
+        "lucknow",
+        "agra",
+        "prayagraj",
+        "remote"
+    ],
+
+    "agra": [
+        "agra",
+        "mathura",
+        "delhi",
+        "noida",
+        "kanpur",
+        "remote"
+    ],
+
+    "mathura": [
+        "mathura",
+        "agra",
+        "delhi",
+        "noida",
+        "remote"
+    ],
+
+    "jaipur": [
+        "jaipur",
+        "delhi",
+        "gurugram",
+        "remote"
+    ],
+
+    "indore": [
+        "indore",
+        "bhopal",
+        "remote"
+    ],
+
+    "bhopal": [
+        "bhopal",
+        "indore",
+        "remote"
+    ],
+
+    "patna": [
+        "patna",
+        "ranchi",
+        "varanasi",
+        "remote"
+    ],
+
+    "kolkata": [
+        "kolkata",
+        "bhubaneswar",
+        "remote"
+    ],
+
+    "hyderabad": [
+        "hyderabad",
+        "bangalore",
+        "bengaluru",
+        "chennai",
+        "remote"
+    ],
+
+    "bangalore": [
+        "bangalore",
+        "bengaluru",
+        "chennai",
+        "hyderabad",
+        "mysore",
+        "remote"
+    ],
+
+    "bengaluru": [
+        "bangalore",
+        "bengaluru",
+        "chennai",
+        "hyderabad",
+        "mysore",
+        "remote"
+    ],
+
+    "chennai": [
+        "chennai",
+        "bangalore",
+        "bengaluru",
+        "hyderabad",
+        "coimbatore",
+        "remote"
+    ],
+
+    "ahmedabad": [
+        "ahmedabad",
+        "vadodara",
+        "surat",
+        "rajkot",
+        "remote"
+    ],
+
+    "surat": [
+        "surat",
+        "vadodara",
+        "ahmedabad",
+        "remote"
+    ],
+
+    "vadodara": [
+        "vadodara",
+        "ahmedabad",
+        "surat",
+        "remote"
+    ]
+
+};
+
+
+/* =====================================================
    LOAD INTERNSHIPS
 ===================================================== */
 
@@ -2463,7 +2490,7 @@ async function loadInternships() {
 
         results.innerHTML = `
             <div class="card loading">
-                Loading internships...
+                Connecting to internship server...
             </div>
         `;
 
@@ -2489,7 +2516,7 @@ async function loadInternships() {
         if (!Array.isArray(data)) {
 
             throw new Error(
-                "Backend did not return an array."
+                "Backend did not return an internship list."
             );
 
         }
@@ -2510,6 +2537,8 @@ async function loadInternships() {
         renderResults(currentResults);
 
 
+        /* INTERNSHIP COUNT */
+
         const count =
             document.getElementById(
                 "internshipCount"
@@ -2523,6 +2552,8 @@ async function loadInternships() {
 
         }
 
+
+        /* DASHBOARD */
 
         const dashboardMatches =
             document.getElementById(
@@ -2539,12 +2570,17 @@ async function loadInternships() {
 
 
         updateRecentMatches();
-        renderDashboardPages();
 
 
         console.log(
-            "Internships successfully loaded:",
+            "Internships loaded successfully:",
             internships
+        );
+
+
+        console.log(
+            "Total internships:",
+            internships.length
         );
 
     }
@@ -2574,8 +2610,8 @@ async function loadInternships() {
                     color:var(--muted);
                     margin-top:10px"
                 >
-                    Make sure your backend is
-                    running on port 7000.
+                    The internship server is temporarily
+                    unavailable. Please try again.
                 </p>
 
                 <button
@@ -2596,7 +2632,7 @@ async function loadInternships() {
 
 
 /* =====================================================
-   UPDATE LOCATION SUGGESTIONS
+   LOCATION SUGGESTIONS
 ===================================================== */
 
 function updateLocationSuggestions() {
@@ -2614,9 +2650,18 @@ function updateLocationSuggestions() {
 
     const backendLocations =
         internships
-            .map(internship => internship.location)
+
+            .map(
+                internship =>
+                    internship.location
+            )
+
             .filter(Boolean)
-            .map(location => String(location).trim());
+
+            .map(
+                location =>
+                    String(location).trim()
+            );
 
 
     const allLocations = [
@@ -2647,7 +2692,10 @@ function updateLocationSuggestions() {
         const option =
             document.createElement("option");
 
-        option.value = location;
+
+        option.value =
+            location;
+
 
         datalist.appendChild(option);
 
@@ -2674,7 +2722,9 @@ function showPage(id) {
 
 
     if (page) {
+
         page.classList.add("active");
+
     }
 
 
@@ -2685,11 +2735,13 @@ function showPage(id) {
 
 
     if (id === "find") {
-        renderResults(currentResults.length ? currentResults : internships);
-    }
 
-    if (["dashboard", "profilePage", "matchesPage", "savedPage", "applicationsPage", "skillsPage", "settingsPage"].includes(id)) {
-        renderDashboardPages();
+        renderResults(
+            currentResults.length
+                ? currentResults
+                : internships
+        );
+
     }
 
 }
@@ -2730,7 +2782,9 @@ function normalizeLocation(location) {
         value === "bangalore" ||
         value === "bengaluru"
     ) {
+
         return "bangalore";
+
     }
 
 
@@ -2738,7 +2792,9 @@ function normalizeLocation(location) {
         value === "gurgaon" ||
         value === "gurugram"
     ) {
+
         return "gurugram";
+
     }
 
 
@@ -2748,7 +2804,7 @@ function normalizeLocation(location) {
 
 
 /* =====================================================
-   LOCATION MATCH
+   SMART LOCATION MATCH
 ===================================================== */
 
 function locationMatches(
@@ -2760,7 +2816,9 @@ function locationMatches(
         !selectedLocation ||
         !internshipLocation
     ) {
+
         return false;
+
     }
 
 
@@ -2776,24 +2834,53 @@ function locationMatches(
         );
 
 
+    /* ANY LOCATION */
+
     if (
         selected === "any location" ||
         selected === "any"
     ) {
+
         return true;
+
     }
 
 
-    if (selected === internship) {
+    /* EXACT MATCH */
+
+    if (
+        selected === internship
+    ) {
+
         return true;
+
     }
 
+
+    /* PARTIAL MATCH */
 
     if (
         internship.includes(selected) ||
         selected.includes(internship)
     ) {
+
         return true;
+
+    }
+
+
+    /* NEARBY CITY MATCH */
+
+    const nearby =
+        nearbyLocations[selected] || [];
+
+
+    if (
+        nearby.includes(internship)
+    ) {
+
+        return true;
+
     }
 
 
@@ -2803,7 +2890,7 @@ function locationMatches(
 
 
 /* =====================================================
-   SHOW LOCATION MESSAGE
+   LOCATION MESSAGE
 ===================================================== */
 
 function showLocationMessage(message) {
@@ -2819,20 +2906,45 @@ function showLocationMessage(message) {
     }
 
 
-    if (!message) {
-
-        box.classList.remove("show");
-
-        box.textContent = "";
-
-        return;
-
-    }
+    box.textContent =
+        message || "";
 
 
-    box.textContent = message;
+    box.classList.toggle(
+        "show",
+        Boolean(message)
+    );
 
-    box.classList.add("show");
+}
+
+
+/* =====================================================
+   SEARCHABLE TEXT
+===================================================== */
+
+function getSearchableText(internship) {
+
+    return [
+
+        internship.title,
+        internship.company,
+        internship.location,
+        internship.interest,
+        internship.duration,
+        internship.stipend,
+        internship.description,
+
+        ...(Array.isArray(internship.skills)
+            ? internship.skills
+            : [])
+
+    ]
+
+        .filter(Boolean)
+
+        .join(" ")
+
+        .toLowerCase();
 
 }
 
@@ -2842,10 +2954,6 @@ function showLocationMessage(message) {
 ===================================================== */
 
 function findMatches() {
-
-    /* =========================
-       GET USER INPUT
-    ========================= */
 
     const rawSkills =
         document
@@ -2888,12 +2996,6 @@ function findMatches() {
             .toLowerCase();
 
 
-    saveProfile({ skills: document.getElementById("skills").value, education, interest, location: locationInput, updatedAt: new Date().toISOString() });
-
-    /* =========================
-       LOCATION
-    ========================= */
-
     const selectedLocation =
         locationInput &&
         locationInput.toLowerCase() !==
@@ -2902,28 +3004,6 @@ function findMatches() {
             : "";
 
 
-    if (selectedLocation) {
-
-        showLocationMessage(
-            "Searching internships in: " +
-            selectedLocation
-        );
-
-    }
-
-    else {
-
-        showLocationMessage(
-            "Showing internships from all available locations."
-        );
-
-    }
-
-
-    /* =========================
-       MATCH INTERNSHIPS
-    ========================= */
-
     let data =
         internships.map(internship => {
 
@@ -2931,20 +3011,17 @@ function findMatches() {
                 Array.isArray(
                     internship.skills
                 )
-                    ? internship.skills.map(skill =>
-                        String(skill)
-                            .trim()
-                            .toLowerCase()
+                    ? internship.skills.map(
+                        skill =>
+                            String(skill)
+                                .trim()
+                                .toLowerCase()
                     )
                     : [];
 
 
             let matchedSkills = 0;
 
-
-            /* =========================
-               SKILL MATCH
-            ========================= */
 
             rawSkills.forEach(userSkill => {
 
@@ -2969,14 +3046,10 @@ function findMatches() {
             });
 
 
-            /* =========================
-               SCORE
-            ========================= */
-
             let score = 0;
 
 
-            /* SKILLS = 50 */
+            /* SKILLS */
 
             if (rawSkills.length > 0) {
 
@@ -2996,9 +3069,7 @@ function findMatches() {
             }
 
 
-            /* =========================
-               EDUCATION = 15
-            ========================= */
+            /* EDUCATION */
 
             if (
                 education &&
@@ -3018,19 +3089,19 @@ function findMatches() {
                         internship.education.some(
                             item => {
 
-                                const internshipEducation =
+                                const itemEducation =
                                     String(item)
                                         .trim()
                                         .toLowerCase();
 
 
                                 return (
-                                    internshipEducation.includes(
+                                    itemEducation.includes(
                                         education
                                     ) ||
 
                                     education.includes(
-                                        internshipEducation
+                                        itemEducation
                                     )
                                 );
 
@@ -3043,7 +3114,7 @@ function findMatches() {
                     internship.education
                 ) {
 
-                    const internshipEducation =
+                    const itemEducation =
                         String(
                             internship.education
                         )
@@ -3052,19 +3123,21 @@ function findMatches() {
 
 
                     educationMatch =
-                        internshipEducation.includes(
+                        itemEducation.includes(
                             education
                         ) ||
 
                         education.includes(
-                            internshipEducation
+                            itemEducation
                         );
 
                 }
 
 
                 if (educationMatch) {
+
                     score += 15;
+
                 }
 
             }
@@ -3076,9 +3149,7 @@ function findMatches() {
             }
 
 
-            /* =========================
-               INTEREST = 20
-            ========================= */
+            /* INTEREST */
 
             if (
                 interest &&
@@ -3110,9 +3181,7 @@ function findMatches() {
             }
 
 
-            /* =========================
-               LOCATION = 15
-            ========================= */
+            /* LOCATION */
 
             if (
                 selectedLocation &&
@@ -3139,36 +3208,20 @@ function findMatches() {
             }
 
 
-            /* =========================
-               SEARCH BONUS
-            ========================= */
+            /* SEARCH */
 
             if (search) {
 
-                const searchableText = [
-
-                    internship.title,
-                    internship.company,
-                    internship.location,
-                    internship.interest,
-                    internship.duration,
-                    internship.stipend,
-                    internship.description,
-
-                    ...(Array.isArray(
-                        internship.skills
-                    )
-                        ? internship.skills
-                        : [])
-
-                ]
-                    .filter(Boolean)
-                    .join(" ")
-                    .toLowerCase();
+                const searchableText =
+                    getSearchableText(
+                        internship
+                    );
 
 
                 if (
-                    searchableText.includes(search)
+                    searchableText.includes(
+                        search
+                    )
                 ) {
 
                     score += 10;
@@ -3193,52 +3246,154 @@ function findMatches() {
         });
 
 
-    /* =========================
-       LOCATION FILTER
-    ========================= */
+    /* =================================================
+       SMART LOCATION FILTER
+    ================================================= */
 
     if (selectedLocation) {
 
-        data =
-            data.filter(internship =>
-                locationMatches(
-                    selectedLocation,
-                    internship.location
-                )
+        const exactResults =
+            data.filter(internship => {
+
+                const selected =
+                    normalizeLocation(
+                        selectedLocation
+                    );
+
+                const internshipLocation =
+                    normalizeLocation(
+                        internship.location
+                    );
+
+
+                return (
+                    internshipLocation === selected ||
+                    internshipLocation.includes(selected) ||
+                    selected.includes(internshipLocation)
+                );
+
+            });
+
+
+        /* EXACT LOCATION AVAILABLE */
+
+        if (
+            exactResults.length > 0
+        ) {
+
+            data =
+                exactResults;
+
+
+            showLocationMessage(
+                "Showing internships available in " +
+                selectedLocation + "."
             );
+
+        }
+
+
+        /* NO EXACT LOCATION */
+
+        else {
+
+            const nearbyResults =
+                data.filter(internship =>
+                    locationMatches(
+                        selectedLocation,
+                        internship.location
+                    )
+                );
+
+
+            /* NEARBY AVAILABLE */
+
+            if (
+                nearbyResults.length > 0
+            ) {
+
+                data =
+                    nearbyResults;
+
+
+                showLocationMessage(
+                    "No internships directly in " +
+                    selectedLocation +
+                    ". Showing nearby and remote opportunities."
+                );
+
+            }
+
+
+            /* NO NEARBY */
+
+            else {
+
+                const remoteResults =
+                    data.filter(internship => {
+
+                        const location =
+                            normalizeLocation(
+                                internship.location
+                            );
+
+
+                        return (
+                            location === "remote" ||
+                            location.includes("remote")
+                        );
+
+                    });
+
+
+                data =
+                    remoteResults;
+
+
+                if (
+                    remoteResults.length > 0
+                ) {
+
+                    showLocationMessage(
+                        "No nearby internships found. Showing available remote opportunities."
+                    );
+
+                }
+
+                else {
+
+                    showLocationMessage(
+                        "No internships found for this location."
+                    );
+
+                }
+
+            }
+
+        }
+
+    }
+
+    else {
+
+        showLocationMessage(
+            "Showing internships from all available locations."
+        );
 
     }
 
 
-    /* =========================
-       SEARCH FILTER
-    ========================= */
+    /* SEARCH FILTER */
 
     if (search) {
 
         data =
             data.filter(internship => {
 
-                const searchableText = [
-
-                    internship.title,
-                    internship.company,
-                    internship.location,
-                    internship.interest,
-                    internship.duration,
-                    internship.stipend,
-                    internship.description,
-
-                    ...(Array.isArray(
-                        internship.skills
-                    )
-                        ? internship.skills
-                        : [])
-
-                ]
-                    .filter(Boolean)
-                    .join(" ")
-                    .toLowerCase();
+                const searchableText =
+                    getSearchableText(
+                        internship
+                    );
 
 
                 return searchableText.includes(
@@ -3250,10 +3405,6 @@ function findMatches() {
     }
 
 
-    /* =========================
-       BEST MATCH FIRST
-    ========================= */
-
     data.sort(
         (a, b) =>
             (b.score || 0) -
@@ -3261,7 +3412,8 @@ function findMatches() {
     );
 
 
-    currentResults = data;
+    currentResults =
+        data;
 
 
     renderResults(data);
@@ -3287,7 +3439,7 @@ function findMatches() {
 
 
 /* =====================================================
-   RENDER INTERNSHIPS
+   RENDER RESULTS
 ===================================================== */
 
 function renderResults(data) {
@@ -3380,9 +3532,7 @@ function renderResults(data) {
                 <div class="internship">
 
                     <div class="company-logo">
-
                         ${escapeHTML(logo)}
-
                     </div>
 
 
@@ -3391,7 +3541,6 @@ function renderResults(data) {
                         <h3>
                             ${escapeHTML(title)}
                         </h3>
-
 
                         <div class="company">
                             ${escapeHTML(company)}
@@ -3408,7 +3557,6 @@ function renderResults(data) {
                                 )}
                             </span>
 
-
                             <span>
                                 ⏱
                                 ${escapeHTML(
@@ -3416,7 +3564,6 @@ function renderResults(data) {
                                     "Not specified"
                                 )}
                             </span>
-
 
                             <span>
                                 💰
@@ -3433,6 +3580,7 @@ function renderResults(data) {
 
                             ${
                                 skills.length
+
                                     ? skills
                                         .map(
                                             skill =>
@@ -3443,7 +3591,9 @@ function renderResults(data) {
                                                 `
                                         )
                                         .join("")
+
                                     :
+
                                         `
                                         <span class="tag">
                                             Skills not specified
@@ -3478,12 +3628,6 @@ function renderResults(data) {
                             View Details
                         </button>
 
-                        <button
-                            class="btn outline"
-                            onclick="toggleSave('${escapeHTML(id)}')"
-                        >
-                            ${isSaved(id) ? '★ Saved' : '☆ Save'}
-                        </button>
 
                         <button
                             class="btn outline"
@@ -3498,8 +3642,7 @@ function renderResults(data) {
 
             `;
 
-        })
-        .join("");
+        }).join("");
 
 }
 
@@ -3560,15 +3703,13 @@ function clearFilters() {
         currentResults.length;
 
 
-    saveProfile({ skills: "", education: "", interest: "", location: "", updatedAt: new Date().toISOString() });
     updateRecentMatches();
-    renderDashboardPages();
 
 }
 
 
 /* =====================================================
-   FIND INTERNSHIP BY ID
+   GET INTERNSHIP
 ===================================================== */
 
 function getInternshipById(id) {
@@ -3595,8 +3736,9 @@ function openDetailsById(id) {
 
     if (!internship) {
 
-        alert(
-            "Internship not found."
+        showApplicationMessage(
+            "Internship details could not be found.",
+            "Please refresh the internship list and try again."
         );
 
         return;
@@ -3610,6 +3752,17 @@ function openDetailsById(id) {
         )
             ? internship.skills
             : [];
+
+
+    const education =
+        Array.isArray(
+            internship.education
+        )
+            ? internship.education.join(", ")
+            : (
+                internship.education ||
+                "Not specified"
+            );
 
 
     document.getElementById(
@@ -3679,31 +3832,7 @@ function openDetailsById(id) {
                 Education:
             </b>
 
-            ${
-                Array.isArray(
-                    internship.education
-                )
-                    ?
-                        (
-                            internship.education.length
-                                ?
-                                    internship.education
-                                        .map(
-                                            education =>
-                                                escapeHTML(
-                                                    education
-                                                )
-                                        )
-                                        .join(", ")
-                                :
-                                    "Not specified"
-                        )
-                    :
-                        escapeHTML(
-                            internship.education ||
-                            "Not specified"
-                        )
-            }
+            ${escapeHTML(education)}
 
         </p>
 
@@ -3730,15 +3859,13 @@ function openDetailsById(id) {
 
             ${
                 skills.length
-                    ?
-                        skills
-                            .map(
-                                skill =>
-                                    escapeHTML(skill)
-                            )
-                            .join(", ")
-                    :
-                        "Not specified"
+                    ? skills
+                        .map(
+                            skill =>
+                                escapeHTML(skill)
+                        )
+                        .join(", ")
+                    : "Not specified"
             }
 
         </p>
@@ -3808,236 +3935,144 @@ function openDetailsById(id) {
 
 function applyInternshipById(id) {
 
-    const internship = getInternshipById(id);
+    const internship =
+        getInternshipById(id);
+
 
     if (!internship) {
-        alert("Internship not found.");
+
+        showApplicationMessage(
+            "Internship Not Available",
+            "We could not find this internship in the current internship list."
+        );
+
         return;
+
     }
 
-    const applications = getApplications();
-    const key = String(id);
-    const existing = applications.find(item => String(item.id) === key);
 
-    if (!existing) {
-        applications.unshift({
-            id: key,
-            title: internship.title || "Internship",
-            company: internship.company || "Company",
-            location: internship.location || "Not specified",
-            score: internship.score ?? 70,
-            status: "Applied",
-            appliedAt: new Date().toISOString()
-        });
-        saveApplications(applications);
-    }
+    const applicationUrl =
+        internship.applicationUrl ||
+        internship.applyUrl ||
+        internship.applicationLink ||
+        internship.applyLink ||
+        internship.url ||
+        internship.link ||
+        "";
 
-    updateDashboardCounters();
-    renderApplications();
 
-    const applicationUrl = internship.applicationUrl;
+    if (
+        applicationUrl &&
+        applicationUrl !== "#" &&
+        /^https?:\/\//i.test(
+            String(applicationUrl).trim()
+        )
+    ) {
 
-    if (applicationUrl && applicationUrl !== "#" && /^https?:\/\//i.test(applicationUrl)) {
-        window.open(applicationUrl, "_blank");
+        window.open(
+            String(applicationUrl).trim(),
+            "_blank",
+            "noopener,noreferrer"
+        );
+
         return;
+
     }
 
-    closeModal();
-    alert("Application recorded. The application link is not available for this internship yet.");
+
+    showApplicationMessage(
+
+        "Application Information",
+
+        `
+        The application link for
+        <b>
+            ${escapeHTML(
+                internship.title ||
+                "this internship"
+            )}
+        </b>
+        is not available in the internship database yet.
+
+        <br><br>
+
+        You can check the official company
+        website for the application process.
+
+        <br><br>
+
+        <small>
+            This internship is available in the
+            PM Internship Assistant database.
+        </small>
+        `
+
+    );
+
 }
 
 
 /* =====================================================
-   DASHBOARD DATA + FUNCTIONAL FEATURES
+   APPLICATION MESSAGE
 ===================================================== */
 
-const SAVED_KEY = "pmInternshipSaved";
-const APPLICATIONS_KEY = "pmInternshipApplications";
-const PROFILE_KEY = "pmInternshipProfile";
+function showApplicationMessage(
+    title,
+    message
+) {
 
-function getSavedIds() {
-    try { return JSON.parse(localStorage.getItem(SAVED_KEY) || "[]").map(String); }
-    catch (e) { return []; }
-}
+    document.getElementById(
+        "modalContent"
+    ).innerHTML = `
 
-function saveSavedIds(ids) {
-    localStorage.setItem(SAVED_KEY, JSON.stringify([...new Set(ids.map(String))]));
-}
+        <div style="text-align:center">
 
-function getApplications() {
-    try { return JSON.parse(localStorage.getItem(APPLICATIONS_KEY) || "[]"); }
-    catch (e) { return []; }
-}
-
-function saveApplications(items) {
-    localStorage.setItem(APPLICATIONS_KEY, JSON.stringify(items));
-}
-
-function getProfile() {
-    try { return JSON.parse(localStorage.getItem(PROFILE_KEY) || "{}"); }
-    catch (e) { return {}; }
-}
-
-function saveProfile(profile) {
-    localStorage.setItem(PROFILE_KEY, JSON.stringify(profile));
-}
-
-function isSaved(id) {
-    return getSavedIds().includes(String(id));
-}
-
-function toggleSave(id) {
-    const key = String(id);
-    const ids = getSavedIds();
-    const index = ids.indexOf(key);
-    if (index >= 0) ids.splice(index, 1);
-    else ids.push(key);
-    saveSavedIds(ids);
-    updateDashboardCounters();
-    renderResults(currentResults);
-    renderSaved();
-}
-
-function removeSaved(id) {
-    saveSavedIds(getSavedIds().filter(item => item !== String(id)));
-    updateDashboardCounters();
-    renderSaved();
-    renderResults(currentResults);
-}
-
-function openDashboardPage(id, link) {
-    document.querySelectorAll(".side a").forEach(a => a.classList.remove("active"));
-    if (link) link.classList.add("active");
-    showPage(id);
-}
-
-function updateDashboardCounters() {
-    const matches = document.getElementById("dashboardMatches");
-    const saved = document.getElementById("dashboardSaved");
-    const applications = document.getElementById("dashboardApplications");
-    if (matches) matches.textContent = currentResults.length || internships.length || 0;
-    if (saved) saved.textContent = getSavedIds().length;
-    if (applications) applications.textContent = getApplications().length;
-}
-
-function saveCurrentProfile() {
-    const skills = document.getElementById("skills")?.value || "";
-    const education = document.getElementById("education")?.value || "";
-    const interest = document.getElementById("interest")?.value || "";
-    const location = document.getElementById("location")?.value || "";
-    saveProfile({ skills, education, interest, location, updatedAt: new Date().toISOString() });
-}
-
-function openDetailsFromDashboard(id) {
-    openDetailsById(id);
-}
-
-function dashboardInternshipCard(internship, allowRemove=false) {
-    const id = String(internship._id || "");
-    const score = internship.score ?? 70;
-    return `
-        <div class="workspace-card" style="margin-bottom:15px">
-            <div style="display:flex;justify-content:space-between;gap:15px;align-items:flex-start">
-                <div>
-                    <h3>${escapeHTML(internship.title || "Internship")}</h3>
-                    <p class="company" style="margin-top:5px">${escapeHTML(internship.company || "Company")}</p>
-                    <p style="color:var(--muted);margin-top:8px">📍 ${escapeHTML(internship.location || "Not specified")} &nbsp; • &nbsp; 💰 ${escapeHTML(internship.stipend || "Not specified")}</p>
-                </div>
-                <strong style="color:var(--green);font-size:20px">${score}%</strong>
+            <div
+                style="
+                font-size:50px;
+                margin-bottom:15px"
+            >
+                📋
             </div>
-            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:15px">
-                <button class="btn primary" onclick="openDetailsFromDashboard('${escapeHTML(id)}')">View Details</button>
-                ${allowRemove ? `<button class="btn outline" onclick="removeSaved('${escapeHTML(id)}')">Remove</button>` : `<button class="btn outline" onclick="toggleSave('${escapeHTML(id)}')">${isSaved(id) ? '★ Saved' : '☆ Save'}</button>`}
-                <button class="btn outline" onclick="applyInternshipById('${escapeHTML(id)}')">Apply</button>
-            </div>
-        </div>`;
-}
 
-function renderMatchesPage() {
-    const el = document.getElementById("matchesContent");
-    if (!el) return;
-    const data = currentResults.length ? currentResults : internships.map(i => ({...i, score:70}));
-    el.innerHTML = data.length ? data.map(i => dashboardInternshipCard(i)).join("") : `<div class="card empty-state">No matches yet. Go to Find Internships and enter your details.</div>`;
-}
 
-function renderSaved() {
-    const el = document.getElementById("savedContent");
-    if (!el) return;
-    const ids = getSavedIds();
-    const data = ids.map(id => getInternshipById(id)).filter(Boolean);
-    el.innerHTML = data.length ? data.map(i => dashboardInternshipCard(i, true)).join("") : `<div class="card empty-state"><h3>No saved internships</h3><p style="margin-top:8px">Click ☆ Save on any internship to keep it here.</p><button class="btn primary" style="margin-top:15px" onclick="showPage('find')">Find Internships</button></div>`;
-}
+            <h2>
+                ${escapeHTML(title)}
+            </h2>
 
-function renderApplications() {
-    const el = document.getElementById("applicationsContent");
-    if (!el) return;
-    const apps = getApplications();
-    if (!apps.length) {
-        el.innerHTML = `<div class="card empty-state"><h3>No applications yet</h3><p style="margin-top:8px">Your applications will appear here after you click Apply.</p></div>`;
-        return;
-    }
-    el.innerHTML = `<div class="card">${apps.map(app => `
-        <div class="dashboard-item">
-            <div><h3>${escapeHTML(app.title)}</h3><p class="company" style="margin-top:4px">${escapeHTML(app.company)} • ${escapeHTML(app.location)}</p><p style="color:var(--muted);margin-top:5px">Applied ${new Date(app.appliedAt).toLocaleDateString()}</p></div>
-            <div style="text-align:right"><span class="status-pill">${escapeHTML(app.status || "Applied")}</span><div style="color:var(--green);font-weight:700;margin-top:6px">${app.score ?? 70}% match</div></div>
-        </div>`).join("")}</div>`;
-}
 
-function renderProfile() {
-    const el = document.getElementById("profileContent");
-    if (!el) return;
-    const p = getProfile();
-    const skills = p.skills || "Not added";
-    el.innerHTML = `
-        <div class="workspace-grid">
-            <div><p style="color:var(--muted)">Skills</p><h3 style="margin-top:5px">${escapeHTML(skills)}</h3></div>
-            <div><p style="color:var(--muted)">Education</p><h3 style="margin-top:5px">${escapeHTML(p.education || "Not added")}</h3></div>
-            <div><p style="color:var(--muted)">Interest</p><h3 style="margin-top:5px">${escapeHTML(p.interest || "Not added")}</h3></div>
-            <div><p style="color:var(--muted)">Preferred Location</p><h3 style="margin-top:5px">${escapeHTML(p.location || "Any location")}</h3></div>
+            <p
+                style="
+                color:var(--muted);
+                margin-top:12px;
+                line-height:1.7"
+            >
+                ${message}
+            </p>
+
+
+            <button
+                class="btn outline"
+                style="margin-top:20px"
+                onclick="closeModal()"
+            >
+                Close
+            </button>
+
         </div>
-        <button class="btn primary" style="margin-top:20px" onclick="showPage('find')">Edit Profile / Find Matches</button>`;
-}
 
-function renderSkillsPage() {
-    const el = document.getElementById("skillsContent");
-    if (!el) return;
-    const p = getProfile();
-    const userSkills = (p.skills || "").split(",").map(x=>x.trim()).filter(Boolean);
-    const counts = {};
-    internships.forEach(i => (Array.isArray(i.skills) ? i.skills : []).forEach(s => { const key=String(s).trim(); if(key) counts[key]=(counts[key]||0)+1; }));
-    const recommended = Object.entries(counts).sort((a,b)=>b[1]-a[1]).map(x=>x[0]).filter(s => !userSkills.some(u=>u.toLowerCase()===s.toLowerCase())).slice(0,8);
-    const bars = userSkills.length ? userSkills.map(skill => {
-        const relevance = counts[skill] || counts[Object.keys(counts).find(k=>k.toLowerCase()===skill.toLowerCase())] || 0;
-        const percent = Math.min(95, 55 + relevance * 10);
-        return `<div class="progress-wrap"><div class="progress-label"><span>${escapeHTML(skill)}</span><b>${percent}%</b></div><div class="progress-track"><div class="progress-fill" style="width:${percent}%"></div></div></div>`;
-    }).join("") : `<p style="color:var(--muted)">Add skills in Find Internships to generate your skill analysis.</p>`;
-    el.innerHTML = `<div class="workspace-grid"><div class="card"><h3>Your Skills</h3>${bars}</div><div class="card"><h3>Recommended Skills</h3><p style="color:var(--muted);margin:8px 0 15px">Skills frequently requested by the internships currently available.</p>${recommended.length ? recommended.map(s=>`<span class="tag" style="display:inline-block;margin:4px">${escapeHTML(s)}</span>`).join("") : `<p>You're covering the main skills in the current dataset.</p>`}</div></div>`;
-}
+    `;
 
-function clearDashboardData() {
-    if (!confirm("Clear saved internships, applications and profile data?")) return;
-    localStorage.removeItem(SAVED_KEY);
-    localStorage.removeItem(APPLICATIONS_KEY);
-    localStorage.removeItem(PROFILE_KEY);
-    updateDashboardCounters();
-    renderSaved();
-    renderApplications();
-    renderProfile();
-    alert("Dashboard data cleared.");
-}
 
-function renderDashboardPages() {
-    renderMatchesPage();
-    renderSaved();
-    renderApplications();
-    renderProfile();
-    renderSkillsPage();
-    updateDashboardCounters();
+    document
+        .getElementById("modal")
+        .classList.add("open");
+
 }
 
 
 /* =====================================================
-   SORT RESULTS
+   SORT
 ===================================================== */
 
 function sortResults() {
@@ -4089,8 +4124,7 @@ function sortResults() {
                 const aValue =
                     parseInt(
                         String(
-                            a.stipend ||
-                            "0"
+                            a.stipend || "0"
                         ).replace(
                             /[^\d]/g,
                             ""
@@ -4102,8 +4136,7 @@ function sortResults() {
                 const bValue =
                     parseInt(
                         String(
-                            b.stipend ||
-                            "0"
+                            b.stipend || "0"
                         ).replace(
                             /[^\d]/g,
                             ""
@@ -4152,9 +4185,11 @@ function updateRecentMatches() {
     ) {
 
         container.innerHTML = `
+
             <p style="margin-top:15px">
                 No matches yet.
             </p>
+
         `;
 
         return;
@@ -4285,7 +4320,7 @@ function escapeHTML(value) {
 
 
 /* =====================================================
-   LOCATION ENTER KEY
+   LOCATION ENTER
 ===================================================== */
 
 document
@@ -4309,7 +4344,7 @@ document
 
 
 /* =====================================================
-   SEARCH ENTER KEY
+   SEARCH ENTER
 ===================================================== */
 
 document
@@ -4342,16 +4377,15 @@ document.addEventListener(
 
         loadInternships();
 
+
         showLocationMessage(
             "Showing internships from all available locations."
         );
-        renderDashboardPages();
 
     }
 );
 
 </script>
-
 
 </body>
 
