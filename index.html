@@ -893,13 +893,11 @@
 
                         <div class="hero-buttons">
 
-                            <button class="btn primary"
-                                onclick="showPage('find')">
+                            <button class="btn primary" onclick="showPage('find')">
                                 Get Started →
                             </button>
 
-                            <button class="btn outline"
-                                onclick="showPage('how')">
+                            <button class="btn outline" onclick="showPage('how')">
                                 Learn More
                             </button>
 
@@ -992,10 +990,7 @@
 
                     <div class="form-grid">
 
-                        <input
-                            id="skills"
-                            type="text"
-                            placeholder="Skills: Python, SQL, HTML">
+                        <input id="skills" type="text" placeholder="Skills: Python, SQL, HTML">
 
                         <select id="education">
 
@@ -1028,13 +1023,8 @@
 
                             <span class="location-icon">📍</span>
 
-                            <input
-                                id="location"
-                                class="location-input"
-                                type="text"
-                                list="locationSuggestions"
-                                placeholder="Any Location"
-                                autocomplete="off">
+                            <input id="location" class="location-input" type="text" list="locationSuggestions"
+                                placeholder="Any Location" autocomplete="off">
 
                             <datalist id="locationSuggestions"></datalist>
 
@@ -1046,20 +1036,14 @@
 
                     </div>
 
-                    <div id="locationMessage"
-                        class="location-message">
+                    <div id="locationMessage" class="location-message">
                     </div>
 
                     <div class="search-row">
 
-                        <input
-                            id="search"
-                            type="text"
-                            placeholder="Search internship, company or skill...">
+                        <input id="search" type="text" placeholder="Search internship, company or skill...">
 
-                        <button
-                            class="btn primary"
-                            onclick="findMatches()">
+                        <button class="btn primary" onclick="findMatches()">
                             Find My Internships
                         </button>
 
@@ -1072,10 +1056,7 @@
 
                     <h2>Top Matches For You</h2>
 
-                    <select
-                        id="sortSelect"
-                        style="width:160px"
-                        onchange="sortResults()">
+                    <select id="sortSelect" style="width:160px" onchange="sortResults()">
 
                         <option value="match">
                             Best Match
@@ -1117,39 +1098,31 @@
 
                     <aside class="side">
 
-                        <a class="active"
-                            href="#"
-                            onclick="openDashboardPage('dashboard',this); return false">
+                        <a class="active" href="#" onclick="openDashboardPage('dashboard',this); return false">
                             📊 Overview
                         </a>
 
-                        <a href="#"
-                            onclick="openDashboardPage('profilePage',this); return false">
+                        <a href="#" onclick="openDashboardPage('profilePage',this); return false">
                             👤 Profile
                         </a>
 
-                        <a href="#"
-                            onclick="openDashboardPage('matchesPage',this); return false">
+                        <a href="#" onclick="openDashboardPage('matchesPage',this); return false">
                             💚 My Matches
                         </a>
 
-                        <a href="#"
-                            onclick="openDashboardPage('savedPage',this); return false">
+                        <a href="#" onclick="openDashboardPage('savedPage',this); return false">
                             🔖 Saved
                         </a>
 
-                        <a href="#"
-                            onclick="openDashboardPage('applicationsPage',this); return false">
+                        <a href="#" onclick="openDashboardPage('applicationsPage',this); return false">
                             📨 Applications
                         </a>
 
-                        <a href="#"
-                            onclick="openDashboardPage('skillsPage',this); return false">
+                        <a href="#" onclick="openDashboardPage('skillsPage',this); return false">
                             📈 Skill Analysis
                         </a>
 
-                        <a href="#"
-                            onclick="openDashboardPage('settingsPage',this); return false">
+                        <a href="#" onclick="openDashboardPage('settingsPage',this); return false">
                             ⚙️ Settings
                         </a>
 
@@ -1172,9 +1145,7 @@
 
                             </div>
 
-                            <button
-                                class="btn primary"
-                                onclick="showPage('find')">
+                            <button class="btn primary" onclick="showPage('find')">
                                 Find More
                             </button>
 
@@ -1219,9 +1190,7 @@
 
                                 <div id="dashboardSkillBreakdown">
 
-                                    <div
-                                        class="empty-state"
-                                        style="padding:30px 10px">
+                                    <div class="empty-state" style="padding:30px 10px">
                                         Add your skills in Find Internships
                                         to see your skill breakdown.
                                     </div>
@@ -1258,8 +1227,7 @@
 
         <!-- PROFILE -->
 
-        <section id="profilePage"
-            class="page dashboard-page">
+        <section id="profilePage" class="page dashboard-page">
 
             <div class="container">
 
@@ -1282,8 +1250,7 @@
 
         <!-- MATCHES -->
 
-        <section id="matchesPage"
-            class="page dashboard-page">
+        <section id="matchesPage" class="page dashboard-page">
 
             <div class="container">
 
@@ -1307,8 +1274,7 @@
 
         <!-- SAVED -->
 
-        <section id="savedPage"
-            class="page dashboard-page">
+        <section id="savedPage" class="page dashboard-page">
 
             <div class="container">
 
@@ -1331,8 +1297,7 @@
 
         <!-- APPLICATIONS -->
 
-        <section id="applicationsPage"
-            class="page dashboard-page">
+        <section id="applicationsPage" class="page dashboard-page">
 
             <div class="container">
 
@@ -1355,8 +1320,7 @@
 
         <!-- SKILLS -->
 
-        <section id="skillsPage"
-            class="page dashboard-page">
+        <section id="skillsPage" class="page dashboard-page">
 
             <div class="container">
 
@@ -1380,8 +1344,7 @@
 
         <!-- SETTINGS -->
 
-        <section id="settingsPage"
-            class="page dashboard-page">
+        <section id="settingsPage" class="page dashboard-page">
 
             <div class="container">
 
@@ -1404,9 +1367,7 @@
                         information are stored locally in your browser.
                     </p>
 
-                    <button
-                        class="btn danger-btn"
-                        onclick="clearDashboardData()">
+                    <button class="btn danger-btn" onclick="clearDashboardData()">
                         Clear Saved Data
                     </button>
 
@@ -1665,23 +1626,19 @@
 
                 <h3>Quick Links</h3>
 
-                <a href="#"
-                    onclick="showPage('home'); return false">
+                <a href="#" onclick="showPage('home'); return false">
                     Home
                 </a>
 
-                <a href="#"
-                    onclick="showPage('find'); return false">
+                <a href="#" onclick="showPage('find'); return false">
                     Find Internships
                 </a>
 
-                <a href="#"
-                    onclick="showPage('how'); return false">
+                <a href="#" onclick="showPage('how'); return false">
                     How It Works
                 </a>
 
-                <a href="#"
-                    onclick="showPage('resources'); return false">
+                <a href="#" onclick="showPage('resources'); return false">
                     Resources
                 </a>
 
@@ -1692,13 +1649,11 @@
 
                 <h3>Students</h3>
 
-                <a href="#"
-                    onclick="showPage('dashboard'); return false">
+                <a href="#" onclick="showPage('dashboard'); return false">
                     Dashboard
                 </a>
 
-                <a href="#"
-                    onclick="showPage('find'); return false">
+                <a href="#" onclick="showPage('find'); return false">
                     My Matches
                 </a>
 
@@ -1731,9 +1686,7 @@
 
         <div class="modal-box">
 
-            <button
-                class="close"
-                onclick="closeModal()">
+            <button class="close" onclick="closeModal()">
                 ✕
             </button>
 
@@ -2388,10 +2341,10 @@
                         ...backendLocations
                     ].filter(Boolean))
                 ]
-                .sort(
-                    (a, b) =>
-                        a.localeCompare(b)
-                );
+                    .sort(
+                        (a, b) =>
+                            a.localeCompare(b)
+                    );
 
 
             datalist.innerHTML =
@@ -2413,6 +2366,7 @@
         ============================================================
         */
 
+
         function calculateMatchScore(
             internship,
             rawSkills,
@@ -2421,10 +2375,9 @@
             selectedLocation
         ) {
 
-            /*
-            IMPORTANT:
-            No profile = no percentage.
-            */
+            // =============================================
+            // NO PROFILE = NO PERCENTAGE
+            // =============================================
 
             if (
                 !rawSkills.length &&
@@ -2432,16 +2385,15 @@
                 !interest &&
                 !selectedLocation
             ) {
-
                 return null;
-
             }
 
+            // =============================================
+            // INTERNSHIP SKILLS
+            // =============================================
 
             const internshipSkills =
-                Array.isArray(
-                    internship.skills
-                )
+                Array.isArray(internship.skills)
                     ? internship.skills
                         .map(
                             s =>
@@ -2452,25 +2404,31 @@
                         .filter(Boolean)
                     : [];
 
+            // Make sure user skills are normalized too
+            const userSkills =
+                rawSkills
+                    .map(
+                        s =>
+                            String(s)
+                                .trim()
+                                .toLowerCase()
+                    )
+                    .filter(Boolean);
 
             let score = 0;
 
-
-            /*
-            ========================================================
-            SKILLS = 50 POINTS
-            ========================================================
-            */
+            // =============================================
+            // SKILLS = 50 POINTS
+            // =============================================
 
             if (
-                rawSkills.length &&
+                userSkills.length &&
                 internshipSkills.length
             ) {
 
                 let matchedSkills = 0;
 
-
-                rawSkills.forEach(
+                userSkills.forEach(
                     userSkill => {
 
                         const matched =
@@ -2478,8 +2436,7 @@
                                 requiredSkill => {
 
                                     return (
-                                        requiredSkill ===
-                                            userSkill ||
+                                        requiredSkill === userSkill ||
 
                                         requiredSkill.includes(
                                             userSkill
@@ -2489,40 +2446,34 @@
                                             requiredSkill
                                         )
                                     );
-
                                 }
                             );
-
 
                         if (matched) {
                             matchedSkills++;
                         }
-
                     }
                 );
 
+                // IMPORTANT:
+                // Divide by internship required skills,
+                // NOT student's skills.
 
                 score += Math.round(
                     (
                         matchedSkills /
-                        rawSkills.length
+                        internshipSkills.length
                     ) * 50
                 );
-
             }
 
-
-            /*
-            ========================================================
-            EDUCATION = 15 POINTS
-            ========================================================
-            */
+            // =============================================
+            // EDUCATION = 15 POINTS
+            // =============================================
 
             if (education) {
 
-                let educationMatch =
-                    false;
-
+                let educationMatch = false;
 
                 if (
                     Array.isArray(
@@ -2539,20 +2490,16 @@
                                         .trim()
                                         .toLowerCase();
 
-
                                 return (
                                     e === education ||
                                     e.includes(education) ||
                                     education.includes(e) ||
                                     e === "any"
                                 );
-
                             }
                         );
 
-                }
-
-                else if (
+                } else if (
                     internship.education
                 ) {
 
@@ -2563,30 +2510,21 @@
                             .trim()
                             .toLowerCase();
 
-
                     educationMatch =
                         e === education ||
                         e.includes(education) ||
                         education.includes(e) ||
                         e === "any";
-
                 }
-
 
                 if (educationMatch) {
-
                     score += 15;
-
                 }
-
             }
 
-
-            /*
-            ========================================================
-            INTEREST = 20 POINTS
-            ========================================================
-            */
+            // =============================================
+            // INTEREST = 20 POINTS
+            // =============================================
 
             if (
                 interest &&
@@ -2600,27 +2538,23 @@
                         .trim()
                         .toLowerCase();
 
-
                 if (
                     internshipInterest === interest ||
-                    internshipInterest.includes(interest) ||
+                    internshipInterest.includes(
+                        interest
+                    ) ||
                     interest.includes(
                         internshipInterest
                     )
                 ) {
 
                     score += 20;
-
                 }
-
             }
 
-
-            /*
-            ========================================================
-            LOCATION = 15 POINTS
-            ========================================================
-            */
+            // =============================================
+            // LOCATION = 15 POINTS
+            // =============================================
 
             if (
                 selectedLocation &&
@@ -2635,20 +2569,18 @@
                 ) {
 
                     score += 15;
-
                 }
-
             }
 
+            // =============================================
+            // FINAL SCORE
+            // =============================================
 
             return Math.min(
                 Math.round(score),
                 100
             );
-
         }
-
-
         /*
         ============================================================
         FIND MATCHES
@@ -2723,7 +2655,7 @@
 
             const selectedLocation =
                 locationInput &&
-                locationInput.toLowerCase() !==
+                    locationInput.toLowerCase() !==
                     "any location"
                     ? locationInput
                     : "";
@@ -2732,7 +2664,7 @@
             showLocationMessage(
                 selectedLocation
                     ? "Searching internships in: " +
-                      selectedLocation
+                    selectedLocation
                     : "Showing internships from all available locations."
             );
 
@@ -2896,7 +2828,7 @@
 
             const selectedLocation =
                 p.location &&
-                p.location.toLowerCase() !==
+                    p.location.toLowerCase() !==
                     "any location"
                     ? p.location
                     : "";
@@ -3042,7 +2974,7 @@
 
                         const scoreText =
                             internship.score === null ||
-                            internship.score === undefined
+                                internship.score === undefined
                                 ? "Profile needed"
                                 : internship.score + "%";
 
@@ -3174,8 +3106,8 @@
                                         )
                                         .join("")
                                     : '<span class="tag">' +
-                                      'Skills not specified' +
-                                      '</span>'
+                                    'Skills not specified' +
+                                    '</span>'
                             ) +
 
                             '</div>' +
@@ -3418,7 +3350,7 @@
 
             const score =
                 i.score === null ||
-                i.score === undefined
+                    i.score === undefined
                     ? null
                     : i.score;
 
@@ -3935,7 +3867,7 @@
 
             const score =
                 internship.score === null ||
-                internship.score === undefined
+                    internship.score === undefined
                     ? null
                     : internship.score;
 
@@ -4206,8 +4138,8 @@
                         )
                         .join("")
                     : '<div class="card empty-state">' +
-                      'No internships available.' +
-                      '</div>';
+                    'No internships available.' +
+                    '</div>';
 
         }
 
@@ -4378,10 +4310,10 @@
 
                             (
                                 a.score === null ||
-                                a.score === undefined
+                                    a.score === undefined
                                     ? "Profile needed"
                                     : a.score +
-                                      "% match"
+                                    "% match"
                             ) +
 
                             '</div>' +
@@ -4584,22 +4516,22 @@
                                             ? internship.skills
                                             : []
                                     )
-                                    .some(
-                                        x => {
+                                        .some(
+                                            x => {
 
-                                            const k =
-                                                String(x)
-                                                    .trim()
-                                                    .toLowerCase();
+                                                const k =
+                                                    String(x)
+                                                        .trim()
+                                                        .toLowerCase();
 
 
-                                            return (
-                                                k.includes(s) ||
-                                                s.includes(k)
-                                            );
+                                                return (
+                                                    k.includes(s) ||
+                                                    s.includes(k)
+                                                );
 
-                                        }
-                                    )
+                                            }
+                                        )
                             ).length;
 
 
@@ -4799,19 +4731,19 @@
                                 Object.entries(
                                     counts
                                 )
-                                .filter(
-                                    ([name]) =>
-                                        name.includes(k) ||
-                                        k.includes(name)
-                                )
-                                .reduce(
-                                    (
-                                        sum,
-                                        [, value]
-                                    ) =>
-                                        sum + value,
-                                    0
-                                );
+                                    .filter(
+                                        ([name]) =>
+                                            name.includes(k) ||
+                                            k.includes(name)
+                                    )
+                                    .reduce(
+                                        (
+                                            sum,
+                                            [, value]
+                                        ) =>
+                                            sum + value,
+                                        0
+                                    );
 
 
                             const percent =
@@ -5037,10 +4969,10 @@
 
                             (
                                 internship.score === null ||
-                                internship.score === undefined
+                                    internship.score === undefined
                                     ? "Profile needed"
                                     : internship.score +
-                                      "%"
+                                    "%"
                             ) +
 
                             '</b>' +
