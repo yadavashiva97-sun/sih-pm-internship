@@ -1344,7 +1344,7 @@
 ========================================================= */
 
 const API_URL =
-    "https://sih-pm-internship.onrender.com/api";
+    "https://sih-pm-internship-2.onrender.com/api";
 
 let selectedRole = "student";
 let currentUser = null;
@@ -1622,10 +1622,14 @@ function renderStudentProfile() {
     if (!section) return;
 
     const skills =
-        studentProfile?.skills || [];
+        Array.isArray(window.tempSkills)
+            ? window.tempSkills
+            : (studentProfile?.skills || []);
 
     const interests =
-        studentProfile?.interests || [];
+        Array.isArray(window.tempInterests)
+            ? window.tempInterests
+            : (studentProfile?.interests || []);
 
     section.innerHTML = `
 
@@ -1636,8 +1640,6 @@ function renderStudentProfile() {
             </h3>
 
             <div class="form-grid">
-
-                <!-- COLLEGE -->
 
                 <div class="field">
 
@@ -1656,8 +1658,6 @@ function renderStudentProfile() {
                 </div>
 
 
-                <!-- EDUCATION -->
-
                 <div class="field">
 
                     <label>
@@ -1674,8 +1674,6 @@ function renderStudentProfile() {
 
                 </div>
 
-
-                <!-- BRANCH -->
 
                 <div class="field">
 
@@ -1694,8 +1692,6 @@ function renderStudentProfile() {
                 </div>
 
 
-                <!-- SEMESTER -->
-
                 <div class="field">
 
                     <label>
@@ -1712,8 +1708,6 @@ function renderStudentProfile() {
 
                 </div>
 
-
-                <!-- CGPA -->
 
                 <div class="field">
 
@@ -1734,8 +1728,6 @@ function renderStudentProfile() {
                 </div>
 
 
-                <!-- LOCATION -->
-
                 <div class="field">
 
                     <label>
@@ -1752,8 +1744,6 @@ function renderStudentProfile() {
 
                 </div>
 
-
-                <!-- SKILLS -->
 
                 <div class="field full">
 
@@ -1793,8 +1783,6 @@ function renderStudentProfile() {
 
                 </div>
 
-
-                <!-- INTERESTS -->
 
                 <div class="field full">
 
@@ -1850,17 +1838,10 @@ function renderStudentProfile() {
     `;
 
 
-    /*
-       IMPORTANT:
-       Preserve temporary skills/interests.
-       Do not reset them every time the profile
-       is re-rendered after clicking +.
-    */
-
     if (!Array.isArray(window.tempSkills)) {
 
         window.tempSkills = [
-            ...skills
+            ...(studentProfile?.skills || [])
         ];
 
     }
@@ -1868,7 +1849,7 @@ function renderStudentProfile() {
     if (!Array.isArray(window.tempInterests)) {
 
         window.tempInterests = [
-            ...interests
+            ...(studentProfile?.interests || [])
         ];
 
     }
@@ -2003,8 +1984,6 @@ async function saveStudentProfile() {
                 : [];
 
 
-        /* Remove empty values and duplicates */
-
         skills = [
             ...new Set(
                 skills
@@ -2027,8 +2006,6 @@ async function saveStudentProfile() {
         ];
 
 
-        /* Validation */
-
         if (skills.length === 0) {
 
             showToast(
@@ -2048,8 +2025,6 @@ async function saveStudentProfile() {
             return;
         }
 
-
-        /* Create profile payload */
 
         const payload = {
 
@@ -2103,8 +2078,6 @@ async function saveStudentProfile() {
         );
 
 
-        /* Save / update student */
-
         let response;
 
 
@@ -2136,8 +2109,6 @@ async function saveStudentProfile() {
         }
 
 
-        /* Update local profile */
-
         studentProfile =
             response.student;
 
@@ -2149,8 +2120,6 @@ async function saveStudentProfile() {
             );
         }
 
-
-        /* Synchronize frontend state */
 
         window.tempSkills = [
             ...(studentProfile.skills || [])
@@ -2166,12 +2135,8 @@ async function saveStudentProfile() {
         );
 
 
-        /* Load recommendations */
-
         await loadRecommendations();
 
-
-        /* Refresh UI */
 
         renderStudentProfile();
         renderStudentStats();
