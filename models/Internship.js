@@ -22,13 +22,18 @@ const internshipSchema = new mongoose.Schema(
 
         workMode: {
             type: String,
-            enum: ["On-site", "Remote", "Hybrid", "Not specified"],
+            enum: [
+                "On-site",
+                "Remote",
+                "Hybrid",
+                "Not specified"
+            ],
             default: "Not specified"
         },
 
         skills: {
             type: [String],
-            required: true
+            default: []
         },
 
         interest: {
@@ -44,13 +49,13 @@ const internshipSchema = new mongoose.Schema(
 
         stipend: {
             type: String,
-            required: true,
+            default: "Not specified",
             trim: true
         },
 
         duration: {
             type: String,
-            required: true,
+            default: "Not specified",
             trim: true
         },
 
@@ -66,15 +71,20 @@ const internshipSchema = new mongoose.Schema(
             trim: true
         },
 
+        /*
+         * IMPORTANT:
+         * This is NOT an external application platform.
+         * Applications are handled by our own application system.
+         */
         applicationUrl: {
             type: String,
-            default: "#",
+            default: "",
             trim: true
         },
 
         source: {
             type: String,
-            default: "Not specified",
+            default: "PM Internship Assistant",
             trim: true
         },
 
@@ -86,17 +96,43 @@ const internshipSchema = new mongoose.Schema(
 
         status: {
             type: String,
-            enum: ["Active", "Closed", "Expired", "Not specified"],
+            enum: [
+                "Active",
+                "Closed",
+                "Expired",
+                "Not specified"
+            ],
             default: "Active"
+        },
+
+        careerValue: {
+            type: Number,
+            default: 70,
+            min: 0,
+            max: 100
+        },
+
+        competitionLevel: {
+            type: String,
+            enum: [
+                "Low",
+                "Medium",
+                "High",
+                "Not specified"
+            ],
+            default: "Medium"
+        },
+
+        skillGap: {
+            type: [String],
+            default: []
         }
     },
-
     {
         timestamps: true
     }
 );
 
-export const Internship = mongoose.model(
-    "Internship",
-    internshipSchema
-);
+export const Internship =
+    mongoose.models.Internship ||
+    mongoose.model("Internship", internshipSchema);

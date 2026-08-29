@@ -4,11 +4,16 @@ import { Internship } from "./models/Internship.js";
 
 dotenv.config();
 
+// =====================================================
+// INTERNSHIPS TO UPDATE
+// NO UNSTOP LINKS
+// =====================================================
+
 const internshipsToUpdate = [
     {
         title: "Software Developer Intern",
         company: "Rivyou",
-        applicationUrl: "https://unstop.com/internships/software-developer-internship-rivyou-1741876",
+        applicationUrl: "",
         deadline: "31 Aug 2026",
         status: "Active"
     },
@@ -16,7 +21,7 @@ const internshipsToUpdate = [
     {
         title: "Software Developer Intern",
         company: "My Indian Things",
-        applicationUrl: "https://unstop.com/internships/software-developer-internship-my-indian-things-1742506",
+        applicationUrl: "",
         deadline: "31 Aug 2026",
         status: "Active"
     },
@@ -24,7 +29,7 @@ const internshipsToUpdate = [
     {
         title: "Software Developer Intern",
         company: "PrepLinc",
-        applicationUrl: "https://unstop.com/internships/software-developer-internship-preplinc-1740483",
+        applicationUrl: "",
         deadline: "31 Aug 2026",
         status: "Active"
     },
@@ -32,7 +37,7 @@ const internshipsToUpdate = [
     {
         title: "Software Developer Intern",
         company: "Aalteon",
-        applicationUrl: "https://unstop.com/internships/software-developer-internship-aalteon-1740005",
+        applicationUrl: "",
         deadline: "31 Aug 2026",
         status: "Active"
     },
@@ -40,7 +45,7 @@ const internshipsToUpdate = [
     {
         title: "AI & Data Analyst Intern",
         company: "Frugality Fintech",
-        applicationUrl: "https://unstop.com/internships/ai-data-analyst-internship-unstop-summer-internship-fair-2026-furgality-fintech-1729985",
+        applicationUrl: "",
         deadline: "27 Aug 2026",
         status: "Active"
     },
@@ -48,7 +53,7 @@ const internshipsToUpdate = [
     {
         title: "Data Analyst Intern",
         company: "Zenotalent",
-        applicationUrl: "https://unstop.com/internships/data-analyst-internship-zenotalent-1722533",
+        applicationUrl: "",
         deadline: "31 Aug 2026",
         status: "Active"
     },
@@ -56,7 +61,7 @@ const internshipsToUpdate = [
     {
         title: "Data Analyst Intern",
         company: "StackCart",
-        applicationUrl: "https://unstop.com/internships/data-analyst-internship-stackcart-1740792",
+        applicationUrl: "",
         deadline: "31 Aug 2026",
         status: "Active"
     },
@@ -64,7 +69,7 @@ const internshipsToUpdate = [
     {
         title: "Data Analyst Intern",
         company: "Wikasta Business and Technical Solutions Pvt. Ltd.",
-        applicationUrl: "https://unstop.com/internships/data-analyst-internship-wikasta-business-and-technical-solutions-pvt-ltd-1727712",
+        applicationUrl: "",
         deadline: "31 Aug 2026",
         status: "Active"
     },
@@ -72,7 +77,7 @@ const internshipsToUpdate = [
     {
         title: "Software Developer Intern",
         company: "URS Group of Companies",
-        applicationUrl: "https://unstop.com/internships/software-developer-internship-urs-group-of-companies-1743098",
+        applicationUrl: "",
         deadline: "31 Aug 2026",
         status: "Active"
     },
@@ -80,24 +85,42 @@ const internshipsToUpdate = [
     {
         title: "SDET Intern",
         company: "Konsult Me Tech Private Limited",
-        applicationUrl: "https://unstop.com/internships/software-developer-in-test-sdet-internship-konsult-me-tech-private-limited-1735094",
+        applicationUrl: "",
         deadline: "31 Aug 2026",
         status: "Active"
     }
 ];
 
+// =====================================================
+// UPDATE INTERNSHIPS
+// =====================================================
+
 async function updateInternships() {
     try {
+        // -------------------------------------------------
+        // CHECK MONGO URI
+        // -------------------------------------------------
+
         if (!process.env.MONGO_URI) {
-            throw new Error("MONGO_URI is missing in .env");
+            throw new Error(
+                "MONGO_URI is missing in .env file"
+            );
         }
+
+        // -------------------------------------------------
+        // CONNECT TO MONGODB
+        // -------------------------------------------------
 
         await mongoose.connect(process.env.MONGO_URI);
 
-        console.log("MongoDB connected.");
+        console.log("MongoDB connected successfully.");
 
         let updated = 0;
         let notFound = 0;
+
+        // -------------------------------------------------
+        // UPDATE EACH INTERNSHIP
+        // -------------------------------------------------
 
         for (const internship of internshipsToUpdate) {
             const result = await Internship.updateOne(
@@ -107,13 +130,24 @@ async function updateInternships() {
                 },
                 {
                     $set: {
-                        applicationUrl: internship.applicationUrl,
-                        deadline: internship.deadline,
-                        status: internship.status,
-                        source: "Unstop"
+                        applicationUrl:
+                            internship.applicationUrl,
+
+                        deadline:
+                            internship.deadline,
+
+                        status:
+                            internship.status,
+
+                        source:
+                            "PM Internship Assistant"
                     }
                 }
             );
+
+            // -------------------------------------------------
+            // RESULT
+            // -------------------------------------------------
 
             if (result.matchedCount > 0) {
                 console.log(
@@ -130,25 +164,50 @@ async function updateInternships() {
             }
         }
 
-        console.log("\n==============================");
-        console.log("URL UPDATE COMPLETED");
-        console.log("==============================");
+        // -------------------------------------------------
+        // SUMMARY
+        // -------------------------------------------------
+
+        console.log("\n====================================");
+        console.log("INTERNSHIP UPDATE COMPLETED");
+        console.log("====================================");
+
         console.log(`Updated: ${updated}`);
         console.log(`Not found: ${notFound}`);
-        console.log("==============================");
+        console.log(
+            `Total processed: ${internshipsToUpdate.length}`
+        );
+
+        console.log("====================================");
+
+        // -------------------------------------------------
+        // DISCONNECT
+        // -------------------------------------------------
 
         await mongoose.disconnect();
 
-        console.log("MongoDB disconnected.");
+        console.log("MongoDB disconnected successfully.");
     } catch (error) {
-        console.error("Error updating internships:", error);
+        console.error(
+            "Error updating internships:",
+            error.message
+        );
 
         try {
             await mongoose.disconnect();
-        } catch {}
+        } catch (disconnectError) {
+            console.error(
+                "MongoDB disconnect error:",
+                disconnectError.message
+            );
+        }
 
         process.exit(1);
     }
 }
+
+// =====================================================
+// RUN
+// =====================================================
 
 updateInternships();

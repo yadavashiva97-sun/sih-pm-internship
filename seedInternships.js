@@ -1,26 +1,54 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+
 import { Internship } from "./models/Internship.js";
 
 dotenv.config();
 
-const newInternships = [
+const internships = [
     {
         title: "Software Developer Intern",
         company: "Rivyou",
         location: "Remote",
         workMode: "Remote",
-        skills: ["JavaScript", "Python", "Java", "HTML", "CSS", "Git", "GitHub"],
+
+        skills: [
+            "JavaScript",
+            "Python",
+            "Java",
+            "HTML",
+            "CSS",
+            "Git",
+            "GitHub"
+        ],
+
         interest: "Software Development",
-        education: ["B.Tech CSE", "B.Tech IT", "BCA"],
+
+        education: [
+            "B.Tech CSE",
+            "B.Tech IT",
+            "BCA"
+        ],
+
         stipend: "Not disclosed",
         duration: "Not specified",
-        eligibility: "Students and fresh graduates with programming knowledge.",
-        description: "Software development internship involving programming and real-world software projects.",
-        applicationUrl: "https://unstop.com/internships/software-developer-internship-rivyou-1741876",
-        source: "Unstop",
+
+        eligibility:
+            "Students and fresh graduates with programming knowledge.",
+
+        description:
+            "Software development internship involving programming and real-world software projects.",
+
+        source:
+            "PM Internship Assistant",
+
         deadline: "31 Aug 2026",
-        status: "Active"
+
+        status: "Active",
+
+        careerValue: 90,
+
+        competitionLevel: "High"
     },
 
     {
@@ -28,17 +56,43 @@ const newInternships = [
         company: "My Indian Things",
         location: "Remote",
         workMode: "Remote",
-        skills: ["JavaScript", "HTML", "CSS", "Python", "Git", "GitHub"],
+
+        skills: [
+            "JavaScript",
+            "HTML",
+            "CSS",
+            "Python",
+            "Git",
+            "GitHub"
+        ],
+
         interest: "Software Development",
-        education: ["B.Tech CSE", "B.Tech IT", "BCA"],
+
+        education: [
+            "B.Tech CSE",
+            "B.Tech IT",
+            "BCA"
+        ],
+
         stipend: "Not disclosed",
         duration: "Not specified",
-        eligibility: "Students with programming knowledge.",
-        description: "Software development internship involving web development and programming.",
-        applicationUrl: "https://unstop.com/internships/software-developer-internship-my-indian-things-1742506",
-        source: "Unstop",
+
+        eligibility:
+            "Students with programming knowledge.",
+
+        description:
+            "Software development internship involving web development and programming.",
+
+        source:
+            "PM Internship Assistant",
+
         deadline: "31 Aug 2026",
-        status: "Active"
+
+        status: "Active",
+
+        careerValue: 88,
+
+        competitionLevel: "High"
     },
 
     {
@@ -46,17 +100,43 @@ const newInternships = [
         company: "PrepLinc",
         location: "Remote",
         workMode: "Remote",
-        skills: ["JavaScript", "Python", "HTML", "CSS", "Git", "GitHub"],
+
+        skills: [
+            "JavaScript",
+            "Python",
+            "HTML",
+            "CSS",
+            "Git",
+            "GitHub"
+        ],
+
         interest: "Software Development",
-        education: ["B.Tech CSE", "B.Tech IT", "BCA"],
+
+        education: [
+            "B.Tech CSE",
+            "B.Tech IT",
+            "BCA"
+        ],
+
         stipend: "Not disclosed",
         duration: "Not specified",
-        eligibility: "Computer Science and IT students.",
-        description: "Software development internship focused on programming and application development.",
-        applicationUrl: "https://unstop.com/internships/software-developer-internship-preplinc-1740483",
-        source: "Unstop",
+
+        eligibility:
+            "Computer Science and IT students.",
+
+        description:
+            "Software development internship focused on programming and application development.",
+
+        source:
+            "PM Internship Assistant",
+
         deadline: "31 Aug 2026",
-        status: "Active"
+
+        status: "Active",
+
+        careerValue: 86,
+
+        competitionLevel: "Medium"
     },
 
     {
@@ -64,17 +144,43 @@ const newInternships = [
         company: "Aalteon",
         location: "Remote",
         workMode: "Remote",
-        skills: ["JavaScript", "Python", "Java", "HTML", "CSS", "Git"],
+
+        skills: [
+            "JavaScript",
+            "Python",
+            "Java",
+            "HTML",
+            "CSS",
+            "Git"
+        ],
+
         interest: "Software Development",
-        education: ["B.Tech CSE", "B.Tech IT", "BCA"],
+
+        education: [
+            "B.Tech CSE",
+            "B.Tech IT",
+            "BCA"
+        ],
+
         stipend: "Not disclosed",
         duration: "Not specified",
-        eligibility: "Students with programming fundamentals.",
-        description: "Software development internship involving application development.",
-        applicationUrl: "https://unstop.com/internships/software-developer-internship-aalteon-1740005",
-        source: "Unstop",
+
+        eligibility:
+            "Students with programming fundamentals.",
+
+        description:
+            "Software development internship involving application development.",
+
+        source:
+            "PM Internship Assistant",
+
         deadline: "31 Aug 2026",
-        status: "Active"
+
+        status: "Active",
+
+        careerValue: 84,
+
+        competitionLevel: "Medium"
     },
 
     {
@@ -82,17 +188,42 @@ const newInternships = [
         company: "Frugality Fintech",
         location: "Remote",
         workMode: "Remote",
-        skills: ["Python", "Data Analysis", "SQL", "Excel", "Artificial Intelligence"],
+
+        skills: [
+            "Python",
+            "Data Analysis",
+            "SQL",
+            "Excel",
+            "Artificial Intelligence"
+        ],
+
         interest: "Data Science",
-        education: ["B.Tech CSE", "B.Tech IT", "BCA"],
+
+        education: [
+            "B.Tech CSE",
+            "B.Tech IT",
+            "BCA"
+        ],
+
         stipend: "Not disclosed",
         duration: "Not specified",
-        eligibility: "Students interested in AI, data analysis and technology.",
-        description: "Internship involving AI, data analysis and technology projects.",
-        applicationUrl: "https://unstop.com/internships/ai-data-analyst-internship-unstop-summer-internship-fair-2026-furgality-fintech-1729985",
-        source: "Unstop",
-        deadline: "27 Aug 2026",
-        status: "Active"
+
+        eligibility:
+            "Students interested in AI, data analysis and technology.",
+
+        description:
+            "Internship involving AI, data analysis and technology projects.",
+
+        source:
+            "PM Internship Assistant",
+
+        deadline: "31 Aug 2026",
+
+        status: "Active",
+
+        careerValue: 92,
+
+        competitionLevel: "High"
     },
 
     {
@@ -100,17 +231,42 @@ const newInternships = [
         company: "Zenotalent",
         location: "Remote",
         workMode: "Remote",
-        skills: ["Python", "SQL", "Excel", "Data Analysis", "Power BI"],
+
+        skills: [
+            "Python",
+            "SQL",
+            "Excel",
+            "Data Analysis",
+            "Power BI"
+        ],
+
         interest: "Data Science",
-        education: ["B.Tech CSE", "B.Tech IT", "BCA"],
+
+        education: [
+            "B.Tech CSE",
+            "B.Tech IT",
+            "BCA"
+        ],
+
         stipend: "Not disclosed",
         duration: "Not specified",
-        eligibility: "Students interested in data analysis.",
-        description: "Data analysis internship involving data processing, analysis and reporting.",
-        applicationUrl: "https://unstop.com/internships/data-analyst-internship-zenotalent-1722533",
-        source: "Unstop",
+
+        eligibility:
+            "Students interested in data analysis.",
+
+        description:
+            "Data analysis internship involving data processing, analysis and reporting.",
+
+        source:
+            "PM Internship Assistant",
+
         deadline: "31 Aug 2026",
-        status: "Active"
+
+        status: "Active",
+
+        careerValue: 89,
+
+        competitionLevel: "Medium"
     },
 
     {
@@ -118,35 +274,85 @@ const newInternships = [
         company: "StackCart",
         location: "Remote",
         workMode: "Remote",
-        skills: ["Python", "SQL", "Excel", "Data Analysis", "Power BI"],
+
+        skills: [
+            "Python",
+            "SQL",
+            "Excel",
+            "Data Analysis",
+            "Power BI"
+        ],
+
         interest: "Data Science",
-        education: ["B.Tech CSE", "B.Tech IT", "BCA"],
+
+        education: [
+            "B.Tech CSE",
+            "B.Tech IT",
+            "BCA"
+        ],
+
         stipend: "Not disclosed",
         duration: "Not specified",
-        eligibility: "Students with analytical and programming skills.",
-        description: "Data analyst internship involving data analysis and business insights.",
-        applicationUrl: "https://unstop.com/internships/data-analyst-internship-stackcart-1740792",
-        source: "Unstop",
+
+        eligibility:
+            "Students with analytical and programming skills.",
+
+        description:
+            "Data analyst internship involving data analysis and business insights.",
+
+        source:
+            "PM Internship Assistant",
+
         deadline: "31 Aug 2026",
-        status: "Active"
+
+        status: "Active",
+
+        careerValue: 87,
+
+        competitionLevel: "Medium"
     },
 
     {
         title: "Data Analyst Intern",
-        company: "Wikasta Business and Technical Solutions Pvt. Ltd.",
+        company:
+            "Wikasta Business and Technical Solutions Pvt. Ltd.",
         location: "Remote",
         workMode: "Remote",
-        skills: ["Python", "SQL", "Excel", "Data Analysis"],
+
+        skills: [
+            "Python",
+            "SQL",
+            "Excel",
+            "Data Analysis"
+        ],
+
         interest: "Data Science",
-        education: ["B.Tech CSE", "B.Tech IT", "BCA"],
+
+        education: [
+            "B.Tech CSE",
+            "B.Tech IT",
+            "BCA"
+        ],
+
         stipend: "Not disclosed",
         duration: "Not specified",
-        eligibility: "Students interested in data analytics.",
-        description: "Data analytics internship involving data processing and analysis.",
-        applicationUrl: "https://unstop.com/internships/data-analyst-internship-wikasta-business-and-technical-solutions-pvt-ltd-1727712",
-        source: "Unstop",
+
+        eligibility:
+            "Students interested in data analytics.",
+
+        description:
+            "Data analytics internship involving data processing and analysis.",
+
+        source:
+            "PM Internship Assistant",
+
         deadline: "31 Aug 2026",
-        status: "Active"
+
+        status: "Active",
+
+        careerValue: 82,
+
+        competitionLevel: "Medium"
     },
 
     {
@@ -154,17 +360,43 @@ const newInternships = [
         company: "URS Group of Companies",
         location: "Noida",
         workMode: "Hybrid",
-        skills: ["JavaScript", "HTML", "CSS", "Python", "Git", "GitHub"],
+
+        skills: [
+            "JavaScript",
+            "HTML",
+            "CSS",
+            "Python",
+            "Git",
+            "GitHub"
+        ],
+
         interest: "Software Development",
-        education: ["B.Tech CSE", "B.Tech IT", "BCA"],
+
+        education: [
+            "B.Tech CSE",
+            "B.Tech IT",
+            "BCA"
+        ],
+
         stipend: "Not disclosed",
         duration: "Not specified",
-        eligibility: "Students with software development fundamentals.",
-        description: "Software development internship involving web and application development.",
-        applicationUrl: "https://unstop.com/internships/software-developer-internship-urs-group-of-companies-1743098",
-        source: "Unstop",
+
+        eligibility:
+            "Students with software development fundamentals.",
+
+        description:
+            "Software development internship involving web and application development.",
+
+        source:
+            "PM Internship Assistant",
+
         deadline: "31 Aug 2026",
-        status: "Active"
+
+        status: "Active",
+
+        careerValue: 91,
+
+        competitionLevel: "High"
     },
 
     {
@@ -172,48 +404,84 @@ const newInternships = [
         company: "Konsult Me Tech Private Limited",
         location: "Noida",
         workMode: "Hybrid",
-        skills: ["Java", "JavaScript", "Testing", "Selenium", "SQL", "Git"],
+
+        skills: [
+            "Java",
+            "JavaScript",
+            "Testing",
+            "Selenium",
+            "SQL",
+            "Git"
+        ],
+
         interest: "Software Development",
-        education: ["B.Tech CSE", "B.Tech IT", "BCA"],
+
+        education: [
+            "B.Tech CSE",
+            "B.Tech IT",
+            "BCA"
+        ],
+
         stipend: "Not disclosed",
         duration: "Not specified",
-        eligibility: "Students interested in software testing and development.",
-        description: "Software development and testing internship involving quality assurance and automation.",
-        applicationUrl: "https://unstop.com/internships/software-developer-in-test-sdet-internship-konsult-me-tech-private-limited-1735094",
-        source: "Unstop",
+
+        eligibility:
+            "Students interested in software testing and development.",
+
+        description:
+            "Software development and testing internship involving quality assurance and automation.",
+
+        source:
+            "PM Internship Assistant",
+
         deadline: "31 Aug 2026",
-        status: "Active"
+
+        status: "Active",
+
+        careerValue: 85,
+
+        competitionLevel: "Medium"
     }
 ];
 
 async function seedInternships() {
     try {
         if (!process.env.MONGO_URI) {
-            throw new Error("MONGO_URI is missing in .env");
+            throw new Error(
+                "MONGO_URI is missing in .env"
+            );
         }
 
-        await mongoose.connect(process.env.MONGO_URI);
+        await mongoose.connect(
+            process.env.MONGO_URI
+        );
 
-        console.log("MongoDB connected.");
+        console.log(
+            "MongoDB connected."
+        );
 
         let added = 0;
         let skipped = 0;
 
-        for (const internship of newInternships) {
-            const exists = await Internship.findOne({
-                title: internship.title,
-                company: internship.company
-            });
+        for (const internship of internships) {
+            const exists =
+                await Internship.findOne({
+                    title: internship.title,
+                    company: internship.company
+                });
 
             if (exists) {
                 console.log(
                     `Skipped: ${internship.title} - ${internship.company}`
                 );
+
                 skipped++;
                 continue;
             }
 
-            await Internship.create(internship);
+            await Internship.create(
+                internship
+            );
 
             console.log(
                 `Added: ${internship.title} - ${internship.company}`
@@ -222,19 +490,34 @@ async function seedInternships() {
             added++;
         }
 
-        console.log("\n==============================");
-        console.log("SEEDING COMPLETED");
-        console.log("==============================");
+        console.log(
+            "\n=============================="
+        );
+
+        console.log(
+            "SEEDING COMPLETED"
+        );
+
+        console.log(
+            "=============================="
+        );
+
         console.log(`Added: ${added}`);
         console.log(`Skipped: ${skipped}`);
-        console.log(`Total processed: ${newInternships.length}`);
-        console.log("==============================");
+        console.log(
+            `Total: ${internships.length}`
+        );
 
         await mongoose.disconnect();
 
-        console.log("MongoDB disconnected.");
+        console.log(
+            "MongoDB disconnected."
+        );
     } catch (error) {
-        console.error("Error seeding internships:", error);
+        console.error(
+            "Seeding failed:",
+            error.message
+        );
 
         try {
             await mongoose.disconnect();
