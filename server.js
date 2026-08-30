@@ -5,27 +5,35 @@ import dotenv from "dotenv";
 
 import internshipRoutes from "./routes/internshipRoutes.js";
 import studentRoutes from "./routes/studentRoutes.js";
+import applicationRoutes from "./routes/applicationRoutes.js";
 
 dotenv.config();
 
 const app = express();
+
 const PORT = process.env.PORT || 7000;
 
-// ==============================
-// MIDDLEWARE
-// ==============================
+/* =====================================================
+   MIDDLEWARE
+===================================================== */
 
-app.use(cors());
+app.use(
+    cors({
+        origin: "*"
+    })
+);
+
 app.use(express.json());
 
-// ==============================
-// BASIC TEST ROUTES
-// ==============================
+/* =====================================================
+   BASIC ROUTES
+===================================================== */
 
 app.get("/", (req, res) => {
     res.status(200).json({
         success: true,
-        message: "PM Internship Assistant Backend is running"
+        message:
+            "PM Internship Assistant Backend is running"
     });
 });
 
@@ -40,54 +48,86 @@ app.get("/api/health", (req, res) => {
     });
 });
 
-app.get("/api/students/test", (req, res) => {
-    res.status(200).json({
-        success: true,
-        message: "Student API is working"
-    });
-});
+/* =====================================================
+   API ROUTES
+===================================================== */
 
-// ==============================
-// API ROUTES
-// ==============================
+app.use(
+    "/api/internships",
+    internshipRoutes
+);
 
-app.use("/api/internships", internshipRoutes);
-app.use("/api/students", studentRoutes);
+app.use(
+    "/api/students",
+    studentRoutes
+);
 
-// ==============================
-// 404
-// ==============================
+app.use(
+    "/api/applications",
+    applicationRoutes
+);
+
+/* =====================================================
+   404
+===================================================== */
 
 app.use((req, res) => {
     res.status(404).json({
         success: false,
-        message: "Cannot GET " + req.originalUrl
+        message:
+            "Route not found: " +
+            req.method +
+            " " +
+            req.originalUrl
     });
 });
 
-// ==============================
-// START SERVER
-// ==============================
+/* =====================================================
+   START SERVER
+===================================================== */
 
 async function startServer() {
     try {
         if (!process.env.MONGO_URI) {
-            throw new Error("MONGO_URI is missing");
+            throw new Error(
+                "MONGO_URI is missing"
+            );
         }
 
-        await mongoose.connect(process.env.MONGO_URI);
+        await mongoose.connect(
+            process.env.MONGO_URI
+        );
 
-        console.log("MongoDB connected");
+        console.log(
+            "MongoDB connected successfully"
+        );
 
-        app.listen(PORT, "0.0.0.0", () => {
-            console.log("=================================");
-            console.log("PM INTERNSHIP BACKEND STARTED");
-            console.log("PORT:", PORT);
-            console.log("=================================");
-        });
+        app.listen(
+            PORT,
+            "0.0.0.0",
+            () => {
+                console.log(
+                    "================================="
+                );
+                console.log(
+                    "PM INTERNSHIP BACKEND STARTED"
+                );
+                console.log(
+                    "PORT:",
+                    PORT
+                );
+                console.log(
+                    "================================="
+                );
+            }
+        );
 
     } catch (error) {
-        console.error("SERVER START ERROR:", error);
+        console.error(
+            "SERVER START ERROR:",
+            error
+        );
+
         process.exit(1);
     }
 }

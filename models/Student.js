@@ -8,6 +8,13 @@ const studentSchema = new mongoose.Schema(
             trim: true
         },
 
+        email: {
+            type: String,
+            required: true,
+            trim: true,
+            lowercase: true
+        },
+
         college: {
             type: String,
             default: "Not specified",
@@ -16,7 +23,7 @@ const studentSchema = new mongoose.Schema(
 
         course: {
             type: String,
-            default: "Not specified",
+            default: "B.Tech",
             trim: true
         },
 

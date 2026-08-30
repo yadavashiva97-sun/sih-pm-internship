@@ -6,9 +6,9 @@ import { Student } from "../models/Student.js";
 
 const router = express.Router();
 
-// =====================================================
-// HELPERS
-// =====================================================
+/* =====================================================
+   HELPERS
+===================================================== */
 
 function normalize(value) {
     return String(value || "")
@@ -39,9 +39,9 @@ function toArray(value) {
         .filter(Boolean);
 }
 
-// =====================================================
-// INTEREST GROUPS
-// =====================================================
+/* =====================================================
+   INTEREST GROUPS
+===================================================== */
 
 const interestGroups = {
     "web development": [
@@ -162,9 +162,9 @@ function interestsAreRelated(
     );
 }
 
-// =====================================================
-// SKILL ALIASES
-// =====================================================
+/* =====================================================
+   SKILL ALIASES
+===================================================== */
 
 const skillAliases = {
     javascript: [
@@ -270,19 +270,19 @@ function skillsAreRelated(
     return false;
 }
 
-// =====================================================
-// EDUCATION
-// =====================================================
+/* =====================================================
+   EDUCATION
+===================================================== */
 
 function educationMatches(
     studentEducation,
     internshipEducation
 ) {
-    const studentValues = toArray(studentEducation)
-        .map(normalize);
+    const studentValues =
+        toArray(studentEducation).map(normalize);
 
-    const internshipValues = toArray(internshipEducation)
-        .map(normalize);
+    const internshipValues =
+        toArray(internshipEducation).map(normalize);
 
     if (internshipValues.length === 0) {
         return true;
@@ -299,6 +299,10 @@ function educationMatches(
         return true;
     }
 
+    if (studentValues.length === 0) {
+        return false;
+    }
+
     return studentValues.some(studentEdu =>
         internshipValues.some(internshipEdu =>
             studentEdu === internshipEdu ||
@@ -308,9 +312,9 @@ function educationMatches(
     );
 }
 
-// =====================================================
-// LOCATION
-// =====================================================
+/* =====================================================
+   LOCATION
+===================================================== */
 
 function locationMatches(
     studentLocation,
@@ -328,6 +332,7 @@ function locationMatches(
     }
 
     if (
+        !internship ||
         internship === "remote" ||
         internship === "any" ||
         internship === "any location"
@@ -342,44 +347,36 @@ function locationMatches(
     );
 }
 
-// =====================================================
-// MATCH CALCULATION
-// =====================================================
+/* =====================================================
+   MATCH CALCULATION
+===================================================== */
 
 function calculateMatch(student, internship) {
-    const studentSkills = toArray(student.skills);
-    const internshipSkills = toArray(internship.skills);
+    const studentSkills =
+        toArray(student.skills);
 
-    const studentInterests = toArray(
-        student.interests
-    );
+    const internshipSkills =
+        toArray(internship.skills);
 
-    // =================================================
-    // SKILLS = 50
-    // =================================================
+    const studentInterests =
+        toArray(student.interests);
 
-    const matchedSkills = internshipSkills.filter(
-        internshipSkill =>
-            studentSkills.some(studentSkill =>
-                skillsAreRelated(
-                    studentSkill,
-                    internshipSkill
+    const matchedSkills =
+        internshipSkills.filter(
+            internshipSkill =>
+                studentSkills.some(studentSkill =>
+                    skillsAreRelated(
+                        studentSkill,
+                        internshipSkill
+                    )
                 )
-            )
-    );
+        );
 
-    let skillScore = 0;
-
-    if (internshipSkills.length > 0) {
-        skillScore =
-            (matchedSkills.length /
-                internshipSkills.length) *
-            50;
-    }
-
-    // =================================================
-    // INTEREST = 20
-    // =================================================
+    const skillScore =
+        internshipSkills.length > 0
+            ? (matchedSkills.length /
+                internshipSkills.length) * 50
+            : 0;
 
     const interestMatch =
         studentInterests.some(studentInterest =>
@@ -392,47 +389,34 @@ function calculateMatch(student, internship) {
     const interestScore =
         interestMatch ? 20 : 0;
 
-    // =================================================
-    // EDUCATION = 15
-    // =================================================
-
-    const educationMatch = educationMatches(
-        student.education,
-        internship.education
-    );
+    const educationMatch =
+        educationMatches(
+            student.education || student.course,
+            internship.education
+        );
 
     const educationScore =
         educationMatch ? 15 : 0;
 
-    // =================================================
-    // LOCATION = 15
-    // =================================================
-
-    const locationMatch = locationMatches(
-        student.location,
-        internship.location
-    );
+    const locationMatch =
+        locationMatches(
+            student.location,
+            internship.location
+        );
 
     const locationScore =
         locationMatch ? 15 : 0;
 
-    // =================================================
-    // FINAL SCORE
-    // =================================================
-
-    const matchScore = Math.min(
-        100,
-        Math.round(
-            skillScore +
-            interestScore +
-            educationScore +
-            locationScore
-        )
-    );
-
-    // =================================================
-    // SKILL GAP
-    // =================================================
+    const matchScore =
+        Math.min(
+            100,
+            Math.round(
+                skillScore +
+                interestScore +
+                educationScore +
+                locationScore
+            )
+        );
 
     const skillGap =
         internshipSkills.filter(
@@ -445,10 +429,6 @@ function calculateMatch(student, internship) {
                 )
         );
 
-    // =================================================
-    // REASONS
-    // =================================================
-
     const reason = [];
 
     if (matchedSkills.length > 0) {
@@ -459,7 +439,7 @@ function calculateMatch(student, internship) {
 
     if (interestMatch) {
         reason.push(
-            `Interest matched: ${internship.interest}`
+            `Interest matched: ${internship.interest || "Related interest"}`
         );
     }
 
@@ -471,7 +451,7 @@ function calculateMatch(student, internship) {
 
     if (locationMatch) {
         reason.push(
-            `Location matched: ${internship.location}`
+            `Location matched: ${internship.location || "Remote"}`
         );
     }
 
@@ -497,14 +477,13 @@ function calculateMatch(student, internship) {
         interestMatch,
         educationMatch,
         locationMatch,
-
         reason
     };
 }
 
-// =====================================================
-// TEST
-// =====================================================
+/* =====================================================
+   TEST
+===================================================== */
 
 router.get("/test", (req, res) => {
     res.json({
@@ -513,9 +492,9 @@ router.get("/test", (req, res) => {
     });
 });
 
-// =====================================================
-// GET ALL
-// =====================================================
+/* =====================================================
+   GET ALL
+===================================================== */
 
 router.get("/", async (req, res) => {
     try {
@@ -536,20 +515,22 @@ router.get("/", async (req, res) => {
             count: internships.length,
             internships
         });
+
     } catch (error) {
         console.error(error);
 
         res.status(500).json({
             success: false,
-            message: "Failed to fetch internships",
+            message:
+                "Failed to fetch internships",
             error: error.message
         });
     }
 });
 
-// =====================================================
-// SEARCH
-// =====================================================
+/* =====================================================
+   SEARCH
+===================================================== */
 
 router.get("/search", async (req, res) => {
     try {
@@ -595,27 +576,29 @@ router.get("/search", async (req, res) => {
             count: internships.length,
             internships
         });
+
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: "Failed to search internships",
+            message:
+                "Failed to search internships",
             error: error.message
         });
     }
 });
 
-// =====================================================
-// MATCH
-// =====================================================
+/* =====================================================
+   MATCH STUDENT
+===================================================== */
 
 router.get(
     "/match/:studentId",
     async (req, res) => {
         try {
+            const { studentId } = req.params;
+
             if (
-                !mongoose.Types.ObjectId.isValid(
-                    req.params.studentId
-                )
+                !mongoose.Types.ObjectId.isValid(studentId)
             ) {
                 return res.status(400).json({
                     success: false,
@@ -624,9 +607,7 @@ router.get(
             }
 
             const student =
-                await Student.findById(
-                    req.params.studentId
-                );
+                await Student.findById(studentId);
 
             if (!student) {
                 return res.status(404).json({
@@ -665,6 +646,7 @@ router.get(
                 count: recommendations.length,
                 recommendations
             });
+
         } catch (error) {
             console.error(
                 "Matching error:",
@@ -681,9 +663,9 @@ router.get(
     }
 );
 
-// =====================================================
-// GET ONE
-// =====================================================
+/* =====================================================
+   GET ONE
+===================================================== */
 
 router.get("/:id", async (req, res) => {
     try {
@@ -694,7 +676,8 @@ router.get("/:id", async (req, res) => {
         ) {
             return res.status(400).json({
                 success: false,
-                message: "Invalid internship ID"
+                message:
+                    "Invalid internship ID"
             });
         }
 
@@ -706,7 +689,8 @@ router.get("/:id", async (req, res) => {
         if (!internship) {
             return res.status(404).json({
                 success: false,
-                message: "Internship not found"
+                message:
+                    "Internship not found"
             });
         }
 
@@ -714,18 +698,20 @@ router.get("/:id", async (req, res) => {
             success: true,
             internship
         });
+
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: "Failed to fetch internship",
+            message:
+                "Failed to fetch internship",
             error: error.message
         });
     }
 });
 
-// =====================================================
-// CREATE
-// =====================================================
+/* =====================================================
+   CREATE
+===================================================== */
 
 router.post("/", async (req, res) => {
     try {
@@ -747,11 +733,7 @@ router.post("/", async (req, res) => {
             skillGap
         } = req.body;
 
-        if (
-            !title ||
-            !company ||
-            !location
-        ) {
+        if (!title || !company || !location) {
             return res.status(400).json({
                 success: false,
                 message:
@@ -759,7 +741,8 @@ router.post("/", async (req, res) => {
             });
         }
 
-        const cleanSkills = toArray(skills);
+        const cleanSkills =
+            toArray(skills);
 
         if (cleanSkills.length === 0) {
             return res.status(400).json({
@@ -836,6 +819,7 @@ router.post("/", async (req, res) => {
                 "Internship created successfully",
             internship
         });
+
     } catch (error) {
         console.error(error);
 
@@ -848,9 +832,9 @@ router.post("/", async (req, res) => {
     }
 });
 
-// =====================================================
-// UPDATE
-// =====================================================
+/* =====================================================
+   UPDATE
+===================================================== */
 
 router.put("/:id", async (req, res) => {
     try {
@@ -861,7 +845,8 @@ router.put("/:id", async (req, res) => {
         ) {
             return res.status(400).json({
                 success: false,
-                message: "Invalid internship ID"
+                message:
+                    "Invalid internship ID"
             });
         }
 
@@ -869,9 +854,23 @@ router.put("/:id", async (req, res) => {
             ...req.body
         };
 
-        // Never allow an external application URL.
         delete updates.applicationUrl;
         delete updates.source;
+
+        if (updates.skills) {
+            updates.skills =
+                toArray(updates.skills);
+        }
+
+        if (updates.education) {
+            updates.education =
+                toArray(updates.education);
+        }
+
+        if (updates.skillGap) {
+            updates.skillGap =
+                toArray(updates.skillGap);
+        }
 
         const internship =
             await Internship.findByIdAndUpdate(
@@ -897,6 +896,7 @@ router.put("/:id", async (req, res) => {
                 "Internship updated successfully",
             internship
         });
+
     } catch (error) {
         res.status(500).json({
             success: false,
@@ -907,9 +907,9 @@ router.put("/:id", async (req, res) => {
     }
 });
 
-// =====================================================
-// DELETE
-// =====================================================
+/* =====================================================
+   DELETE
+===================================================== */
 
 router.delete("/:id", async (req, res) => {
     try {
@@ -920,7 +920,8 @@ router.delete("/:id", async (req, res) => {
         ) {
             return res.status(400).json({
                 success: false,
-                message: "Invalid internship ID"
+                message:
+                    "Invalid internship ID"
             });
         }
 
@@ -942,6 +943,7 @@ router.delete("/:id", async (req, res) => {
             message:
                 "Internship deleted successfully"
         });
+
     } catch (error) {
         res.status(500).json({
             success: false,

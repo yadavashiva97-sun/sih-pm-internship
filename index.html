@@ -2,1336 +2,1474 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>
-        PM Internship Assistant
-    </title>
-
-    <style>
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --secondary: #0f172a;
-            --bg: #f5f7fb;
-            --card: #ffffff;
-            --text: #172033;
-            --muted: #64748b;
-            --border: #e2e8f0;
-            --success: #16a34a;
-            --warning: #f59e0b;
-            --danger: #dc2626;
-        }
-
-        body {
-            font-family:
-                Arial,
-                Helvetica,
-                sans-serif;
-
-            background: var(--bg);
-            color: var(--text);
-            min-height: 100vh;
-        }
-
-        button,
-        input,
-        select,
-        textarea {
-            font: inherit;
-        }
-
-        button {
-            cursor: pointer;
-        }
-
-        /* =================================================
-           LOGIN
-        ================================================= */
-
-        #loginPage {
-            min-height: 100vh;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            padding: 30px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #eff6ff,
-                    #f8fafc
-                );
-        }
-
-        .login-wrapper {
-            width: 100%;
-            max-width: 1050px;
-
-            display: grid;
-            grid-template-columns:
-                1.1fr
-                0.9fr;
-
-            background: white;
-
-            border-radius: 28px;
-
-            overflow: hidden;
-
-            box-shadow:
-                0 25px 70px
-                rgba(15, 23, 42, 0.12);
-        }
-
-        .login-brand {
-            padding: 60px;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #1d4ed8,
-                    #2563eb,
-                    #3b82f6
-                );
 
-            color: white;
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>PM Internship Assistant</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --primary:#2563eb;
+    --primary-dark:#1d4ed8;
+    --secondary:#0f172a;
+    --muted:#64748b;
+    --border:#e2e8f0;
+    --bg:#f8fafc;
+    --card:#ffffff;
+    --success:#16a34a;
+    --warning:#d97706;
+    --danger:#dc2626;
+}
+
+body{
+    font-family:
+        Inter,
+        Segoe UI,
+        Arial,
+        sans-serif;
+
+    background:var(--bg);
+    color:#0f172a;
+    min-height:100vh;
+}
+
+button,
+input,
+select,
+textarea{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
+/* =====================================================
+   LOGIN
+===================================================== */
 
-        .brand-logo {
-            width: 64px;
-            height: 64px;
+#loginPage{
+    min-height:100vh;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-            border-radius: 18px;
+    padding:30px;
 
-            background:
-                rgba(255,255,255,.18);
+    background:
+        radial-gradient(
+            circle at top left,
+            #dbeafe 0,
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at bottom right,
+            #e0e7ff 0,
+            transparent 35%
+        ),
+        #f8fafc;
+}
 
-            font-size: 30px;
+.login-wrapper{
+    width:min(1080px,100%);
 
-            margin-bottom: 25px;
-        }
+    display:grid;
+    grid-template-columns:
+        1.05fr .95fr;
 
-        .login-brand h1 {
-            font-size: 42px;
-            line-height: 1.15;
-            margin-bottom: 20px;
-        }
+    background:#fff;
 
-        .login-brand p {
-            font-size: 17px;
-            line-height: 1.7;
+    border-radius:28px;
 
-            color:
-                rgba(255,255,255,.85);
-        }
+    overflow:hidden;
 
-        .brand-points {
-            margin-top: 35px;
+    box-shadow:
+        0 25px 70px
+        rgba(15,23,42,.12);
 
-            display: grid;
-            gap: 15px;
-        }
+    border:
+        1px solid
+        rgba(226,232,240,.8);
+}
 
-        .brand-point {
-            display: flex;
-            gap: 12px;
-            align-items: center;
+.login-brand{
+    padding:55px;
 
-            font-size: 15px;
-        }
+    background:
+        linear-gradient(
+            145deg,
+            #1d4ed8,
+            #2563eb 55%,
+            #3b82f6
+        );
 
-        .brand-point span {
-            width: 28px;
-            height: 28px;
+    color:white;
 
-            border-radius: 50%;
+    position:relative;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+    overflow:hidden;
+}
 
-            background:
-                rgba(255,255,255,.18);
-        }
+.login-brand:after{
+    content:"";
 
-        .login-card {
-            padding: 50px;
-        }
+    position:absolute;
 
-        .login-card h2 {
-            font-size: 30px;
-            margin-bottom: 10px;
-        }
+    width:300px;
+    height:300px;
 
-        .login-card > p {
-            color: var(--muted);
-            margin-bottom: 30px;
-        }
+    border-radius:50%;
 
-        .role-grid {
-            display: grid;
-            grid-template-columns:
-                repeat(3, 1fr);
+    background:
+        rgba(255,255,255,.08);
 
-            gap: 12px;
+    right:-100px;
+    bottom:-100px;
+}
 
-            margin-bottom: 25px;
-        }
+.logo{
+    width:54px;
+    height:54px;
 
-        .role-card {
-            padding: 20px 10px;
+    border-radius:16px;
 
-            border: 2px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-            border-radius: 16px;
+    background:
+        rgba(255,255,255,.18);
 
-            background: white;
+    font-size:27px;
 
-            text-align: center;
+    margin-bottom:28px;
+}
 
-            transition: .2s;
-        }
+.login-brand h1{
+    font-size:42px;
+    line-height:1.1;
 
-        .role-card:hover {
-            border-color:
-                var(--primary);
-        }
+    margin-bottom:18px;
+}
 
-        .role-card.active {
-            border-color:
-                var(--primary);
+.login-brand p{
+    font-size:17px;
+    line-height:1.7;
 
-            background:
-                #eff6ff;
-        }
+    color:#dbeafe;
 
-        .role-icon {
-            font-size: 27px;
-            margin-bottom: 8px;
-        }
+    max-width:470px;
+}
 
-        .role-card strong {
-            display: block;
-            font-size: 14px;
-        }
+.brand-points{
+    margin-top:40px;
 
-        .field {
-            margin-bottom: 17px;
-        }
+    display:grid;
 
-        .field label {
-            display: block;
+    gap:15px;
+}
 
-            margin-bottom: 7px;
+.brand-point{
+    display:flex;
 
-            font-size: 14px;
-            font-weight: 600;
-        }
+    gap:12px;
 
-        .field input,
-        .field select,
-        .field textarea {
-            width: 100%;
+    align-items:center;
 
-            border: 1px solid var(--border);
+    font-size:14px;
+}
 
-            border-radius: 11px;
+.brand-point span{
+    width:32px;
+    height:32px;
 
-            padding: 13px 14px;
+    border-radius:10px;
 
-            outline: none;
+    background:
+        rgba(255,255,255,.15);
 
-            background: white;
-        }
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
 
-        .field input:focus,
-        .field select:focus,
-        .field textarea:focus {
-            border-color:
-                var(--primary);
+.login-form{
+    padding:45px;
+}
 
-            box-shadow:
-                0 0 0 3px
-                rgba(37,99,235,.1);
-        }
+.login-form h2{
+    font-size:28px;
 
-        .primary-btn {
-            border: none;
+    margin-bottom:8px;
+}
 
-            background:
-                var(--primary);
+.login-subtitle{
+    color:var(--muted);
 
-            color: white;
+    font-size:14px;
 
-            padding: 13px 20px;
+    margin-bottom:24px;
+}
 
-            border-radius: 11px;
+.role-grid{
+    display:grid;
 
-            font-weight: 700;
+    grid-template-columns:
+        repeat(3,1fr);
 
-            width: 100%;
-        }
+    gap:10px;
 
-        .primary-btn:hover {
-            background:
-                var(--primary-dark);
-        }
+    margin-bottom:22px;
+}
 
-        /* =================================================
-           APP
-        ================================================= */
+.role-card{
+    border:
+        1.5px solid
+        var(--border);
 
-        #app {
-            display: none;
-        }
+    border-radius:15px;
 
-        .navbar {
-            height: 70px;
+    padding:17px 8px;
 
-            background: white;
+    text-align:center;
 
-            border-bottom:
-                1px solid var(--border);
+    background:white;
 
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+    transition:.2s;
+}
 
-            padding:
-                0 30px;
+.role-card:hover{
+    border-color:#93c5fd;
 
-            position: sticky;
-            top: 0;
+    transform:
+        translateY(-2px);
+}
 
-            z-index: 20;
-        }
+.role-card.active{
+    border-color:
+        var(--primary);
 
-        .nav-brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+    background:#eff6ff;
 
-            font-weight: 800;
-            font-size: 18px;
-        }
+    box-shadow:
+        0 0 0 3px
+        #dbeafe;
+}
 
-        .nav-logo {
-            width: 38px;
-            height: 38px;
+.role-icon{
+    font-size:25px;
 
-            border-radius: 10px;
+    margin-bottom:7px;
+}
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+.role-card strong{
+    display:block;
 
-            color: white;
+    font-size:13px;
+}
 
-            background:
-                var(--primary);
-        }
+.field{
+    margin-bottom:16px;
+}
 
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+.field label{
+    display:block;
 
-        .role-badge {
-            padding: 7px 12px;
+    font-size:13px;
 
-            border-radius: 20px;
+    font-weight:700;
 
-            background:
-                #eff6ff;
+    margin-bottom:7px;
+}
 
-            color:
-                var(--primary);
+input,
+select,
+textarea{
+    width:100%;
 
-            font-size: 13px;
-            font-weight: 700;
-        }
+    border:
+        1px solid
+        var(--border);
 
-        .logout-btn {
-            border: 1px solid var(--border);
+    background:white;
 
-            background: white;
+    border-radius:11px;
 
-            padding: 8px 13px;
+    padding:12px 13px;
 
-            border-radius: 9px;
-        }
+    outline:none;
 
-        .container {
-            max-width: 1250px;
+    transition:.2s;
+}
 
-            margin:
-                0 auto;
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#60a5fa;
 
-            padding:
-                30px 20px 60px;
-        }
+    box-shadow:
+        0 0 0 3px
+        #dbeafe;
+}
 
-        /* =================================================
-           DASHBOARD HEADER
-        ================================================= */
+.btn{
+    border:0;
 
-        .dashboard-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+    border-radius:10px;
 
-            margin-bottom: 25px;
-        }
+    padding:11px 16px;
 
-        .dashboard-header h1 {
-            font-size: 30px;
-            margin-bottom: 5px;
-        }
+    font-weight:700;
 
-        .dashboard-header p {
-            color: var(--muted);
-        }
+    transition:.2s;
+}
 
-        /* =================================================
-           STAT CARDS
-        ================================================= */
+.btn:hover{
+    transform:
+        translateY(-1px);
+}
 
-        .stats-grid {
-            display: grid;
+.btn-primary{
+    color:white;
 
-            grid-template-columns:
-                repeat(4, 1fr);
+    background:
+        var(--primary);
+}
 
-            gap: 16px;
+.btn-primary:hover{
+    background:
+        var(--primary-dark);
+}
 
-            margin-bottom: 25px;
-        }
+.btn-secondary{
+    background:#f1f5f9;
 
-        .stat-card {
-            background: white;
+    color:#334155;
+}
 
-            border:
-                1px solid var(--border);
+.btn-saved{
+    background:#fef3c7;
 
-            border-radius: 16px;
+    color:#92400e;
+}
 
-            padding: 20px;
-        }
+.btn-danger{
+    background:#fee2e2;
 
-        .stat-label {
-            color: var(--muted);
+    color:#991b1b;
+}
 
-            font-size: 13px;
+.login-btn{
+    width:100%;
 
-            margin-bottom: 10px;
-        }
+    margin-top:5px;
 
-        .stat-value {
-            font-size: 28px;
+    padding:14px;
+}
 
-            font-weight: 800;
-        }
+.login-note{
+    color:#94a3b8;
 
-        /* =================================================
-           PROFILE
-        ================================================= */
+    font-size:11px;
 
-        .profile-card {
-            background: white;
+    margin-top:12px;
 
-            border:
-                1px solid var(--border);
+    line-height:1.5;
+}
 
-            border-radius: 18px;
+/* =====================================================
+   APP
+===================================================== */
 
-            padding: 25px;
+#app{
+    display:none;
 
-            margin-bottom: 25px;
-        }
+    min-height:100vh;
+}
 
-        .profile-card h3 {
-            margin-bottom: 20px;
-        }
+.topbar{
+    height:72px;
 
-        .form-grid {
-            display: grid;
+    background:#fff;
 
-            grid-template-columns:
-                repeat(2, 1fr);
+    border-bottom:
+        1px solid
+        var(--border);
 
-            gap: 15px;
-        }
+    display:flex;
 
-        .full {
-            grid-column:
-                1 / -1;
-        }
+    align-items:center;
 
-        .tag-input {
-            display: flex;
-            gap: 8px;
-        }
+    justify-content:space-between;
 
-        .tag-input input {
-            flex: 1;
-        }
+    padding:0 30px;
 
-        .tag-input button {
-            width: 45px;
+    position:sticky;
 
-            border: none;
+    top:0;
 
-            border-radius: 9px;
+    z-index:50;
+}
 
-            background:
-                var(--primary);
+.topbar-brand{
+    display:flex;
 
-            color: white;
-        }
+    align-items:center;
 
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
+    gap:11px;
 
-            gap: 7px;
+    font-weight:800;
+}
 
-            margin-top: 10px;
-        }
+.topbar-logo{
+    width:40px;
+    height:40px;
 
-        .tag {
-            padding: 6px 10px;
+    border-radius:11px;
 
-            border-radius: 20px;
+    background:#2563eb;
 
-            background:
-                #eff6ff;
+    color:#fff;
 
-            color:
-                var(--primary);
+    display:flex;
 
-            font-size: 12px;
+    align-items:center;
 
-            font-weight: 600;
-        }
+    justify-content:center;
+}
 
-        /* =================================================
-           SECTION
-        ================================================= */
+.topbar-right{
+    display:flex;
 
-        .section-title {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+    align-items:center;
 
-            margin-bottom: 18px;
-        }
+    gap:12px;
+}
 
-        .section-title h2 {
-            font-size: 21px;
-        }
+.user-name{
+    color:#475569;
 
-        /* =================================================
-           FILTERS
-        ================================================= */
+    font-size:12px;
 
-        .filter-card {
-            background: white;
+    font-weight:700;
+}
 
-            padding: 18px;
+.role-badge{
+    padding:7px 12px;
 
-            border:
-                1px solid var(--border);
+    background:#eff6ff;
 
-            border-radius: 16px;
+    color:#1d4ed8;
 
-            display: grid;
+    border-radius:999px;
 
-            grid-template-columns:
-                1.3fr
-                1fr
-                1fr
-                auto;
+    font-size:12px;
 
-            gap: 10px;
+    font-weight:800;
+}
 
-            margin-bottom: 20px;
-        }
+.logout-btn{
+    border:
+        1px solid
+        var(--border);
 
-        .filter-card input,
-        .filter-card select {
-            border:
-                1px solid var(--border);
+    background:white;
 
-            border-radius: 10px;
+    border-radius:9px;
 
-            padding: 11px;
+    padding:8px 13px;
 
-            outline: none;
-        }
+    font-weight:700;
 
-        .filter-card button {
-            border: none;
+    color:#475569;
+}
 
-            background:
-                var(--secondary);
+.main{
+    width:
+        min(
+            1250px,
+            calc(100% - 40px)
+        );
 
-            color: white;
+    margin:0 auto;
 
-            border-radius: 10px;
+    padding:35px 0 60px;
+}
 
-            padding: 0 18px;
-        }
+.dashboard-header{
+    display:flex;
 
-        /* =================================================
-           INTERNSHIP GRID
-        ================================================= */
+    justify-content:space-between;
 
-        .internship-grid {
-            display: grid;
+    align-items:center;
 
-            grid-template-columns:
-                repeat(2, 1fr);
+    margin-bottom:25px;
+}
 
-            gap: 18px;
-        }
+.dashboard-header h1{
+    font-size:30px;
 
-        .internship-card {
-            background: white;
+    margin-bottom:7px;
+}
 
-            border:
-                1px solid var(--border);
+.dashboard-header p{
+    color:var(--muted);
+}
 
-            border-radius: 18px;
+.stats-grid{
+    display:grid;
 
-            padding: 22px;
+    grid-template-columns:
+        repeat(4,1fr);
 
-            transition: .2s;
-        }
+    gap:16px;
 
-        .internship-card:hover {
-            transform:
-                translateY(-2px);
+    margin-bottom:25px;
+}
 
-            box-shadow:
-                0 10px 30px
-                rgba(15,23,42,.08);
-        }
+.stat-card{
+    background:white;
 
-        .card-top {
-            display: flex;
+    border:
+        1px solid
+        var(--border);
 
-            justify-content:
-                space-between;
+    border-radius:16px;
 
-            gap: 15px;
+    padding:20px;
 
-            margin-bottom: 15px;
-        }
+    box-shadow:
+        0 5px 18px
+        rgba(15,23,42,.035);
+}
 
-        .company-logo {
-            width: 45px;
-            height: 45px;
+.stat-label{
+    color:var(--muted);
 
-            border-radius: 12px;
+    font-size:12px;
 
-            background:
-                #eff6ff;
+    font-weight:700;
 
-            color:
-                var(--primary);
+    margin-bottom:9px;
+}
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+.stat-value{
+    font-size:27px;
 
-            font-weight: 800;
-        }
+    font-weight:800;
+}
 
-        .company-info {
-            flex: 1;
-        }
+.dashboard-card,
+.profile-card,
+.filter-card{
+    background:white;
 
-        .company-info h3 {
-            font-size: 18px;
+    border:
+        1px solid
+        var(--border);
 
-            margin-bottom: 5px;
-        }
+    border-radius:17px;
 
-        .company-info p {
-            color: var(--muted);
+    padding:23px;
 
-            font-size: 13px;
-        }
+    margin-bottom:22px;
+}
 
-        .match-badge {
-            min-width: 68px;
+.section-title{
+    display:flex;
 
-            height: 68px;
+    justify-content:space-between;
 
-            border-radius: 50%;
+    align-items:center;
 
-            display: flex;
-            flex-direction: column;
+    margin-bottom:17px;
+}
 
-            align-items: center;
-            justify-content: center;
+.section-title h2{
+    font-size:20px;
+}
 
-            background:
-                #ecfdf5;
+.form-grid{
+    display:grid;
 
-            color:
-                var(--success);
+    grid-template-columns:
+        repeat(2,1fr);
 
-            border:
-                5px solid #bbf7d0;
+    gap:3px 18px;
+}
 
-            font-weight: 800;
+.full{
+    grid-column:1/-1;
+}
 
-            font-size: 17px;
-        }
+.tag-input{
+    display:flex;
 
-        .match-badge small {
-            font-size: 9px;
-            font-weight: 600;
-        }
+    gap:8px;
+}
 
-        .meta-row {
-            display: flex;
-            flex-wrap: wrap;
+.tag-input button{
+    min-width:45px;
 
-            gap: 8px;
+    border:0;
 
-            margin-bottom: 14px;
-        }
+    border-radius:10px;
 
-        .meta {
-            padding: 6px 9px;
+    background:#2563eb;
 
-            border-radius: 8px;
+    color:white;
 
-            background:
-                #f8fafc;
+    font-size:20px;
+}
 
-            color:
-                #475569;
+.tags{
+    display:flex;
 
-            font-size: 12px;
-        }
+    flex-wrap:wrap;
 
-        .skill-list {
-            display: flex;
-            flex-wrap: wrap;
+    gap:7px;
 
-            gap: 6px;
+    margin-top:9px;
+}
 
-            margin:
-                12px 0;
-        }
+.tag{
+    background:#eff6ff;
 
-        .skill {
-            padding: 5px 9px;
+    color:#1d4ed8;
 
-            border-radius: 7px;
+    padding:6px 9px;
 
-            background:
-                #f1f5f9;
+    border-radius:999px;
 
-            color:
-                #334155;
+    font-size:11px;
 
-            font-size: 11px;
-        }
+    font-weight:700;
+}
 
-        .skill.matched {
-            background:
-                #dcfce7;
+.filter-card{
+    display:grid;
 
-            color:
-                #166534;
-        }
+    grid-template-columns:
+        1.5fr 1fr 1fr auto;
 
-        .card-actions {
-            display: grid;
+    gap:10px;
+}
 
-            grid-template-columns:
-                1fr 1fr;
+.internship-grid{
+    display:grid;
 
-            gap: 8px;
+    grid-template-columns:
+        repeat(2,1fr);
 
-            margin-top: 18px;
-        }
+    gap:17px;
+}
 
-        .btn {
-            border: none;
+.internship-card{
+    background:#fff;
 
-            padding: 11px;
+    border:
+        1px solid
+        var(--border);
 
-            border-radius: 9px;
+    border-radius:17px;
 
-            font-weight: 700;
-        }
+    padding:20px;
 
-        .btn-primary {
-            background:
-                var(--primary);
+    box-shadow:
+        0 5px 18px
+        rgba(15,23,42,.035);
+}
 
-            color: white;
-        }
+.card-top{
+    display:flex;
 
-        .btn-secondary {
-            background:
-                #f1f5f9;
+    align-items:center;
 
-            color:
-                #334155;
-        }
+    gap:12px;
+}
 
-        .btn-saved {
-            background:
-                #fef3c7;
+.company-logo{
+    width:44px;
+    height:44px;
 
-            color:
-                #92400e;
-        }
+    border-radius:12px;
 
-        /* =================================================
-           MATCH DETAILS
-        ================================================= */
+    background:#eff6ff;
 
-        .details-panel {
-            display: none;
+    color:#2563eb;
 
-            margin-top: 18px;
+    display:flex;
 
-            padding-top: 18px;
+    align-items:center;
 
-            border-top:
-                1px solid var(--border);
-        }
+    justify-content:center;
 
-        .details-panel.show {
-            display: block;
-        }
+    font-size:19px;
 
-        .breakdown {
-            display: grid;
+    font-weight:800;
+}
 
-            gap: 10px;
+.company-info{
+    flex:1;
+}
 
-            margin: 12px 0;
-        }
+.company-info h3{
+    font-size:16px;
 
-        .breakdown-row {
-            display: grid;
+    margin-bottom:4px;
+}
 
-            grid-template-columns:
-                110px
-                1fr
-                45px;
+.company-info p{
+    color:var(--muted);
 
-            align-items: center;
+    font-size:12px;
+}
 
-            gap: 8px;
+.match-badge{
+    background:#ecfdf5;
 
-            font-size: 12px;
-        }
+    color:#15803d;
 
-        .bar {
-            height: 7px;
+    border-radius:12px;
 
-            background:
-                #e2e8f0;
+    padding:9px 11px;
 
-            border-radius: 10px;
+    font-size:18px;
 
-            overflow: hidden;
-        }
+    font-weight:800;
 
-        .bar-inner {
-            height: 100%;
+    text-align:center;
+}
 
-            background:
-                var(--primary);
-        }
+.match-badge small{
+    display:block;
 
-        .gap-box {
-            background:
-                #fff7ed;
+    font-size:8px;
 
-            border:
-                1px solid #fed7aa;
+    letter-spacing:.6px;
+}
 
-            color:
-                #9a3412;
+.meta-row{
+    display:flex;
 
-            padding: 11px;
+    flex-wrap:wrap;
 
-            border-radius: 9px;
+    gap:8px;
 
-            font-size: 12px;
+    margin:17px 0 12px;
+}
 
-            margin-top: 10px;
-        }
+.meta{
+    font-size:11px;
 
-        .career-box {
-            display: grid;
+    color:#475569;
 
-            grid-template-columns:
-                1fr 1fr;
+    background:#f8fafc;
 
-            gap: 10px;
+    border:
+        1px solid
+        #eef2f7;
 
-            margin-top: 12px;
-        }
+    padding:6px 8px;
 
-        .mini-box {
-            background:
-                #f8fafc;
+    border-radius:8px;
+}
 
-            border-radius: 10px;
+.skill-list{
+    display:flex;
 
-            padding: 12px;
+    flex-wrap:wrap;
 
-            font-size: 12px;
-        }
+    gap:6px;
+}
 
-        .mini-box strong {
-            display: block;
+.skill{
+    font-size:10px;
 
-            font-size: 17px;
+    padding:6px 8px;
 
-            margin-top: 4px;
-        }
+    border-radius:7px;
 
-        /* =================================================
-           APPLICATIONS
-        ================================================= */
+    background:#f1f5f9;
 
-        .application-list {
-            display: grid;
+    color:#475569;
+}
 
-            gap: 12px;
-        }
+.skill.matched{
+    background:#dcfce7;
 
-        .application-card {
-            background: white;
+    color:#166534;
+}
 
-            border:
-                1px solid var(--border);
+.skill.missing{
+    background:#fee2e2;
 
-            padding: 18px;
+    color:#991b1b;
+}
 
-            border-radius: 14px;
+.details-panel{
+    display:none;
 
-            display: flex;
+    margin-top:15px;
 
-            align-items: center;
+    padding:15px;
 
-            justify-content:
-                space-between;
+    border-radius:12px;
 
-            gap: 15px;
-        }
+    background:#f8fafc;
 
-        .status {
-            padding: 7px 10px;
+    border:
+        1px solid
+        #e2e8f0;
+}
 
-            border-radius: 20px;
+.details-panel.show{
+    display:block;
+}
 
-            background:
-                #eff6ff;
+.breakdown{
+    margin-top:12px;
+}
 
-            color:
-                var(--primary);
+.breakdown-row{
+    display:grid;
 
-            font-size: 11px;
+    grid-template-columns:
+        85px 1fr 55px;
 
-            font-weight: 700;
-        }
+    gap:8px;
 
-        /* =================================================
-           RECRUITER / COLLEGE
-        ================================================= */
+    align-items:center;
 
-        .dashboard-card {
-            background: white;
+    margin:10px 0;
 
-            border:
-                1px solid var(--border);
+    font-size:11px;
+}
 
-            border-radius: 18px;
+.bar{
+    height:7px;
 
-            padding: 25px;
+    background:#e2e8f0;
 
-            margin-bottom: 20px;
-        }
+    border-radius:99px;
 
-        .candidate-grid {
-            display: grid;
+    overflow:hidden;
+}
 
-            grid-template-columns:
-                repeat(3, 1fr);
+.bar-inner{
+    height:100%;
 
-            gap: 14px;
-        }
+    background:#2563eb;
 
-        .candidate-card {
-            border:
-                1px solid var(--border);
+    border-radius:99px;
+}
 
-            padding: 18px;
+.career-box{
+    display:grid;
 
-            border-radius: 13px;
-        }
+    grid-template-columns:
+        1fr 1fr;
 
-        .candidate-card h4 {
-            margin-bottom: 6px;
-        }
+    gap:8px;
 
-        .candidate-card p {
-            color: var(--muted);
+    margin-top:13px;
+}
 
-            font-size: 12px;
+.mini-box{
+    background:white;
 
-            margin-bottom: 8px;
-        }
+    border:
+        1px solid
+        var(--border);
 
-        /* =================================================
-           TOAST
-        ================================================= */
+    padding:10px;
 
-        #toast {
-            position: fixed;
+    border-radius:10px;
 
-            bottom: 25px;
-            right: 25px;
+    font-size:11px;
 
-            background:
-                #0f172a;
+    color:#64748b;
+}
 
-            color: white;
+.mini-box strong{
+    display:block;
 
-            padding: 13px 18px;
+    color:#0f172a;
 
-            border-radius: 10px;
+    margin-top:4px;
+}
 
-            display: none;
+.gap-box{
+    margin-top:10px;
 
-            z-index: 100;
-        }
+    padding:10px;
 
-        /* =================================================
-           RESPONSIVE
-        ================================================= */
+    border-radius:9px;
 
-        @media(max-width: 900px) {
+    background:#fff7ed;
 
-            .login-wrapper {
-                grid-template-columns: 1fr;
-            }
+    color:#9a3412;
 
-            .login-brand {
-                padding: 35px;
-            }
+    font-size:11px;
+}
 
-            .login-brand h1 {
-                font-size: 32px;
-            }
+.card-actions{
+    display:flex;
 
-            .stats-grid {
-                grid-template-columns:
-                    repeat(2, 1fr);
-            }
+    gap:8px;
 
-            .internship-grid {
-                grid-template-columns: 1fr;
-            }
+    margin-top:15px;
+}
 
-            .candidate-grid {
-                grid-template-columns:
-                    repeat(2, 1fr);
-            }
+.card-actions .btn{
+    flex:1;
 
-            .filter-card {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
+    font-size:11px;
+}
 
-        @media(max-width: 600px) {
+.application-list{
+    display:grid;
 
-            #loginPage {
-                padding: 10px;
-            }
+    gap:9px;
+}
 
-            .login-card {
-                padding: 25px;
-            }
+.application-card{
+    display:flex;
 
-            .login-brand {
-                display: none;
-            }
+    justify-content:space-between;
 
-            .role-grid {
-                grid-template-columns:
-                    1fr;
-            }
+    align-items:center;
 
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
+    padding:14px;
 
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
+    background:#fff;
 
-            .candidate-grid {
-                grid-template-columns: 1fr;
-            }
+    border:
+        1px solid
+        var(--border);
 
-            .filter-card {
-                grid-template-columns: 1fr;
-            }
+    border-radius:11px;
+}
 
-            .navbar {
-                padding: 0 15px;
-            }
+.status{
+    background:#dcfce7;
 
-            .nav-brand span {
-                display: none;
-            }
-        }
+    color:#166534;
 
-    </style>
+    padding:6px 9px;
+
+    border-radius:999px;
+
+    font-size:10px;
+
+    font-weight:700;
+}
+
+/* =====================================================
+   COLLEGE / RECRUITER
+===================================================== */
+
+.candidate-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:14px;
+}
+
+.candidate-card{
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:14px;
+
+    padding:16px;
+
+    background:#fff;
+}
+
+.candidate-card h4{
+    margin-bottom:7px;
+}
+
+.candidate-card p{
+    color:#64748b;
+
+    font-size:12px;
+
+    margin:4px 0;
+}
+
+.candidate-skills{
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:5px;
+
+    margin-top:9px;
+}
+
+.candidate-skill{
+    padding:5px 7px;
+
+    border-radius:7px;
+
+    background:#eff6ff;
+
+    color:#1d4ed8;
+
+    font-size:10px;
+
+    font-weight:700;
+}
+
+.empty-state{
+    padding:35px;
+
+    text-align:center;
+
+    color:#64748b;
+}
+
+.info-banner{
+    background:#eff6ff;
+
+    border:
+        1px solid
+        #bfdbfe;
+
+    color:#1e40af;
+
+    border-radius:12px;
+
+    padding:12px 14px;
+
+    margin-bottom:18px;
+
+    font-size:12px;
+}
+
+.success-banner{
+    background:#ecfdf5;
+
+    border:
+        1px solid
+        #bbf7d0;
+
+    color:#166534;
+
+    border-radius:12px;
+
+    padding:12px 14px;
+
+    margin-bottom:18px;
+
+    font-size:12px;
+}
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+#toast{
+    position:fixed;
+
+    right:25px;
+
+    bottom:25px;
+
+    background:#0f172a;
+
+    color:#fff;
+
+    padding:13px 17px;
+
+    border-radius:11px;
+
+    font-size:13px;
+
+    display:none;
+
+    z-index:100;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,.18);
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:900px){
+
+    .login-wrapper{
+        grid-template-columns:1fr;
+    }
+
+    .login-brand{
+        padding:35px;
+    }
+
+    .login-brand h1{
+        font-size:32px;
+    }
+
+    .stats-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .internship-grid{
+        grid-template-columns:1fr;
+    }
+
+    .candidate-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+}
+
+@media(max-width:650px){
+
+    #loginPage{
+        padding:12px;
+    }
+
+    .login-form,
+    .login-brand{
+        padding:27px;
+    }
+
+    .role-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-grid,
+    .filter-card,
+    .stats-grid,
+    .candidate-grid{
+        grid-template-columns:1fr;
+    }
+
+    .full{
+        grid-column:auto;
+    }
+
+    .topbar{
+        padding:0 15px;
+    }
+
+    .topbar-brand span{
+        display:none;
+    }
+
+    .user-name{
+        display:none;
+    }
+
+    .main{
+        width:
+            min(
+                100% - 24px,
+                1250px
+            );
+
+        padding-top:23px;
+    }
+}
+
+</style>
+
 </head>
 
 <body>
 
 <!-- =====================================================
-     LOGIN PAGE
+     LOGIN
 ===================================================== -->
 
 <section id="loginPage">
 
-    <div class="login-wrapper">
+<div class="login-wrapper">
 
-        <div class="login-brand">
+    <div class="login-brand">
 
-            <div class="brand-logo">
-                🎓
-            </div>
+        <div class="logo">🎓</div>
 
-            <h1>
-                PM Internship
-                Assistant
-            </h1>
+        <h1>
+            PM Internship<br>
+            Assistant
+        </h1>
 
-            <p>
-                A smart internship ecosystem that
-                connects students, colleges and
-                recruiters through personalised
-                internship matching.
-            </p>
+        <p>
+            A smart platform connecting students,
+            colleges and recruiters through
+            skill-based internship matching.
+        </p>
 
-            <div class="brand-points">
+        <div class="brand-points">
 
-                <div class="brand-point">
-                    <span>✓</span>
-                    AI-assisted internship matching
+            <div class="brand-point">
+                <span>🎯</span>
+                <div>
+                    Personalised internship recommendations
                 </div>
+            </div>
 
-                <div class="brand-point">
-                    <span>✓</span>
-                    Explainable match score
+            <div class="brand-point">
+                <span>📊</span>
+                <div>
+                    Explainable match score and skill gap
                 </div>
+            </div>
 
-                <div class="brand-point">
-                    <span>✓</span>
-                    Skill-gap based recommendations
+            <div class="brand-point">
+                <span>🏫</span>
+                <div>
+                    College skill intelligence
                 </div>
+            </div>
 
-                <div class="brand-point">
-                    <span>✓</span>
-                    Direct application management
+            <div class="brand-point">
+                <span>🤝</span>
+                <div>
+                    Academia–industry collaboration
                 </div>
-
             </div>
-
-        </div>
-
-        <div class="login-card">
-
-            <h2>
-                Welcome back
-            </h2>
-
-            <p>
-                Select your role to continue.
-            </p>
-
-            <div class="role-grid">
-
-                <button
-                    class="role-card active"
-                    data-role="student"
-                    onclick="selectRole('student')"
-                >
-
-                    <div class="role-icon">
-                        🎓
-                    </div>
-
-                    <strong>
-                        Student
-                    </strong>
-
-                </button>
-
-                <button
-                    class="role-card"
-                    data-role="college"
-                    onclick="selectRole('college')"
-                >
-
-                    <div class="role-icon">
-                        🏫
-                    </div>
-
-                    <strong>
-                        College
-                    </strong>
-
-                </button>
-
-                <button
-                    class="role-card"
-                    data-role="recruiter"
-                    onclick="selectRole('recruiter')"
-                >
-
-                    <div class="role-icon">
-                        💼
-                    </div>
-
-                    <strong>
-                        Recruiter
-                    </strong>
-
-                </button>
-
-            </div>
-
-            <div class="field">
-
-                <label>
-                    Full Name
-                </label>
-
-                <input
-                    id="loginName"
-                    type="text"
-                    placeholder="Enter your name"
-                >
-
-            </div>
-
-            <div class="field">
-
-                <label>
-                    Email
-                </label>
-
-                <input
-                    id="loginEmail"
-                    type="email"
-                    placeholder="Enter email"
-                >
-
-            </div>
-
-            <button
-                class="primary-btn"
-                onclick="login()"
-            >
-                Continue
-            </button>
 
         </div>
 
     </div>
 
-</section>
+
+    <div class="login-form">
+
+        <h2>Welcome</h2>
+
+        <p class="login-subtitle">
+            Select your role and enter your details
+        </p>
 
 
-<!-- =====================================================
-     APPLICATION
-===================================================== -->
-
-<div id="app">
-
-    <nav class="navbar">
-
-        <div class="nav-brand">
-
-            <div class="nav-logo">
-                🎓
-            </div>
-
-            <span>
-                PM Internship Assistant
-            </span>
-
-        </div>
-
-        <div class="nav-right">
-
-            <div
-                class="role-badge"
-                id="roleBadge"
-            >
-                Student
-            </div>
+        <div class="role-grid">
 
             <button
-                class="logout-btn"
-                onclick="logout()"
+                type="button"
+                class="role-card active"
+                data-role="student"
+                onclick="selectRole('student')"
             >
-                Logout
+
+                <div class="role-icon">
+                    🎓
+                </div>
+
+                <strong>
+                    Student
+                </strong>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="role-card"
+                data-role="college"
+                onclick="selectRole('college')"
+            >
+
+                <div class="role-icon">
+                    🏫
+                </div>
+
+                <strong>
+                    College
+                </strong>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="role-card"
+                data-role="recruiter"
+                onclick="selectRole('recruiter')"
+            >
+
+                <div class="role-icon">
+                    💼
+                </div>
+
+                <strong>
+                    Recruiter
+                </strong>
+
             </button>
 
         </div>
 
-    </nav>
 
-    <main
-        class="container"
-        id="mainContent"
-    ></main>
+        <div class="field">
+
+            <label id="nameLabel">
+                Your Name
+            </label>
+
+            <input
+                id="loginName"
+                type="text"
+                placeholder="Enter your name"
+                autocomplete="name"
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Email Address
+            </label>
+
+            <input
+                id="loginEmail"
+                type="email"
+                placeholder="Enter your email"
+                autocomplete="email"
+            >
+
+        </div>
+
+
+        <div
+            class="field"
+            id="collegeLoginField"
+        >
+
+            <label>
+                College Name
+            </label>
+
+            <input
+                id="loginCollege"
+                type="text"
+                placeholder="Enter your college name"
+            >
+
+        </div>
+
+
+        <div
+            class="field"
+            id="companyLoginField"
+            style="display:none;"
+        >
+
+            <label>
+                Company Name
+            </label>
+
+            <input
+                id="loginCompany"
+                type="text"
+                placeholder="Enter your company name"
+            >
+
+        </div>
+
+
+        <button
+            type="button"
+            class="btn btn-primary login-btn"
+            onclick="login()"
+        >
+            Continue →
+        </button>
+
+
+        <p class="login-note">
+            Prototype login: details are used to personalise
+            the selected dashboard.
+        </p>
+
+    </div>
 
 </div>
+
+</section>
+
+
+<!-- =====================================================
+     APP
+===================================================== -->
+
+<section id="app">
+
+<header class="topbar">
+
+    <div class="topbar-brand">
+
+        <div class="topbar-logo">
+            🎓
+        </div>
+
+        <span>
+            PM Internship Assistant
+        </span>
+
+    </div>
+
+
+    <div class="topbar-right">
+
+        <span
+            id="topUserName"
+            class="user-name"
+        ></span>
+
+        <span
+            id="roleBadge"
+            class="role-badge"
+        >
+            Student
+        </span>
+
+        <button
+            type="button"
+            class="logout-btn"
+            onclick="logout()"
+        >
+            Logout
+        </button>
+
+    </div>
+
+</header>
+
+
+<main
+    class="main"
+    id="mainContent"
+></main>
+
+</section>
 
 
 <div id="toast"></div>
@@ -1346,163 +1484,113 @@
 const API_URL =
     "https://sih-pm-internship-2.onrender.com/api";
 
+
+/* =========================================================
+   STATE
+========================================================= */
+
 let selectedRole = "student";
+
 let currentUser = null;
+
 let studentProfile = null;
+
 let internships = [];
+
 let recommendations = [];
 
-let savedInternships = JSON.parse(
-    localStorage.getItem("pm_saved_internships") || "[]"
-);
+let applications = [];
+
+let allStudents = [];
+
+let savedInternships =
+    JSON.parse(
+        localStorage.getItem(
+            "pm_saved_internships"
+        ) || "[]"
+    );
+
+window.tempSkills = [];
+window.tempInterests = [];
 
 
 /* =========================================================
-   ROLE
+   HELPERS
 ========================================================= */
 
-function selectRole(role) {
-    selectedRole = role;
+function escapeHTML(value) {
 
-    document.querySelectorAll(".role-card").forEach(card => {
-        card.classList.toggle(
-            "active",
-            card.dataset.role === role
-        );
-    });
+    if (
+        value === undefined ||
+        value === null
+    ) {
+        return "";
+    }
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 }
 
 
-/* =========================================================
-   TOAST
-========================================================= */
+function escapeAttribute(value) {
+    return escapeHTML(value);
+}
+
 
 function showToast(message) {
-    const toast = document.getElementById("toast");
+
+    const toast =
+        document.getElementById("toast");
 
     if (!toast) return;
 
     toast.textContent = message;
+
     toast.style.display = "block";
 
-    clearTimeout(window.toastTimer);
-
-    window.toastTimer = setTimeout(() => {
-        toast.style.display = "none";
-    }, 2800);
-}
-
-
-/* =========================================================
-   LOGIN
-========================================================= */
-
-async function login() {
-
-    const name =
-        document.getElementById("loginName")?.value.trim() || "";
-
-    const email =
-        document.getElementById("loginEmail")?.value.trim() || "";
-
-    if (!name || !email) {
-        showToast("Please enter name and email.");
-        return;
-    }
-
-    currentUser = {
-        name,
-        email,
-        role: selectedRole
-    };
-
-    localStorage.setItem(
-        "pm_current_user",
-        JSON.stringify(currentUser)
+    clearTimeout(
+        window.toastTimer
     );
 
-    const loginPage = document.getElementById("loginPage");
-    const app = document.getElementById("app");
+    window.toastTimer =
+        setTimeout(() => {
 
-    if (loginPage) {
-        loginPage.style.display = "none";
-    }
+            toast.style.display =
+                "none";
 
-    if (app) {
-        app.style.display = "block";
-    }
-
-    const roleBadge =
-        document.getElementById("roleBadge");
-
-    if (roleBadge) {
-        roleBadge.textContent =
-            selectedRole.charAt(0).toUpperCase() +
-            selectedRole.slice(1);
-    }
-
-    if (selectedRole === "student") {
-
-        await loadStudentDashboard();
-
-    } else if (selectedRole === "college") {
-
-        await loadCollegeDashboard();
-
-    } else {
-
-        await loadRecruiterDashboard();
-
-    }
+        }, 2800);
 }
 
 
-/* =========================================================
-   LOGOUT
-========================================================= */
+async function apiRequest(
+    endpoint,
+    options = {}
+) {
 
-function logout() {
+    const response =
+        await fetch(
+            API_URL + endpoint,
+            {
+                ...options,
 
-    localStorage.removeItem("pm_current_user");
+                headers: {
+                    "Content-Type":
+                        "application/json",
 
-    currentUser = null;
-    studentProfile = null;
-
-    const app = document.getElementById("app");
-    const loginPage = document.getElementById("loginPage");
-
-    if (app) {
-        app.style.display = "none";
-    }
-
-    if (loginPage) {
-        loginPage.style.display = "flex";
-    }
-}
-
-
-/* =========================================================
-   API HELPER
-========================================================= */
-
-async function apiRequest(endpoint, options = {}) {
-
-    const response = await fetch(
-        API_URL + endpoint,
-        {
-            headers: {
-                "Content-Type": "application/json",
-                ...(options.headers || {})
-            },
-            ...options
-        }
-    );
+                    ...(options.headers || {})
+                }
+            }
+        );
 
     let data = {};
 
     try {
         data = await response.json();
-    } catch (error) {
+    } catch {
         data = {};
     }
 
@@ -1510,11 +1598,269 @@ async function apiRequest(endpoint, options = {}) {
 
         throw new Error(
             data.message ||
-            `Request failed with status ${response.status}`
+            `Request failed: ${response.status}`
         );
     }
 
     return data;
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+function selectRole(role) {
+
+    selectedRole = role;
+
+    document
+        .querySelectorAll(".role-card")
+        .forEach(card => {
+
+            card.classList.toggle(
+                "active",
+                card.dataset.role === role
+            );
+
+        });
+
+
+    const collegeField =
+        document.getElementById(
+            "collegeLoginField"
+        );
+
+    const companyField =
+        document.getElementById(
+            "companyLoginField"
+        );
+
+    const nameLabel =
+        document.getElementById(
+            "nameLabel"
+        );
+
+    const nameInput =
+        document.getElementById(
+            "loginName"
+        );
+
+
+    if (role === "student") {
+
+        collegeField.style.display =
+            "block";
+
+        companyField.style.display =
+            "none";
+
+        nameLabel.textContent =
+            "Your Name";
+
+        nameInput.placeholder =
+            "Enter your name";
+
+    }
+
+
+    if (role === "college") {
+
+        collegeField.style.display =
+            "block";
+
+        companyField.style.display =
+            "none";
+
+        nameLabel.textContent =
+            "College Representative Name";
+
+        nameInput.placeholder =
+            "Enter representative name";
+
+    }
+
+
+    if (role === "recruiter") {
+
+        collegeField.style.display =
+            "none";
+
+        companyField.style.display =
+            "block";
+
+        nameLabel.textContent =
+            "Recruiter Name";
+
+        nameInput.placeholder =
+            "Enter recruiter name";
+
+    }
+}
+
+
+async function login() {
+
+    const name =
+        document
+            .getElementById("loginName")
+            .value
+            .trim();
+
+    const email =
+        document
+            .getElementById("loginEmail")
+            .value
+            .trim()
+            .toLowerCase();
+
+    const college =
+        document
+            .getElementById("loginCollege")
+            .value
+            .trim();
+
+    const company =
+        document
+            .getElementById("loginCompany")
+            .value
+            .trim();
+
+
+    if (!name || !email) {
+
+        showToast(
+            "Please enter name and email."
+        );
+
+        return;
+    }
+
+
+    if (selectedRole === "student" && !college) {
+
+        showToast(
+            "Please enter your college."
+        );
+
+        return;
+    }
+
+
+    if (selectedRole === "college" && !college) {
+
+        showToast(
+            "Please enter college name."
+        );
+
+        return;
+    }
+
+
+    if (selectedRole === "recruiter" && !company) {
+
+        showToast(
+            "Please enter company name."
+        );
+
+        return;
+    }
+
+
+    currentUser = {
+        name,
+        email,
+        role: selectedRole,
+        college,
+        company
+    };
+
+
+    localStorage.setItem(
+        "pm_current_user",
+        JSON.stringify(currentUser)
+    );
+
+
+    document
+        .getElementById("loginPage")
+        .style.display = "none";
+
+    document
+        .getElementById("app")
+        .style.display = "block";
+
+
+    document
+        .getElementById("roleBadge")
+        .textContent =
+            selectedRole
+                .charAt(0)
+                .toUpperCase() +
+            selectedRole.slice(1);
+
+
+    document
+        .getElementById("topUserName")
+        .textContent =
+            currentUser.name;
+
+
+    try {
+
+        if (selectedRole === "student") {
+
+            await loadStudentDashboard();
+
+        } else if (selectedRole === "college") {
+
+            await loadCollegeDashboard();
+
+        } else {
+
+            await loadRecruiterDashboard();
+
+        }
+
+    } catch (error) {
+
+        console.error(error);
+
+        showToast(
+            "Dashboard could not be loaded."
+        );
+    }
+}
+
+
+function logout() {
+
+    localStorage.removeItem(
+        "pm_current_user"
+    );
+
+    currentUser = null;
+
+    studentProfile = null;
+
+    recommendations = [];
+
+    applications = [];
+
+    allStudents = [];
+
+    window.tempSkills = [];
+
+    window.tempInterests = [];
+
+
+    document
+        .getElementById("app")
+        .style.display = "none";
+
+    document
+        .getElementById("loginPage")
+        .style.display = "flex";
 }
 
 
@@ -1524,122 +1870,287 @@ async function apiRequest(endpoint, options = {}) {
 
 async function loadStudentDashboard() {
 
-    const mainContent =
-        document.getElementById("mainContent");
+    const main =
+        document.getElementById(
+            "mainContent"
+        );
 
-    if (!mainContent) return;
+    main.innerHTML = `
 
-    mainContent.innerHTML = `
         <div class="dashboard-header">
+
             <div>
+
                 <h1>
-                    Welcome, ${escapeHTML(currentUser?.name || "Student")}
+                    Welcome,
+                    ${escapeHTML(currentUser.name)}
+                    👋
                 </h1>
 
                 <p>
                     Find internships that fit
                     your skills and career goals.
                 </p>
+
             </div>
+
         </div>
+
 
         <div
             id="studentStats"
             class="stats-grid"
         ></div>
 
-        <div id="profileSection"></div>
 
-        <div id="recommendationSection"></div>
+        <div
+            id="profileSection"
+        ></div>
 
-        <div id="applicationSection"></div>
+
+        <div
+            id="recommendationSection"
+        ></div>
+
+
+        <div
+            id="applicationSection"
+        ></div>
+
     `;
 
     await loadStudentData();
 }
 
 
-/* =========================================================
-   STUDENT DATA
-========================================================= */
-
 async function loadStudentData() {
 
     try {
 
         const data =
-            await apiRequest("/students");
+            await apiRequest(
+                "/students"
+            );
 
         const students =
             data.students || [];
 
+
         studentProfile =
             students.find(student =>
-                String(student.name || "")
+                String(student.email || "")
                     .toLowerCase() ===
-                String(currentUser?.name || "")
+                String(currentUser.email || "")
                     .toLowerCase()
             );
 
+
         if (!studentProfile) {
 
+            recommendations = [];
+
+            applications = [];
+
+            window.tempSkills = [];
+
+            window.tempInterests = [];
+
             renderStudentProfile();
+
             renderStudentStats();
+
             renderEmptyRecommendations();
+
             renderApplications([]);
 
             return;
         }
 
-        await loadRecommendations();
 
-        renderStudentProfile();
-        renderStudentStats();
+        window.tempSkills =
+            [
+                ...(studentProfile.skills || [])
+            ];
+
+        window.tempInterests =
+            [
+                ...(studentProfile.interests || [])
+            ];
+
+
+        await loadRecommendations();
 
         await loadApplications();
 
+        renderStudentProfile();
+
+        renderStudentStats();
+
     } catch (error) {
 
-        console.error("Student data error:", error);
+        console.error(
+            "Student loading error:",
+            error
+        );
 
         renderStudentProfile();
+
         renderStudentStats();
+
         renderEmptyRecommendations();
+
         renderApplications([]);
     }
 }
 
 
 /* =========================================================
-   PROFILE FORM
+   STUDENT STATS
+========================================================= */
+
+function renderStudentStats() {
+
+    const section =
+        document.getElementById(
+            "studentStats"
+        );
+
+    if (!section) return;
+
+
+    section.innerHTML = `
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                Matching Internships
+            </div>
+
+            <div class="stat-value">
+                ${recommendations.length}
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                Applications Submitted
+            </div>
+
+            <div class="stat-value">
+                ${applications.length}
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                Saved Internships
+            </div>
+
+            <div class="stat-value">
+                ${savedInternships.length}
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                Skills Recorded
+            </div>
+
+            <div class="stat-value">
+                ${(studentProfile?.skills || []).length}
+            </div>
+
+        </div>
+
+    `;
+}
+
+
+/* =========================================================
+   STUDENT PROFILE
 ========================================================= */
 
 function renderStudentProfile() {
 
     const section =
-        document.getElementById("profileSection");
+        document.getElementById(
+            "profileSection"
+        );
 
     if (!section) return;
+
 
     const skills =
         Array.isArray(window.tempSkills)
             ? window.tempSkills
-            : (studentProfile?.skills || []);
+            : (
+                studentProfile?.skills ||
+                []
+            );
+
 
     const interests =
         Array.isArray(window.tempInterests)
             ? window.tempInterests
-            : (studentProfile?.interests || []);
+            : (
+                studentProfile?.interests ||
+                []
+            );
+
 
     section.innerHTML = `
 
         <div class="profile-card">
 
-            <h3>
-                Your Student Profile
-            </h3>
+            <div class="section-title">
+
+                <div>
+
+                    <h2>
+                        Your Student Profile
+                    </h2>
+
+                    <p
+                        style="
+                            color:#64748b;
+                            font-size:12px;
+                            margin-top:5px;
+                        "
+                    >
+                        Complete your profile
+                        to improve internship
+                        matching.
+                    </p>
+
+                </div>
+
+            </div>
+
 
             <div class="form-grid">
+
+                <div class="field">
+
+                    <label>
+                        Email
+                    </label>
+
+                    <input
+                        value="${escapeAttribute(currentUser.email)}"
+                        disabled
+                    >
+
+                </div>
+
 
                 <div class="field">
 
@@ -1650,7 +2161,9 @@ function renderStudentProfile() {
                     <input
                         id="college"
                         value="${escapeAttribute(
-                            studentProfile?.college || ""
+                            studentProfile?.college ||
+                            currentUser.college ||
+                            ""
                         )}"
                         placeholder="College name"
                     >
@@ -1667,9 +2180,10 @@ function renderStudentProfile() {
                     <input
                         id="education"
                         value="${escapeAttribute(
-                            studentProfile?.education || ""
+                            studentProfile?.education ||
+                            "B.Tech"
                         )}"
-                        placeholder=""
+                        placeholder="B.Tech"
                     >
 
                 </div>
@@ -1684,9 +2198,10 @@ function renderStudentProfile() {
                     <input
                         id="branch"
                         value="${escapeAttribute(
-                            studentProfile?.branch || ""
+                            studentProfile?.branch ||
+                            ""
                         )}"
-                        placeholder=""
+                        placeholder="CSE"
                     >
 
                 </div>
@@ -1701,9 +2216,10 @@ function renderStudentProfile() {
                     <input
                         id="semester"
                         value="${escapeAttribute(
-                            studentProfile?.semester || ""
+                            studentProfile?.semester ||
+                            ""
                         )}"
-                        placeholder=""
+                        placeholder="3rd Semester"
                     >
 
                 </div>
@@ -1721,8 +2237,10 @@ function renderStudentProfile() {
                         min="0"
                         max="10"
                         step="0.01"
-                        value="${studentProfile?.cgpa ?? ""}"
-                        placeholder="Enter CGPA"
+                        value="${
+                            studentProfile?.cgpa ?? ""
+                        }"
+                        placeholder="7.50"
                     >
 
                 </div>
@@ -1737,9 +2255,10 @@ function renderStudentProfile() {
                     <input
                         id="location"
                         value="${escapeAttribute(
-                            studentProfile?.location || ""
+                            studentProfile?.location ||
+                            ""
                         )}"
-                        placeholder="Delhi / Noida / Remote"
+                        placeholder="Delhi / Remote"
                     >
 
                 </div>
@@ -1773,11 +2292,14 @@ function renderStudentProfile() {
                         id="skillTags"
                     >
 
-                        ${skills.map(skill => `
-                            <span class="tag">
-                                ${escapeHTML(skill)}
-                            </span>
-                        `).join("")}
+                        ${skills
+                            .map(skill =>
+                                `<span class="tag">
+                                    ${escapeHTML(skill)}
+                                </span>`
+                            )
+                            .join("")
+                        }
 
                     </div>
 
@@ -1812,11 +2334,14 @@ function renderStudentProfile() {
                         id="interestTags"
                     >
 
-                        ${interests.map(interest => `
-                            <span class="tag">
-                                ${escapeHTML(interest)}
-                            </span>
-                        `).join("")}
+                        ${interests
+                            .map(interest =>
+                                `<span class="tag">
+                                    ${escapeHTML(interest)}
+                                </span>`
+                            )
+                            .join("")
+                        }
 
                     </div>
 
@@ -1828,43 +2353,24 @@ function renderStudentProfile() {
             <button
                 type="button"
                 class="btn btn-primary"
-                style="margin-top:20px"
+                style="margin-top:8px"
                 onclick="saveStudentProfile()"
             >
-                Save Profile & Get Recommendations
+                Save Profile & Get Recommendations →
             </button>
 
         </div>
+
     `;
-
-
-    if (!Array.isArray(window.tempSkills)) {
-
-        window.tempSkills = [
-            ...(studentProfile?.skills || [])
-        ];
-
-    }
-
-    if (!Array.isArray(window.tempInterests)) {
-
-        window.tempInterests = [
-            ...(studentProfile?.interests || [])
-        ];
-
-    }
-
 }
 
-
-/* =========================================================
-   ADD SKILL
-========================================================= */
 
 function addSkill() {
 
     const input =
-        document.getElementById("skillInput");
+        document.getElementById(
+            "skillInput"
+        );
 
     if (!input) return;
 
@@ -1873,32 +2379,28 @@ function addSkill() {
 
     if (!value) return;
 
+
     if (!Array.isArray(window.tempSkills)) {
         window.tempSkills = [];
     }
 
-    const exists =
-        window.tempSkills.some(
+
+    if (
+        !window.tempSkills.some(
             skill =>
                 String(skill).toLowerCase() ===
                 value.toLowerCase()
-        );
-
-    if (!exists) {
-
+        )
+    ) {
         window.tempSkills.push(value);
-
     }
+
 
     input.value = "";
 
     renderStudentProfile();
 }
 
-
-/* =========================================================
-   ADD SKILL WITH ENTER
-========================================================= */
 
 function handleSkillKey(event) {
 
@@ -1911,14 +2413,12 @@ function handleSkillKey(event) {
 }
 
 
-/* =========================================================
-   ADD INTEREST
-========================================================= */
-
 function addInterest() {
 
     const input =
-        document.getElementById("interestInput");
+        document.getElementById(
+            "interestInput"
+        );
 
     if (!input) return;
 
@@ -1927,32 +2427,28 @@ function addInterest() {
 
     if (!value) return;
 
+
     if (!Array.isArray(window.tempInterests)) {
         window.tempInterests = [];
     }
 
-    const exists =
-        window.tempInterests.some(
+
+    if (
+        !window.tempInterests.some(
             interest =>
                 String(interest).toLowerCase() ===
                 value.toLowerCase()
-        );
-
-    if (!exists) {
-
+        )
+    ) {
         window.tempInterests.push(value);
-
     }
+
 
     input.value = "";
 
     renderStudentProfile();
 }
 
-
-/* =========================================================
-   ADD INTEREST WITH ENTER
-========================================================= */
 
 function handleInterestKey(event) {
 
@@ -1966,47 +2462,44 @@ function handleInterestKey(event) {
 
 
 /* =========================================================
-   SAVE PROFILE
+   SAVE STUDENT
 ========================================================= */
 
 async function saveStudentProfile() {
 
     try {
 
-        let skills =
-            Array.isArray(window.tempSkills)
-                ? window.tempSkills
-                : [];
-
-        let interests =
-            Array.isArray(window.tempInterests)
-                ? window.tempInterests
-                : [];
-
-
-        skills = [
-            ...new Set(
-                skills
-                    .map(skill =>
-                        String(skill).trim()
+        const skills =
+            [
+                ...new Set(
+                    (
+                        window.tempSkills ||
+                        []
                     )
-                    .filter(Boolean)
-            )
-        ];
+                        .map(x =>
+                            String(x).trim()
+                        )
+                        .filter(Boolean)
+                )
+            ];
 
 
-        interests = [
-            ...new Set(
-                interests
-                    .map(interest =>
-                        String(interest).trim()
+        const interests =
+            [
+                ...new Set(
+                    (
+                        window.tempInterests ||
+                        []
                     )
-                    .filter(Boolean)
-            )
-        ];
+                        .map(x =>
+                            String(x).trim()
+                        )
+                        .filter(Boolean)
+                )
+            ];
 
 
-        if (skills.length === 0) {
+        if (!skills.length) {
 
             showToast(
                 "Please add at least one skill."
@@ -2016,7 +2509,7 @@ async function saveStudentProfile() {
         }
 
 
-        if (interests.length === 0) {
+        if (!interests.length) {
 
             showToast(
                 "Please add at least one career interest."
@@ -2029,12 +2522,16 @@ async function saveStudentProfile() {
         const payload = {
 
             name:
-                currentUser?.name || "",
+                currentUser.name,
+
+            email:
+                currentUser.email,
 
             college:
                 document
                     .getElementById("college")
-                    ?.value.trim() || "",
+                    ?.value
+                    .trim() || "Not specified",
 
             course:
                 "B.Tech",
@@ -2042,12 +2539,16 @@ async function saveStudentProfile() {
             branch:
                 document
                     .getElementById("branch")
-                    ?.value.trim() || "",
+                    ?.value
+                    .trim() ||
+                "Not specified",
 
             semester:
                 document
                     .getElementById("semester")
-                    ?.value.trim() || "",
+                    ?.value
+                    .trim() ||
+                "Not specified",
 
             cgpa:
                 Number(
@@ -2063,19 +2564,16 @@ async function saveStudentProfile() {
             location:
                 document
                     .getElementById("location")
-                    ?.value.trim() || "",
+                    ?.value
+                    .trim() || "Any",
 
             education:
                 document
                     .getElementById("education")
-                    ?.value.trim() || ""
+                    ?.value
+                    .trim() ||
+                "B.Tech"
         };
-
-
-        console.log(
-            "Saving student profile:",
-            payload
-        );
 
 
         let response;
@@ -2087,7 +2585,7 @@ async function saveStudentProfile() {
                 await apiRequest(
                     `/students/${studentProfile._id}`,
                     {
-                        method: "PUT",
+                        method:"PUT",
 
                         body:
                             JSON.stringify(payload)
@@ -2100,7 +2598,7 @@ async function saveStudentProfile() {
                 await apiRequest(
                     "/students",
                     {
-                        method: "POST",
+                        method:"POST",
 
                         body:
                             JSON.stringify(payload)
@@ -2109,25 +2607,21 @@ async function saveStudentProfile() {
         }
 
 
-        studentProfile =
-            response.student;
+        if (response.student) {
 
+            studentProfile =
+                response.student;
 
-        if (!studentProfile) {
+            window.tempSkills =
+                [
+                    ...(response.student.skills || [])
+                ];
 
-            throw new Error(
-                "Student profile was not returned by the server."
-            );
+            window.tempInterests =
+                [
+                    ...(response.student.interests || [])
+                ];
         }
-
-
-        window.tempSkills = [
-            ...(studentProfile.skills || [])
-        ];
-
-        window.tempInterests = [
-            ...(studentProfile.interests || [])
-        ];
 
 
         showToast(
@@ -2135,31 +2629,36 @@ async function saveStudentProfile() {
         );
 
 
-        await loadRecommendations();
-
-
-        renderStudentProfile();
-        renderStudentStats();
-
-        await loadApplications();
+        await loadStudentData();
 
     } catch (error) {
 
-        console.error(
-            "Save profile error:",
-            error
-        );
+        console.error(error);
 
-        showToast(
-            error.message ||
-            "Unable to save profile."
-        );
+        if (
+            error.message &&
+            error.message.includes(
+                "already exists"
+            )
+        ) {
+
+            showToast(
+                "This email already has a student profile. Refresh and continue."
+            );
+
+        } else {
+
+            showToast(
+                error.message ||
+                "Failed to save profile."
+            );
+        }
     }
 }
 
 
 /* =========================================================
-   LOAD RECOMMENDATIONS
+   RECOMMENDATIONS
 ========================================================= */
 
 async function loadRecommendations() {
@@ -2176,18 +2675,16 @@ async function loadRecommendations() {
 
     try {
 
-        const data =
+        const response =
             await apiRequest(
                 `/internships/match/${studentProfile._id}`
             );
 
-
         recommendations =
-            data.recommendations || [];
-
+            response.recommendations ||
+            [];
 
         renderRecommendations();
-
 
     } catch (error) {
 
@@ -2202,92 +2699,6 @@ async function loadRecommendations() {
     }
 }
 
-
-/* =========================================================
-   STUDENT STATS
-========================================================= */
-
-function renderStudentStats() {
-
-    const section =
-        document.getElementById("studentStats");
-
-    if (!section) return;
-
-
-    const topScore =
-        recommendations.length
-            ? recommendations[0].matchScore || 0
-            : 0;
-
-
-    const matchedCount =
-        recommendations.filter(
-            item =>
-                Number(item.matchScore || 0) >= 70
-        ).length;
-
-
-    section.innerHTML = `
-
-        <div class="stat-card">
-
-            <div class="stat-label">
-                Best Match
-            </div>
-
-            <div class="stat-value">
-                ${topScore}%
-            </div>
-
-        </div>
-
-
-        <div class="stat-card">
-
-            <div class="stat-label">
-                Recommended Internships
-            </div>
-
-            <div class="stat-value">
-                ${recommendations.length}
-            </div>
-
-        </div>
-
-
-        <div class="stat-card">
-
-            <div class="stat-label">
-                Strong Matches
-            </div>
-
-            <div class="stat-value">
-                ${matchedCount}
-            </div>
-
-        </div>
-
-
-        <div class="stat-card">
-
-            <div class="stat-label">
-                Your Skills
-            </div>
-
-            <div class="stat-value">
-                ${studentProfile?.skills?.length || 0}
-            </div>
-
-        </div>
-
-    `;
-}
-
-
-/* =========================================================
-   EMPTY RECOMMENDATIONS
-========================================================= */
 
 function renderEmptyRecommendations() {
 
@@ -2304,17 +2715,17 @@ function renderEmptyRecommendations() {
         <div class="dashboard-card">
 
             <h2>
-                Personalised Recommendations
+                Recommended Internships
             </h2>
 
-            <p style="
-                color:#64748b;
-                margin-top:8px;
-            ">
-
-                Complete your profile to see
-                personalised internship recommendations.
-
+            <p
+                style="
+                    color:#64748b;
+                    margin-top:10px;
+                "
+            >
+                Complete your profile and save it
+                to receive personalised recommendations.
             </p>
 
         </div>
@@ -2323,13 +2734,7 @@ function renderEmptyRecommendations() {
 }
 
 
-/* =========================================================
-   RECOMMENDATIONS
-========================================================= */
-
-function renderRecommendations(
-    list = recommendations
-) {
+function renderRecommendations() {
 
     const section =
         document.getElementById(
@@ -2339,506 +2744,394 @@ function renderRecommendations(
     if (!section) return;
 
 
-    section.innerHTML = `
+    if (!recommendations.length) {
 
-        <div class="section-title">
-
-            <h2>
-                Recommended Internships
-            </h2>
-
-            <span style="
-                color:#64748b;
-                font-size:13px;
-            ">
-
-                ${list.length} opportunities
-
-            </span>
-
-        </div>
-
-
-        <div class="filter-card">
-
-            <input
-                id="searchInternship"
-                placeholder="Search internships..."
-                oninput="filterRecommendations()"
-            >
-
-
-            <select
-                id="interestFilter"
-                onchange="filterRecommendations()"
-            >
-
-                <option value="">
-                    All Interests
-                </option>
-
-                <option>
-                    Web Development
-                </option>
-
-                <option>
-                    Software Development
-                </option>
-
-                <option>
-                    Data Science
-                </option>
-
-                <option>
-                    Artificial Intelligence
-                </option>
-
-            </select>
-
-
-            <select
-                id="locationFilter"
-                onchange="filterRecommendations()"
-            >
-
-                <option value="">
-                    All Locations
-                </option>
-
-                <option>
-                    Remote
-                </option>
-
-                <option>
-                    Noida
-                </option>
-
-                <option>
-                    Delhi
-                </option>
-
-            </select>
-
-
-            <button
-                type="button"
-                onclick="resetFilters()"
-            >
-                Reset
-            </button>
-
-        </div>
-
-
-        <div
-            class="internship-grid"
-            id="internshipGrid"
-        ></div>
-
-    `;
-
-
-    renderInternshipCards(list);
-}
-
-
-/* =========================================================
-   INTERNSHIP CARDS
-========================================================= */
-
-function renderInternshipCards(list) {
-
-    const grid =
-        document.getElementById(
-            "internshipGrid"
-        );
-
-    if (!grid) return;
-
-
-    if (!list.length) {
-
-        grid.innerHTML = `
-
-            <div class="dashboard-card">
-
-                No internships match
-                your current filters.
-
-            </div>
-
-        `;
+        renderEmptyRecommendations();
 
         return;
     }
 
 
-    grid.innerHTML =
-        list.map(
-            (item, index) => {
+    section.innerHTML = `
 
-                const internship =
-                    item.internship || {};
+        <div class="dashboard-card">
 
-                const score =
-                    item.matchScore || 0;
+            <div class="section-title">
 
-                const matchedSkills =
-                    item.matchedSkills || [];
+                <div>
 
-                const skillGap =
-                    item.skillGap || [];
+                    <h2>
+                        Recommended Internships
+                    </h2>
 
-                const breakdown =
-                    item.breakdown || {};
-
-                const saved =
-                    savedInternships.includes(
-                        internship._id
-                    );
-
-                const careerValue =
-                    internship.careerValue || 70;
-
-
-                return `
-
-                    <div
-                        class="internship-card"
-                    >
-
-                        <div class="card-top">
-
-                            <div class="company-logo">
-
-                                ${escapeHTML(
-                                    String(
-                                        internship.company || "C"
-                                    )
-                                        .charAt(0)
-                                        .toUpperCase()
-                                )}
-
-                            </div>
-
-
-                            <div class="company-info">
-
-                                <h3>
-                                    ${escapeHTML(
-                                        internship.title ||
-                                        "Internship"
-                                    )}
-                                </h3>
-
-                                <p>
-                                    ${escapeHTML(
-                                        internship.company ||
-                                        "Company"
-                                    )}
-                                </p>
-
-                            </div>
-
-
-                            <div class="match-badge">
-
-                                ${score}%
-
-                                <small>
-                                    MATCH
-                                </small>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="meta-row">
-
-                            <span class="meta">
-                                📍
-                                ${escapeHTML(
-                                    internship.location ||
-                                    "Not specified"
-                                )}
-                            </span>
-
-
-                            <span class="meta">
-                                💼
-                                ${escapeHTML(
-                                    internship.workMode ||
-                                    "Not specified"
-                                )}
-                            </span>
-
-
-                            <span class="meta">
-                                💰
-                                ${escapeHTML(
-                                    internship.stipend ||
-                                    "Not specified"
-                                )}
-                            </span>
-
-
-                            <span class="meta">
-                                ⏱
-                                ${escapeHTML(
-                                    internship.duration ||
-                                    "Not specified"
-                                )}
-                            </span>
-
-                        </div>
-
-
-                        <div class="skill-list">
-
-                            ${(internship.skills || [])
-                                .map(
-                                    skill => `
-
-                                    <span
-                                        class="skill ${
-                                            matchedSkills.some(
-                                                matched =>
-                                                    String(matched)
-                                                        .toLowerCase()
-                                                        .trim() ===
-                                                    String(skill)
-                                                        .toLowerCase()
-                                                        .trim()
-                                            )
-                                                ? "matched"
-                                                : ""
-                                        }"
-                                    >
-
-                                        ${escapeHTML(skill)}
-
-                                    </span>
-
-                                `
-                                )
-                                .join("")}
-
-                        </div>
-
-
-                        <div style="
-                            font-size:12px;
+                    <p
+                        style="
                             color:#64748b;
-                            margin-top:8px;
-                        ">
+                            font-size:12px;
+                            margin-top:4px;
+                        "
+                    >
+                        Ranked using skills,
+                        interests, education
+                        and location.
+                    </p>
 
-                            Interest:
+                </div>
 
-                            <strong>
-                                ${escapeHTML(
-                                    internship.interest ||
-                                    "General"
-                                )}
-                            </strong>
-
-                        </div>
-
-
-                        <div
-                            class="details-panel"
-                            id="details-${index}"
-                        >
-
-                            <strong>
-                                Why this match?
-                            </strong>
+            </div>
 
 
-                            <div class="breakdown">
+            <div class="internship-grid">
 
-                                ${renderBreakdown(
-                                    "Skills",
-                                    breakdown.skills || 0,
-                                    50
-                                )}
+                ${recommendations
+                    .map(
+                        (item, index) =>
+                            renderInternshipCard(
+                                item,
+                                index
+                            )
+                    )
+                    .join("")
+                }
 
-                                ${renderBreakdown(
-                                    "Interest",
-                                    breakdown.interest || 0,
-                                    20
-                                )}
+            </div>
 
-                                ${renderBreakdown(
-                                    "Education",
-                                    breakdown.education || 0,
-                                    15
-                                )}
+        </div>
 
-                                ${renderBreakdown(
-                                    "Location",
-                                    breakdown.location || 0,
-                                    15
-                                )}
-
-                            </div>
-
-
-                            <div class="career-box">
-
-                                <div class="mini-box">
-
-                                    Career Value
-
-                                    <strong>
-                                        ${careerValue}/100
-                                    </strong>
-
-                                </div>
-
-
-                                <div class="mini-box">
-
-                                    Competition
-
-                                    <strong>
-                                        ${escapeHTML(
-                                            internship.competitionLevel ||
-                                            "Medium"
-                                        )}
-                                    </strong>
-
-                                </div>
-
-                            </div>
-
-
-                            ${
-                                skillGap.length
-                                    ? `
-
-                                    <div class="gap-box">
-
-                                        <strong>
-                                            Skill Gap
-                                        </strong>
-
-                                        <br>
-
-                                        ${skillGap
-                                            .map(
-                                                skill =>
-                                                    escapeHTML(skill)
-                                            )
-                                            .join(", ")}
-
-                                    </div>
-
-                                    `
-                                    : `
-
-                                    <div style="
-                                        margin-top:10px;
-                                        padding:10px;
-                                        border-radius:9px;
-                                        background:#ecfdf5;
-                                        color:#166534;
-                                        font-size:12px;
-                                    ">
-
-                                        ✓
-                                        No major skill gap detected.
-
-                                    </div>
-
-                                    `
-                            }
-
-                        </div>
-
-
-                        <div class="card-actions">
-
-                            <button
-                                type="button"
-                                class="btn btn-secondary"
-                                onclick="toggleDetails(${index})"
-                            >
-                                Explain Match
-                            </button>
-
-
-                            <button
-                                type="button"
-                                class="btn ${
-                                    saved
-                                        ? "btn-saved"
-                                        : "btn-secondary"
-                                }"
-                                onclick="toggleSave('${escapeAttribute(
-                                    internship._id || ""
-                                )}')"
-                            >
-
-                                ${
-                                    saved
-                                        ? "★ Saved"
-                                        : "☆ Save"
-                                }
-
-                            </button>
-
-                        </div>
-
-
-                        <button
-                            type="button"
-                            class="btn btn-primary"
-                            style="
-                                width:100%;
-                                margin-top:8px;
-                            "
-                            onclick="applyInternship('${escapeAttribute(
-                                internship._id || ""
-                            )}')"
-                        >
-
-                            Apply on PM Internship Assistant
-
-                        </button>
-
-                    </div>
-
-                `;
-
-            }
-        ).join("");
+    `;
 }
 
 
-/* =========================================================
-   BREAKDOWN
-========================================================= */
+function renderInternshipCard(
+    item,
+    index
+) {
 
-function renderBreakdown(
-    name,
-    score,
+    const job =
+        item.internship || item;
+
+
+    const matchScore =
+        item.matchScore ??
+        item.score ??
+        0;
+
+
+    const breakdown =
+        item.breakdown || {};
+
+
+    const matchedSkills =
+        item.matchedSkills || [];
+
+
+    const skillGap =
+        item.skillGap || [];
+
+
+    const isSaved =
+        savedInternships.includes(
+            String(job._id)
+        );
+
+
+    const companyInitial =
+        String(
+            job.company || "C"
+        )
+            .charAt(0)
+            .toUpperCase();
+
+
+    const skillHTML =
+        (job.skills || [])
+            .map(skill => {
+
+                const matched =
+                    matchedSkills.some(
+                        matchedSkill =>
+                            String(
+                                matchedSkill
+                            ).toLowerCase() ===
+                            String(
+                                skill
+                            ).toLowerCase()
+                    );
+
+                return `
+                    <span
+                        class="skill ${
+                            matched
+                                ? "matched"
+                                : ""
+                        }"
+                    >
+                        ${escapeHTML(skill)}
+                    </span>
+                `;
+            })
+            .join("");
+
+
+    return `
+
+        <div class="internship-card">
+
+            <div class="card-top">
+
+                <div class="company-logo">
+                    ${escapeHTML(companyInitial)}
+                </div>
+
+                <div class="company-info">
+
+                    <h3>
+                        ${escapeHTML(job.title)}
+                    </h3>
+
+                    <p>
+                        ${escapeHTML(job.company)}
+                    </p>
+
+                </div>
+
+                <div class="match-badge">
+
+                    ${matchScore}%
+
+                    <small>
+                        MATCH
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="meta-row">
+
+                <span class="meta">
+                    📍
+                    ${escapeHTML(
+                        job.location ||
+                        "Remote"
+                    )}
+                </span>
+
+                <span class="meta">
+                    💰
+                    ${escapeHTML(
+                        job.stipend ||
+                        "Not specified"
+                    )}
+                </span>
+
+                <span class="meta">
+                    🎯
+                    ${escapeHTML(
+                        job.interest ||
+                        "General"
+                    )}
+                </span>
+
+            </div>
+
+
+            <div class="skill-list">
+
+                ${skillHTML}
+
+            </div>
+
+
+            <div
+                class="details-panel"
+                id="details-${index}"
+            >
+
+                <strong>
+                    Why this match?
+                </strong>
+
+                <div class="breakdown">
+
+                    ${breakdownRow(
+                        "Skills",
+                        breakdown.skills || 0,
+                        50
+                    )}
+
+                    ${breakdownRow(
+                        "Interest",
+                        breakdown.interest || 0,
+                        20
+                    )}
+
+                    ${breakdownRow(
+                        "Education",
+                        breakdown.education || 0,
+                        15
+                    )}
+
+                    ${breakdownRow(
+                        "Location",
+                        breakdown.location || 0,
+                        15
+                    )}
+
+                </div>
+
+
+                <div class="career-box">
+
+                    <div class="mini-box">
+
+                        Career Value
+
+                        <strong>
+                            ${escapeHTML(
+                                job.careerValue ??
+                                70
+                            )}/100
+                        </strong>
+
+                    </div>
+
+
+                    <div class="mini-box">
+
+                        Competition
+
+                        <strong>
+                            ${escapeHTML(
+                                job.competitionLevel ||
+                                "Medium"
+                            )}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                ${
+                    skillGap.length
+                        ? `
+                            <div class="gap-box">
+
+                                <strong>
+                                    Skill Gap:
+                                </strong>
+
+                                ${skillGap
+                                    .map(
+                                        skill =>
+                                            escapeHTML(
+                                                skill
+                                            )
+                                    )
+                                    .join(", ")}
+
+                            </div>
+                        `
+                        : `
+                            <div
+                                class="success-banner"
+                                style="margin-top:10px;"
+                            >
+                                Excellent!
+                                You currently match
+                                all listed skills.
+                            </div>
+                        `
+                }
+
+
+                ${
+                    item.reason?.length
+                        ? `
+                            <div
+                                style="
+                                    margin-top:10px;
+                                    font-size:11px;
+                                    color:#475569;
+                                "
+                            >
+                                ${item.reason
+                                    .map(
+                                        reason =>
+                                            `<div>
+                                                ✓
+                                                ${escapeHTML(
+                                                    reason
+                                                )}
+                                            </div>`
+                                    )
+                                    .join("")}
+                            </div>
+                        `
+                        : ""
+                }
+
+            </div>
+
+
+            <div class="card-actions">
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="applyInternship('${job._id}')"
+                >
+                    Apply Now
+                </button>
+
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    onclick="toggleDetails(${index})"
+                >
+                    Explain Match
+                </button>
+
+
+                <button
+                    type="button"
+                    class="btn ${
+                        isSaved
+                            ? "btn-saved"
+                            : "btn-secondary"
+                    }"
+                    onclick="toggleSave('${job._id}')"
+                >
+                    ${
+                        isSaved
+                            ? "Saved"
+                            : "Save"
+                    }
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+}
+
+
+function breakdownRow(
+    label,
+    value,
     max
 ) {
 
-    const safeScore =
-        Number(score) || 0;
-
     const percentage =
-        Math.min(
-            100,
-            Math.max(
-                0,
-                Math.round(
-                    (safeScore / max) * 100
-                )
+        max > 0
+            ? Math.round(
+                (value / max) * 100
             )
-        );
+            : 0;
 
 
     return `
@@ -2846,9 +3139,8 @@ function renderBreakdown(
         <div class="breakdown-row">
 
             <span>
-                ${escapeHTML(name)}
+                ${escapeHTML(label)}
             </span>
-
 
             <div class="bar">
 
@@ -2859,9 +3151,8 @@ function renderBreakdown(
 
             </div>
 
-
             <strong>
-                ${safeScore}/${max}
+                ${value}/${max}
             </strong>
 
         </div>
@@ -2870,30 +3161,28 @@ function renderBreakdown(
 }
 
 
-/* =========================================================
-   DETAILS
-========================================================= */
-
 function toggleDetails(index) {
 
-    const element =
+    const panel =
         document.getElementById(
             `details-${index}`
         );
 
-    if (!element) return;
+    if (!panel) return;
 
-    element.classList.toggle("show");
+    panel.classList.toggle(
+        "show"
+    );
 }
 
 
 /* =========================================================
-   SAVE INTERNSHIP
+   SAVE
 ========================================================= */
 
 function toggleSave(id) {
 
-    if (!id) return;
+    id = String(id);
 
 
     if (
@@ -2902,7 +3191,7 @@ function toggleSave(id) {
 
         savedInternships =
             savedInternships.filter(
-                item => item !== id
+                x => String(x) !== id
             );
 
         showToast(
@@ -2921,18 +3210,20 @@ function toggleSave(id) {
 
     localStorage.setItem(
         "pm_saved_internships",
-        JSON.stringify(savedInternships)
+        JSON.stringify(
+            savedInternships
+        )
     );
 
 
-    renderInternshipCards(
-        recommendations
-    );
+    renderStudentStats();
+
+    renderRecommendations();
 }
 
 
 /* =========================================================
-   APPLY
+   APPLICATIONS
 ========================================================= */
 
 async function applyInternship(
@@ -2949,22 +3240,12 @@ async function applyInternship(
     }
 
 
-    if (!internshipId) {
-
-        showToast(
-            "Internship ID is missing."
-        );
-
-        return;
-    }
-
-
     try {
 
         await apiRequest(
             "/applications",
             {
-                method: "POST",
+                method:"POST",
 
                 body:
                     JSON.stringify({
@@ -2984,37 +3265,25 @@ async function applyInternship(
 
         await loadApplications();
 
+        renderStudentStats();
 
     } catch (error) {
 
-        console.error(
-            "Application error:",
-            error
-        );
+        console.error(error);
 
         showToast(
             error.message ||
-            "Unable to submit application."
+            "Could not submit application."
         );
     }
 }
 
 
-/* =========================================================
-   APPLICATIONS
-========================================================= */
-
 async function loadApplications() {
 
-    const section =
-        document.getElementById(
-            "applicationSection"
-        );
-
-    if (!section) return;
-
-
     if (!studentProfile?._id) {
+
+        applications = [];
 
         renderApplications([]);
 
@@ -3024,35 +3293,34 @@ async function loadApplications() {
 
     try {
 
-        const data =
+        const response =
             await apiRequest(
                 `/applications/student/${studentProfile._id}`
             );
 
 
-        renderApplications(
-            data.applications || []
-        );
+        applications =
+            response.applications ||
+            [];
 
+
+        renderApplications(
+            applications
+        );
 
     } catch (error) {
 
-        console.error(
-            "Application loading error:",
-            error
-        );
+        console.error(error);
+
+        applications = [];
 
         renderApplications([]);
     }
 }
 
 
-/* =========================================================
-   RENDER APPLICATIONS
-========================================================= */
-
 function renderApplications(
-    applications
+    appList
 ) {
 
     const section =
@@ -3065,38 +3333,45 @@ function renderApplications(
 
     section.innerHTML = `
 
-        <div
-            class="section-title"
-            style="margin-top:35px"
-        >
+        <div class="dashboard-card">
 
-            <h2>
-                My Applications
-            </h2>
+            <div class="section-title">
 
-            <span
-                style="
-                    color:#64748b;
-                    font-size:13px;
-                "
+                <h2>
+                    Your Applications
+                </h2>
+
+                <span class="role-badge">
+                    ${appList.length}
+                    Applications
+                </span>
+
+            </div>
+
+
+            <div
+                class="application-list"
             >
 
-                ${applications.length}
-                applications
+                ${
+                    appList.length === 0
+                        ? `
+                            <div class="empty-state">
+                                You haven't applied
+                                to any internship yet.
+                            </div>
+                        `
+                        : ""
+                }
 
-            </span>
 
-        </div>
+                ${appList
+                    .map(app => {
 
+                        const internship =
+                            app.internshipId || {};
 
-        <div class="application-list">
-
-            ${
-                applications.length
-
-                    ? applications
-                        .map(
-                            application => `
+                        return `
 
                             <div
                                 class="application-card"
@@ -3106,204 +3381,47 @@ function renderApplications(
 
                                     <strong>
                                         ${escapeHTML(
-                                            application.internshipTitle ||
+                                            app.internshipTitle ||
+                                            internship.title ||
                                             "Internship"
                                         )}
                                     </strong>
 
-
                                     <p
                                         style="
-                                            color:#64748b;
                                             font-size:12px;
-                                            margin-top:5px;
+                                            color:#64748b;
+                                            margin-top:4px;
                                         "
                                     >
-
                                         ${escapeHTML(
-                                            application.company ||
+                                            app.company ||
+                                            internship.company ||
                                             "Company"
                                         )}
-
                                     </p>
 
                                 </div>
 
-
                                 <span class="status">
-
                                     ${escapeHTML(
-                                        application.status ||
+                                        app.status ||
                                         "Applied"
                                     )}
-
                                 </span>
 
                             </div>
 
-                        `
-                        )
-                        .join("")
+                        `;
+                    })
+                    .join("")
+                }
 
-                    : `
-
-                        <div
-                            class="dashboard-card"
-                        >
-
-                            You haven't applied
-                            to any internship yet.
-
-                        </div>
-
-                    `
-            }
+            </div>
 
         </div>
 
     `;
-}
-
-
-/* =========================================================
-   FILTER
-========================================================= */
-
-function filterRecommendations() {
-
-    const search =
-        (
-            document.getElementById(
-                "searchInternship"
-            )?.value || ""
-        )
-            .toLowerCase()
-            .trim();
-
-
-    const interest =
-        (
-            document.getElementById(
-                "interestFilter"
-            )?.value || ""
-        )
-            .toLowerCase()
-            .trim();
-
-
-    const location =
-        (
-            document.getElementById(
-                "locationFilter"
-            )?.value || ""
-        )
-            .toLowerCase()
-            .trim();
-
-
-    const filtered =
-        recommendations.filter(
-            item => {
-
-                const internship =
-                    item.internship || {};
-
-
-                const text = `
-
-                    ${internship.title || ""}
-
-                    ${internship.company || ""}
-
-                    ${(internship.skills || []).join(" ")}
-
-                `.toLowerCase();
-
-
-                const internshipInterest =
-                    String(
-                        internship.interest || ""
-                    ).toLowerCase();
-
-
-                const internshipLocation =
-                    String(
-                        internship.location || ""
-                    ).toLowerCase();
-
-
-                return (
-
-                    text.includes(search)
-
-                    &&
-
-                    (
-                        !interest ||
-                        internshipInterest.includes(
-                            interest
-                        )
-                    )
-
-                    &&
-
-                    (
-                        !location ||
-                        internshipLocation.includes(
-                            location
-                        )
-                    )
-
-                );
-
-            }
-        );
-
-
-    renderInternshipCards(
-        filtered
-    );
-}
-
-
-/* =========================================================
-   RESET FILTERS
-========================================================= */
-
-function resetFilters() {
-
-    const search =
-        document.getElementById(
-            "searchInternship"
-        );
-
-    const interest =
-        document.getElementById(
-            "interestFilter"
-        );
-
-    const location =
-        document.getElementById(
-            "locationFilter"
-        );
-
-
-    if (search) {
-        search.value = "";
-    }
-
-    if (interest) {
-        interest.value = "";
-    }
-
-    if (location) {
-        location.value = "";
-    }
-
-
-    renderInternshipCards(
-        recommendations
-    );
 }
 
 
@@ -3318,8 +3436,6 @@ async function loadCollegeDashboard() {
             "mainContent"
         );
 
-    if (!main) return;
-
 
     main.innerHTML = `
 
@@ -3328,12 +3444,12 @@ async function loadCollegeDashboard() {
             <div>
 
                 <h1>
-                    College Dashboard
+                    College Dashboard 🏫
                 </h1>
 
                 <p>
-                    Monitor student participation
-                    and internship opportunities.
+                    Monitor student participation,
+                    skills and internship opportunities.
                 </p>
 
             </div>
@@ -3342,240 +3458,567 @@ async function loadCollegeDashboard() {
 
 
         <div
-            class="stats-grid"
             id="collegeStats"
+            class="stats-grid"
         ></div>
 
+
+        <div
+            id="collegeStudentSection"
+        ></div>
+
+
+        <div
+            id="collegeInternshipSection"
+        ></div>
+
+    `;
+
+
+    await refreshCollegeDashboard();
+}
+
+
+async function refreshCollegeDashboard() {
+
+    try {
+
+        const [
+            studentResponse,
+            internshipResponse
+        ] =
+            await Promise.all([
+                apiRequest("/students"),
+                apiRequest("/internships")
+            ]);
+
+
+        allStudents =
+            studentResponse.students ||
+            [];
+
+
+        internships =
+            internshipResponse.internships ||
+            [];
+
+
+        renderCollegeStats();
+
+        renderCollegeStudents();
+
+        renderCollegeInternships();
+
+    } catch (error) {
+
+        console.error(
+            "College dashboard error:",
+            error
+        );
+
+
+        const stats =
+            document.getElementById(
+                "collegeStats"
+            );
+
+
+        if (stats) {
+
+            stats.innerHTML = `
+
+                <div class="dashboard-card">
+
+                    <p style="color:#dc2626;">
+                        Unable to load college data.
+                        Please check the backend connection.
+                    </p>
+
+                </div>
+
+            `;
+        }
+    }
+}
+
+
+/* =========================================================
+   COLLEGE STATS
+========================================================= */
+
+function renderCollegeStats() {
+
+    const section =
+        document.getElementById(
+            "collegeStats"
+        );
+
+    if (!section) return;
+
+
+    const registered =
+        allStudents.length;
+
+
+    const activeInternships =
+        internships.length;
+
+
+    const cseStudents =
+        allStudents.filter(
+            student => {
+
+                const branch =
+                    String(
+                        student.branch || ""
+                    ).toLowerCase();
+
+                const course =
+                    String(
+                        student.course || ""
+                    ).toLowerCase();
+
+                return (
+                    branch.includes("cse") ||
+                    branch.includes(
+                        "computer science"
+                    ) ||
+                    course.includes("cse")
+                );
+            }
+        ).length;
+
+
+    const validCGPAs =
+        allStudents
+            .map(
+                student =>
+                    Number(student.cgpa)
+            )
+            .filter(
+                cgpa =>
+                    cgpa > 0 &&
+                    cgpa <= 10
+            );
+
+
+    const averageCGPA =
+        validCGPAs.length
+            ? (
+                validCGPAs.reduce(
+                    (sum, value) =>
+                        sum + value,
+                    0
+                ) /
+                validCGPAs.length
+            ).toFixed(2)
+            : "0.00";
+
+
+    section.innerHTML = `
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                REGISTERED STUDENTS
+            </div>
+
+            <div class="stat-value">
+                ${registered}
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                ACTIVE INTERNSHIPS
+            </div>
+
+            <div class="stat-value">
+                ${activeInternships}
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                CSE STUDENTS
+            </div>
+
+            <div class="stat-value">
+                ${cseStudents}
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                AVERAGE CGPA
+            </div>
+
+            <div class="stat-value">
+                ${averageCGPA}
+            </div>
+
+        </div>
+
+    `;
+}
+
+
+/* =========================================================
+   COLLEGE STUDENTS
+========================================================= */
+
+function renderCollegeStudents() {
+
+    const section =
+        document.getElementById(
+            "collegeStudentSection"
+        );
+
+    if (!section) return;
+
+
+    let displayStudents =
+        allStudents;
+
+
+    const collegeName =
+        String(
+            currentUser?.college || ""
+        )
+            .trim()
+            .toLowerCase();
+
+
+    const collegeStudents =
+        collegeName
+            ? allStudents.filter(
+                student =>
+                    String(
+                        student.college || ""
+                    )
+                        .trim()
+                        .toLowerCase() ===
+                    collegeName
+            )
+            : [];
+
+
+    if (collegeStudents.length > 0) {
+
+        displayStudents =
+            collegeStudents;
+    }
+
+
+    section.innerHTML = `
 
         <div class="dashboard-card">
 
             <div class="section-title">
 
-                <h2>
-                    Registered Students
-                </h2>
+                <div>
+
+                    <h2>
+                        Registered Students
+                    </h2>
+
+                    <p
+                        style="
+                            color:#64748b;
+                            font-size:12px;
+                            margin-top:5px;
+                        "
+                    >
+                        Student skill and academic overview.
+                    </p>
+
+                </div>
+
+                <span class="role-badge">
+                    ${displayStudents.length}
+                    Students
+                </span>
 
             </div>
 
 
-            <div
-                class="candidate-grid"
-                id="studentGrid"
-            ></div>
+            ${
+                collegeStudents.length === 0 &&
+                collegeName
+                    ? `
+                        <div class="info-banner">
+                            No student profile is registered
+                            with <strong>
+                            ${escapeHTML(
+                                currentUser.college
+                            )}
+                            </strong> yet.
+                            Showing all registered students
+                            for prototype demonstration.
+                        </div>
+                    `
+                    : ""
+            }
+
+
+            <div class="candidate-grid">
+
+                ${
+                    displayStudents.length
+                        ? displayStudents
+                            .map(
+                                student =>
+                                    renderStudentCard(
+                                        student
+                                    )
+                            )
+                            .join("")
+                        : `
+                            <div
+                                class="empty-state"
+                                style="grid-column:1/-1"
+                            >
+                                No students registered yet.
+                            </div>
+                        `
+                }
+
+            </div>
 
         </div>
 
     `;
+}
 
 
-    try {
+function renderStudentCard(
+    student
+) {
 
-        const [
-            studentData,
-            internshipData
-        ] = await Promise.all([
-
-            apiRequest("/students"),
-
-            apiRequest("/internships")
-
-        ]);
+    const skills =
+        Array.isArray(student.skills)
+            ? student.skills
+            : [];
 
 
-        const students =
-            studentData.students || [];
+    const interests =
+        Array.isArray(student.interests)
+            ? student.interests
+            : [];
 
 
-        const internshipList =
-            internshipData.internships || [];
+    return `
+
+        <div class="candidate-card">
+
+            <h4>
+                ${escapeHTML(
+                    student.name ||
+                    "Student"
+                )}
+            </h4>
+
+            <p>
+                📧
+                ${escapeHTML(
+                    student.email ||
+                    "Email not specified"
+                )}
+            </p>
+
+            <p>
+                🏫
+                ${escapeHTML(
+                    student.college ||
+                    "College not specified"
+                )}
+            </p>
+
+            <p>
+                🎓
+                ${escapeHTML(
+                    student.branch ||
+                    "Branch not specified"
+                )}
+                • CGPA:
+                ${escapeHTML(
+                    student.cgpa ?? 0
+                )}
+            </p>
+
+            <p>
+                📚
+                ${escapeHTML(
+                    student.semester ||
+                    "Semester not specified"
+                )}
+            </p>
 
 
-        document.getElementById(
-            "collegeStats"
-        ).innerHTML = `
+            <div
+                class="candidate-skills"
+            >
 
-            <div class="stat-card">
-
-                <div class="stat-label">
-                    Registered Students
-                </div>
-
-                <div class="stat-value">
-                    ${students.length}
-                </div>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <div class="stat-label">
-                    Active Internships
-                </div>
-
-                <div class="stat-value">
-                    ${internshipList.length}
-                </div>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <div class="stat-label">
-                    CSE Students
-                </div>
-
-                <div class="stat-value">
-
-                    ${
-                        students.filter(
-                            student =>
-                                String(
-                                    student.branch || ""
-                                )
-                                    .toLowerCase()
-                                    .includes("cse")
-                        ).length
-                    }
-
-                </div>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <div class="stat-label">
-                    Average CGPA
-                </div>
-
-                <div class="stat-value">
-
-                    ${
-                        students.length
-
-                            ? (
-                                students.reduce(
-                                    (
-                                        total,
-                                        student
-                                    ) =>
-                                        total +
-                                        (
-                                            Number(
-                                                student.cgpa
-                                            ) || 0
-                                        ),
-                                    0
-                                ) /
-                                students.length
-                            ).toFixed(2)
-
-                            : "0.00"
-                    }
-
-                </div>
-
-            </div>
-
-        `;
-
-
-        document.getElementById(
-            "studentGrid"
-        ).innerHTML =
-
-            students.length
-
-                ? students
-                    .map(
-                        student => `
-
-                            <div
-                                class="candidate-card"
+                ${
+                    skills.length
+                        ? skills
+                            .map(
+                                skill =>
+                                    `
+                                    <span
+                                        class="candidate-skill"
+                                    >
+                                        ${escapeHTML(
+                                            skill
+                                        )}
+                                    </span>
+                                    `
+                            )
+                            .join("")
+                        : `
+                            <span
+                                style="
+                                    color:#94a3b8;
+                                    font-size:11px;
+                                "
                             >
-
-                                <h4>
-                                    ${escapeHTML(
-                                        student.name ||
-                                        "Student"
-                                    )}
-                                </h4>
-
-
-                                <p>
-                                    ${escapeHTML(
-                                        student.college ||
-                                        "College not specified"
-                                    )}
-                                </p>
-
-
-                                <p>
-
-                                    ${escapeHTML(
-                                        student.branch ||
-                                        ""
-                                    )}
-
-                                    •
-
-                                    CGPA:
-                                    ${student.cgpa || 0}
-
-                                </p>
-
-
-                                <div class="tags">
-
-                                    ${(student.skills || [])
-                                        .slice(0, 5)
-                                        .map(
-                                            skill => `
-
-                                                <span class="tag">
-
-                                                    ${escapeHTML(
-                                                        skill
-                                                    )}
-
-                                                </span>
-
-                                            `
-                                        )
-                                        .join("")}
-
-                                </div>
-
-                            </div>
-
+                                No skills added
+                            </span>
                         `
-                    )
-                    .join("")
+                }
 
-                : `
+            </div>
 
-                    <p style="color:#64748b;">
 
-                        No students registered yet.
+            ${
+                interests.length
+                    ? `
+                        <p
+                            style="
+                                margin-top:10px;
+                            "
+                        >
+                            🎯
+                            ${interests
+                                .map(
+                                    interest =>
+                                        escapeHTML(
+                                            interest
+                                        )
+                                )
+                                .join(", ")}
+                        </p>
+                    `
+                    : ""
+            }
 
+        </div>
+
+    `;
+}
+
+
+/* =========================================================
+   COLLEGE INTERNSHIPS
+========================================================= */
+
+function renderCollegeInternships() {
+
+    const section =
+        document.getElementById(
+            "collegeInternshipSection"
+        );
+
+    if (!section) return;
+
+
+    section.innerHTML = `
+
+        <div class="dashboard-card">
+
+            <div class="section-title">
+
+                <div>
+
+                    <h2>
+                        Internship Opportunities
+                    </h2>
+
+                    <p
+                        style="
+                            color:#64748b;
+                            font-size:12px;
+                            margin-top:5px;
+                        "
+                    >
+                        Current opportunities available
+                        to students.
                     </p>
 
-                `;
+                </div>
+
+            </div>
 
 
-    } catch (error) {
+            <div class="candidate-grid">
 
-        console.error(
-            "College data error:",
-            error
-        );
+                ${
+                    internships
+                        .slice(0,12)
+                        .map(
+                            internship => `
+                                <div
+                                    class="candidate-card"
+                                >
 
-        showToast(
-            "Unable to load college data."
-        );
-    }
+                                    <h4>
+                                        ${escapeHTML(
+                                            internship.title
+                                        )}
+                                    </h4>
+
+                                    <p>
+                                        🏢
+                                        ${escapeHTML(
+                                            internship.company
+                                        )}
+                                    </p>
+
+                                    <p>
+                                        📍
+                                        ${escapeHTML(
+                                            internship.location
+                                        )}
+                                    </p>
+
+                                    <p>
+                                        🎯
+                                        ${escapeHTML(
+                                            internship.interest ||
+                                            "General"
+                                        )}
+                                    </p>
+
+                                </div>
+                            `
+                        )
+                        .join("")
+                }
+
+            </div>
+
+        </div>
+
+    `;
 }
 
 
@@ -3590,8 +4033,6 @@ async function loadRecruiterDashboard() {
             "mainContent"
         );
 
-    if (!main) return;
-
 
     main.innerHTML = `
 
@@ -3600,11 +4041,11 @@ async function loadRecruiterDashboard() {
             <div>
 
                 <h1>
-                    Recruiter Dashboard
+                    Recruiter Dashboard 💼
                 </h1>
 
                 <p>
-                    Discover candidates and
+                    Find skilled students and
                     create internship opportunities.
                 </p>
 
@@ -3614,24 +4055,191 @@ async function loadRecruiterDashboard() {
 
 
         <div
-            class="stats-grid"
             id="recruiterStats"
+            class="stats-grid"
         ></div>
 
+
+        <div
+            id="recruiterPostSection"
+        ></div>
+
+
+        <div
+            id="recruiterCandidateSection"
+        ></div>
+
+    `;
+
+
+    await refreshRecruiterDashboard();
+}
+
+
+async function refreshRecruiterDashboard() {
+
+    try {
+
+        const [
+            studentResponse,
+            internshipResponse
+        ] =
+            await Promise.all([
+                apiRequest("/students"),
+                apiRequest("/internships")
+            ]);
+
+
+        allStudents =
+            studentResponse.students ||
+            [];
+
+
+        internships =
+            internshipResponse.internships ||
+            [];
+
+
+        renderRecruiterStats();
+
+        renderRecruiterPostForm();
+
+        renderRecruiterCandidates();
+
+    } catch (error) {
+
+        console.error(error);
+
+        showToast(
+            "Unable to load recruiter data."
+        );
+    }
+}
+
+
+function renderRecruiterStats() {
+
+    const section =
+        document.getElementById(
+            "recruiterStats"
+        );
+
+    if (!section) return;
+
+
+    section.innerHTML = `
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                AVAILABLE CANDIDATES
+            </div>
+
+            <div class="stat-value">
+                ${allStudents.length}
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                ACTIVE INTERNSHIPS
+            </div>
+
+            <div class="stat-value">
+                ${internships.length}
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                COMPANY
+            </div>
+
+            <div
+                class="stat-value"
+                style="
+                    font-size:18px;
+                "
+            >
+                ${escapeHTML(
+                    currentUser.company ||
+                    "Company"
+                )}
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                SKILL DATABASE
+            </div>
+
+            <div class="stat-value">
+                ${new Set(
+                    allStudents.flatMap(
+                        student =>
+                            student.skills || []
+                    )
+                ).size}
+            </div>
+
+        </div>
+
+    `;
+}
+
+
+/* =========================================================
+   RECRUITER POST INTERNSHIP
+========================================================= */
+
+function renderRecruiterPostForm() {
+
+    const section =
+        document.getElementById(
+            "recruiterPostSection"
+        );
+
+    if (!section) return;
+
+
+    section.innerHTML = `
 
         <div class="dashboard-card">
 
             <div class="section-title">
 
-                <h2>
-                    Post New Internship
-                </h2>
+                <div>
+
+                    <h2>
+                        Post an Internship
+                    </h2>
+
+                    <p
+                        style="
+                            color:#64748b;
+                            font-size:12px;
+                            margin-top:5px;
+                        "
+                    >
+                        Create an opportunity
+                        for suitable students.
+                    </p>
+
+                </div>
 
             </div>
 
 
             <div class="form-grid">
-
 
                 <div class="field">
 
@@ -3640,8 +4248,8 @@ async function loadRecruiterDashboard() {
                     </label>
 
                     <input
-                        id="rTitle"
-                        placeholder="Frontend Developer Intern"
+                        id="recruiterTitle"
+                        placeholder="Software Developer Intern"
                     >
 
                 </div>
@@ -3654,8 +4262,10 @@ async function loadRecruiterDashboard() {
                     </label>
 
                     <input
-                        id="rCompany"
-                        placeholder="Company name"
+                        id="recruiterCompany"
+                        value="${escapeAttribute(
+                            currentUser.company
+                        )}"
                     >
 
                 </div>
@@ -3668,8 +4278,8 @@ async function loadRecruiterDashboard() {
                     </label>
 
                     <input
-                        id="rLocation"
-                        placeholder="Noida / Remote"
+                        id="recruiterLocation"
+                        placeholder="Remote / Delhi"
                     >
 
                 </div>
@@ -3681,18 +4291,20 @@ async function loadRecruiterDashboard() {
                         Work Mode
                     </label>
 
-                    <select id="rMode">
+                    <select
+                        id="recruiterWorkMode"
+                    >
 
                         <option>
                             Remote
                         </option>
 
                         <option>
-                            On-site
+                            Hybrid
                         </option>
 
                         <option>
-                            Hybrid
+                            On-site
                         </option>
 
                     </select>
@@ -3703,11 +4315,25 @@ async function loadRecruiterDashboard() {
                 <div class="field">
 
                     <label>
-                        Interest
+                        Skills
                     </label>
 
                     <input
-                        id="rInterest"
+                        id="recruiterSkills"
+                        placeholder="HTML, CSS, JavaScript"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Career Interest
+                    </label>
+
+                    <input
+                        id="recruiterInterest"
                         placeholder="Web Development"
                     >
 
@@ -3721,38 +4347,23 @@ async function loadRecruiterDashboard() {
                     </label>
 
                     <input
-                        id="rStipend"
-                        placeholder="₹10,000/month"
+                        id="recruiterStipend"
+                        placeholder="₹15,000/month"
                     >
 
                 </div>
 
 
-                <div class="field full">
+                <div class="field">
 
                     <label>
-                        Skills
+                        Duration
                     </label>
 
                     <input
-                        id="rSkills"
-                        placeholder="HTML, CSS, JavaScript, React"
+                        id="recruiterDuration"
+                        placeholder="3 months"
                     >
-
-                </div>
-
-
-                <div class="field full">
-
-                    <label>
-                        Description
-                    </label>
-
-                    <textarea
-                        id="rDescription"
-                        rows="4"
-                        placeholder="Describe the internship..."
-                    ></textarea>
 
                 </div>
 
@@ -3760,281 +4371,67 @@ async function loadRecruiterDashboard() {
 
 
             <button
-                type="button"
                 class="btn btn-primary"
-                style="
-                    margin-top:10px;
-                    width:100%;
-                "
-                onclick="createInternship()"
+                onclick="postInternship()"
             >
-
-                Publish Internship
-
+                Publish Internship →
             </button>
 
         </div>
 
-
-        <div class="dashboard-card">
-
-            <div class="section-title">
-
-                <h2>
-                    Candidate Pool
-                </h2>
-
-            </div>
-
-
-            <div
-                class="candidate-grid"
-                id="recruiterCandidates"
-            ></div>
-
-        </div>
-
     `;
-
-
-    await loadRecruiterData();
 }
 
 
-/* =========================================================
-   RECRUITER DATA
-========================================================= */
-
-async function loadRecruiterData() {
-
-    try {
-
-        const [
-            internshipData,
-            studentData,
-            applicationData
-        ] = await Promise.all([
-
-            apiRequest("/internships"),
-
-            apiRequest("/students"),
-
-            apiRequest("/applications")
-
-        ]);
-
-
-        const internshipList =
-            internshipData.internships || [];
-
-
-        const students =
-            studentData.students || [];
-
-
-        const applications =
-            applicationData.applications || [];
-
-
-        document.getElementById(
-            "recruiterStats"
-        ).innerHTML = `
-
-            <div class="stat-card">
-
-                <div class="stat-label">
-                    Active Opportunities
-                </div>
-
-                <div class="stat-value">
-                    ${internshipList.length}
-                </div>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <div class="stat-label">
-                    Candidates
-                </div>
-
-                <div class="stat-value">
-                    ${students.length}
-                </div>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <div class="stat-label">
-                    Applications
-                </div>
-
-                <div class="stat-value">
-                    ${applications.length}
-                </div>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <div class="stat-label">
-                    Shortlisted
-                </div>
-
-                <div class="stat-value">
-
-                    ${
-                        applications.filter(
-                            application =>
-                                application.status ===
-                                "Shortlisted"
-                        ).length
-                    }
-
-                </div>
-
-            </div>
-
-        `;
-
-
-        document.getElementById(
-            "recruiterCandidates"
-        ).innerHTML =
-
-            students.length
-
-                ? students
-                    .map(
-                        student => `
-
-                            <div
-                                class="candidate-card"
-                            >
-
-                                <h4>
-                                    ${escapeHTML(
-                                        student.name ||
-                                        "Student"
-                                    )}
-                                </h4>
-
-
-                                <p>
-                                    ${escapeHTML(
-                                        student.education ||
-                                        ""
-                                    )}
-                                </p>
-
-
-                                <p>
-                                    ${escapeHTML(
-                                        student.location ||
-                                        "Any"
-                                    )}
-                                </p>
-
-
-                                <p>
-                                    CGPA:
-                                    ${student.cgpa || 0}
-                                </p>
-
-
-                                <div class="tags">
-
-                                    ${(student.skills || [])
-                                        .slice(0, 6)
-                                        .map(
-                                            skill => `
-
-                                                <span class="tag">
-
-                                                    ${escapeHTML(
-                                                        skill
-                                                    )}
-
-                                                </span>
-
-                                            `
-                                        )
-                                        .join("")}
-
-                                </div>
-
-                            </div>
-
-                        `
-                    )
-                    .join("")
-
-                : `
-
-                    <p style="color:#64748b;">
-
-                        No candidates registered yet.
-
-                    </p>
-
-                `;
-
-
-    } catch (error) {
-
-        console.error(
-            "Recruiter data error:",
-            error
-        );
-
-        showToast(
-            "Unable to load recruiter data."
-        );
-    }
-}
-
-
-/* =========================================================
-   CREATE INTERNSHIP
-========================================================= */
-
-async function createInternship() {
+async function postInternship() {
 
     try {
 
         const title =
             document
-                .getElementById("rTitle")
-                ?.value.trim() || "";
+                .getElementById(
+                    "recruiterTitle"
+                )
+                ?.value
+                .trim();
 
 
         const company =
             document
-                .getElementById("rCompany")
-                ?.value.trim() || "";
+                .getElementById(
+                    "recruiterCompany"
+                )
+                ?.value
+                .trim();
 
 
         const location =
             document
-                .getElementById("rLocation")
-                ?.value.trim() || "";
+                .getElementById(
+                    "recruiterLocation"
+                )
+                ?.value
+                .trim();
 
 
         const skills =
-            (
-                document
-                    .getElementById("rSkills")
-                    ?.value || ""
-            )
-                .split(",")
-                .map(skill =>
-                    skill.trim()
+            document
+                .getElementById(
+                    "recruiterSkills"
                 )
+                ?.value
+                .split(",")
+                .map(x => x.trim())
                 .filter(Boolean);
+
+
+        const interest =
+            document
+                .getElementById(
+                    "recruiterInterest"
+                )
+                ?.value
+                .trim();
 
 
         if (
@@ -4045,71 +4442,75 @@ async function createInternship() {
         ) {
 
             showToast(
-                "Please fill all required fields."
+                "Title, company, location and skills are required."
             );
 
             return;
         }
 
 
+        const payload = {
+
+            title,
+
+            company,
+
+            location,
+
+            workMode:
+                document
+                    .getElementById(
+                        "recruiterWorkMode"
+                    )
+                    ?.value ||
+                "Remote",
+
+            skills,
+
+            interest:
+                interest ||
+                "General",
+
+            education:[
+                "B.Tech"
+            ],
+
+            stipend:
+                document
+                    .getElementById(
+                        "recruiterStipend"
+                    )
+                    ?.value ||
+                "Not specified",
+
+            duration:
+                document
+                    .getElementById(
+                        "recruiterDuration"
+                    )
+                    ?.value ||
+                "Not specified",
+
+            eligibility:
+                "Students with relevant skills",
+
+            description:
+                "Internship opportunity posted by recruiter.",
+
+            careerValue:75,
+
+            competitionLevel:
+                "Medium"
+        };
+
+
         await apiRequest(
             "/internships",
             {
-
-                method: "POST",
+                method:"POST",
 
                 body:
-                    JSON.stringify({
-
-                        title,
-
-                        company,
-
-                        location,
-
-                        workMode:
-                            document
-                                .getElementById("rMode")
-                                ?.value ||
-                            "Remote",
-
-                        skills,
-
-                        interest:
-                            document
-                                .getElementById("rInterest")
-                                ?.value.trim() ||
-                            "General",
-
-                        education: [
-                            "B.Tech CSE",
-                            "B.Tech IT",
-                            "BCA"
-                        ],
-
-                        stipend:
-                            document
-                                .getElementById("rStipend")
-                                ?.value.trim() ||
-                            "Not specified",
-
-                        duration:
-                            "Not specified",
-
-                        description:
-                            document
-                                .getElementById("rDescription")
-                                ?.value.trim() ||
-                            "Internship opportunity.",
-
-                        careerValue:
-                            80,
-
-                        competitionLevel:
-                            "Medium"
-
-                    })
-
+                    JSON.stringify(payload)
             }
         );
 
@@ -4119,75 +4520,381 @@ async function createInternship() {
         );
 
 
-        const fields = [
-            "rTitle",
-            "rCompany",
-            "rLocation",
-            "rSkills",
-            "rInterest",
-            "rStipend",
-            "rDescription"
-        ];
-
-
-        fields.forEach(id => {
-
-            const element =
-                document.getElementById(id);
-
-            if (element) {
-                element.value = "";
-            }
-
-        });
-
-
-        await loadRecruiterData();
-
+        await refreshRecruiterDashboard();
 
     } catch (error) {
 
-        console.error(
-            "Create internship error:",
-            error
-        );
+        console.error(error);
 
         showToast(
             error.message ||
-            "Unable to publish internship."
+            "Failed to publish internship."
         );
     }
 }
 
 
 /* =========================================================
-   SECURITY HELPERS
+   RECRUITER CANDIDATES
 ========================================================= */
 
-function escapeHTML(value) {
+function renderRecruiterCandidates() {
 
-    return String(value ?? "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+    const section =
+        document.getElementById(
+            "recruiterCandidateSection"
+        );
+
+    if (!section) return;
+
+
+    section.innerHTML = `
+
+        <div class="dashboard-card">
+
+            <div class="section-title">
+
+                <div>
+
+                    <h2>
+                        Student Talent Pool
+                    </h2>
+
+                    <p
+                        style="
+                            color:#64748b;
+                            font-size:12px;
+                            margin-top:5px;
+                        "
+                    >
+                        Discover students based
+                        on their recorded skills.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="filter-card">
+
+                <input
+                    id="candidateSearch"
+                    placeholder="Search skill e.g. JavaScript"
+                    oninput="filterCandidates()"
+                >
+
+                <select
+                    id="candidateBranch"
+                    onchange="filterCandidates()"
+                >
+
+                    <option value="">
+                        All Branches
+                    </option>
+
+                    <option value="cse">
+                        CSE
+                    </option>
+
+                    <option value="ece">
+                        ECE
+                    </option>
+
+                    <option value="it">
+                        IT
+                    </option>
+
+                </select>
+
+
+                <input
+                    id="candidateCollege"
+                    placeholder="College"
+                    oninput="filterCandidates()"
+                >
+
+                <button
+                    class="btn btn-secondary"
+                    onclick="resetCandidateFilters()"
+                >
+                    Reset
+                </button>
+
+            </div>
+
+
+            <div
+                id="candidateResults"
+                class="candidate-grid"
+            ></div>
+
+        </div>
+
+    `;
+
+
+    filterCandidates();
 }
 
 
-function escapeAttribute(value) {
+function filterCandidates() {
 
-    return escapeHTML(value);
+    const search =
+        document
+            .getElementById(
+                "candidateSearch"
+            )
+            ?.value
+            .toLowerCase()
+            .trim() || "";
+
+
+    const branch =
+        document
+            .getElementById(
+                "candidateBranch"
+            )
+            ?.value
+            .toLowerCase() || "";
+
+
+    const college =
+        document
+            .getElementById(
+                "candidateCollege"
+            )
+            ?.value
+            .toLowerCase()
+            .trim() || "";
+
+
+    const results =
+        allStudents.filter(
+            student => {
+
+                const skills =
+                    (
+                        student.skills ||
+                        []
+                    )
+                        .join(" ")
+                        .toLowerCase();
+
+
+                const studentBranch =
+                    String(
+                        student.branch ||
+                        ""
+                    )
+                        .toLowerCase();
+
+
+                const studentCollege =
+                    String(
+                        student.college ||
+                        ""
+                    )
+                        .toLowerCase();
+
+
+                const skillMatch =
+                    !search ||
+                    skills.includes(search);
+
+
+                const branchMatch =
+                    !branch ||
+                    studentBranch.includes(
+                        branch
+                    );
+
+
+                const collegeMatch =
+                    !college ||
+                    studentCollege.includes(
+                        college
+                    );
+
+
+                return (
+                    skillMatch &&
+                    branchMatch &&
+                    collegeMatch
+                );
+            }
+        );
+
+
+    const container =
+        document.getElementById(
+            "candidateResults"
+        );
+
+
+    if (!container) return;
+
+
+    container.innerHTML =
+        results.length
+            ? results
+                .map(
+                    student =>
+                        renderRecruiterCandidate(
+                            student
+                        )
+                )
+                .join("")
+            : `
+                <div
+                    class="empty-state"
+                    style="grid-column:1/-1"
+                >
+                    No candidates found.
+                </div>
+            `;
+}
+
+
+function resetCandidateFilters() {
+
+    const ids = [
+        "candidateSearch",
+        "candidateBranch",
+        "candidateCollege"
+    ];
+
+
+    ids.forEach(id => {
+
+        const element =
+            document.getElementById(id);
+
+        if (element) {
+
+            element.value = "";
+        }
+
+    });
+
+
+    filterCandidates();
+}
+
+
+function renderRecruiterCandidate(
+    student
+) {
+
+    return `
+
+        <div class="candidate-card">
+
+            <h4>
+                ${escapeHTML(
+                    student.name
+                )}
+            </h4>
+
+            <p>
+                📧
+                ${escapeHTML(
+                    student.email ||
+                    "Email not available"
+                )}
+            </p>
+
+            <p>
+                🏫
+                ${escapeHTML(
+                    student.college ||
+                    "College not specified"
+                )}
+            </p>
+
+            <p>
+                🎓
+                ${escapeHTML(
+                    student.branch ||
+                    "Branch not specified"
+                )}
+                • CGPA:
+                ${escapeHTML(
+                    student.cgpa ?? 0
+                )}
+            </p>
+
+
+            <div
+                class="candidate-skills"
+            >
+
+                ${(student.skills || [])
+                    .map(
+                        skill =>
+                            `
+                            <span
+                                class="candidate-skill"
+                            >
+                                ${escapeHTML(
+                                    skill
+                                )}
+                            </span>
+                            `
+                    )
+                    .join("")
+                }
+
+            </div>
+
+
+            <button
+                class="btn btn-primary"
+                style="
+                    width:100%;
+                    margin-top:12px;
+                "
+                onclick="contactCandidate(
+                    '${escapeAttribute(
+                        student.email || ""
+                    )}'
+                )"
+            >
+                Contact Candidate
+            </button>
+
+        </div>
+
+    `;
+}
+
+
+function contactCandidate(
+    email
+) {
+
+    if (!email) {
+
+        showToast(
+            "Candidate email is not available."
+        );
+
+        return;
+    }
+
+
+    window.location.href =
+        `mailto:${email}`;
 }
 
 
 /* =========================================================
-   AUTO LOGIN
+   INIT
 ========================================================= */
 
-window.addEventListener(
-    "DOMContentLoaded",
-    async () => {
+(function init() {
+
+    try {
 
         const savedUser =
             localStorage.getItem(
@@ -4196,100 +4903,109 @@ window.addEventListener(
 
 
         if (!savedUser) {
+
+            selectRole("student");
+
             return;
         }
 
 
-        try {
-
-            currentUser =
-                JSON.parse(savedUser);
-
-
-            selectedRole =
-                currentUser.role ||
-                "student";
-
-
-            const loginPage =
-                document.getElementById(
-                    "loginPage"
-                );
-
-
-            const app =
-                document.getElementById(
-                    "app"
-                );
-
-
-            if (loginPage) {
-
-                loginPage.style.display =
-                    "none";
-
-            }
-
-
-            if (app) {
-
-                app.style.display =
-                    "block";
-
-            }
-
-
-            const roleBadge =
-                document.getElementById(
-                    "roleBadge"
-                );
-
-
-            if (roleBadge) {
-
-                roleBadge.textContent =
-                    selectedRole
-                        .charAt(0)
-                        .toUpperCase() +
-                    selectedRole.slice(1);
-
-            }
-
-
-            if (
-                selectedRole ===
-                "student"
-            ) {
-
-                await loadStudentDashboard();
-
-            } else if (
-                selectedRole ===
-                "college"
-            ) {
-
-                await loadCollegeDashboard();
-
-            } else {
-
-                await loadRecruiterDashboard();
-
-            }
-
-
-        } catch (error) {
-
-            console.error(
-                "Auto login error:",
-                error
+        currentUser =
+            JSON.parse(
+                savedUser
             );
 
-            logout();
+
+        selectedRole =
+            currentUser.role ||
+            "student";
+
+
+        document
+            .getElementById(
+                "loginPage"
+            )
+            .style.display =
+                "none";
+
+
+        document
+            .getElementById(
+                "app"
+            )
+            .style.display =
+                "block";
+
+
+        document
+            .getElementById(
+                "roleBadge"
+            )
+            .textContent =
+                selectedRole
+                    .charAt(0)
+                    .toUpperCase() +
+                selectedRole.slice(1);
+
+
+        document
+            .getElementById(
+                "topUserName"
+            )
+            .textContent =
+                currentUser.name ||
+                "";
+
+
+        if (
+            selectedRole ===
+            "student"
+        ) {
+
+            loadStudentDashboard();
+
+        } else if (
+            selectedRole ===
+            "college"
+        ) {
+
+            loadCollegeDashboard();
+
+        } else {
+
+            loadRecruiterDashboard();
         }
 
+    } catch (error) {
+
+        console.error(
+            "Initialization error:",
+            error
+        );
+
+        localStorage.removeItem(
+            "pm_current_user"
+        );
+
+        document
+            .getElementById(
+                "loginPage"
+            )
+            .style.display =
+                "flex";
+
+        document
+            .getElementById(
+                "app"
+            )
+            .style.display =
+                "none";
     }
-);
+
+})();
 
 </script>
+
 </body>
+
 </html>

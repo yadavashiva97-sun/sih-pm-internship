@@ -7,9 +7,9 @@ import { Internship } from "../models/Internship.js";
 
 const router = express.Router();
 
-// =====================================================
-// TEST
-// =====================================================
+/* =====================================================
+   TEST
+===================================================== */
 
 router.get("/test", (req, res) => {
     res.json({
@@ -18,9 +18,9 @@ router.get("/test", (req, res) => {
     });
 });
 
-// =====================================================
-// APPLY
-// =====================================================
+/* =====================================================
+   APPLY
+===================================================== */
 
 router.post("/", async (req, res) => {
     try {
@@ -29,10 +29,7 @@ router.post("/", async (req, res) => {
             internshipId
         } = req.body;
 
-        if (
-            !studentId ||
-            !internshipId
-        ) {
+        if (!studentId || !internshipId) {
             return res.status(400).json({
                 success: false,
                 message:
@@ -41,17 +38,12 @@ router.post("/", async (req, res) => {
         }
 
         if (
-            !mongoose.Types.ObjectId.isValid(
-                studentId
-            ) ||
-            !mongoose.Types.ObjectId.isValid(
-                internshipId
-            )
+            !mongoose.Types.ObjectId.isValid(studentId) ||
+            !mongoose.Types.ObjectId.isValid(internshipId)
         ) {
             return res.status(400).json({
                 success: false,
-                message:
-                    "Invalid student or internship ID"
+                message: "Invalid student or internship ID"
             });
         }
 
@@ -66,15 +58,12 @@ router.post("/", async (req, res) => {
         }
 
         const internship =
-            await Internship.findById(
-                internshipId
-            );
+            await Internship.findById(internshipId);
 
         if (!internship) {
             return res.status(404).json({
                 success: false,
-                message:
-                    "Internship not found"
+                message: "Internship not found"
             });
         }
 
@@ -97,16 +86,9 @@ router.post("/", async (req, res) => {
             await Application.create({
                 studentId,
                 internshipId,
-
-                studentName:
-                    student.name,
-
-                internshipTitle:
-                    internship.title,
-
-                company:
-                    internship.company,
-
+                studentName: student.name,
+                internshipTitle: internship.title,
+                company: internship.company,
                 status: "Applied"
             });
 
@@ -116,11 +98,9 @@ router.post("/", async (req, res) => {
                 "Application submitted successfully",
             application
         });
+
     } catch (error) {
-        console.error(
-            "Application error:",
-            error
-        );
+        console.error("Application error:", error);
 
         res.status(500).json({
             success: false,
@@ -131,41 +111,38 @@ router.post("/", async (req, res) => {
     }
 });
 
-// =====================================================
-// STUDENT APPLICATIONS
-// =====================================================
+/* =====================================================
+   STUDENT APPLICATIONS
+===================================================== */
 
 router.get(
     "/student/:studentId",
     async (req, res) => {
         try {
+            const { studentId } = req.params;
+
             if (
-                !mongoose.Types.ObjectId.isValid(
-                    req.params.studentId
-                )
+                !mongoose.Types.ObjectId.isValid(studentId)
             ) {
                 return res.status(400).json({
                     success: false,
-                    message:
-                        "Invalid student ID"
+                    message: "Invalid student ID"
                 });
             }
 
             const applications =
                 await Application.find({
-                    studentId:
-                        req.params.studentId
+                    studentId
                 })
                     .populate("internshipId")
-                    .sort({
-                        createdAt: -1
-                    });
+                    .sort({ createdAt: -1 });
 
             res.json({
                 success: true,
                 count: applications.length,
                 applications
             });
+
         } catch (error) {
             res.status(500).json({
                 success: false,
@@ -177,9 +154,9 @@ router.get(
     }
 );
 
-// =====================================================
-// ALL APPLICATIONS
-// =====================================================
+/* =====================================================
+   ALL APPLICATIONS
+===================================================== */
 
 router.get("/", async (req, res) => {
     try {
@@ -187,15 +164,14 @@ router.get("/", async (req, res) => {
             await Application.find()
                 .populate("studentId")
                 .populate("internshipId")
-                .sort({
-                    createdAt: -1
-                });
+                .sort({ createdAt: -1 });
 
         res.json({
             success: true,
             count: applications.length,
             applications
         });
+
     } catch (error) {
         res.status(500).json({
             success: false,
@@ -206,15 +182,13 @@ router.get("/", async (req, res) => {
     }
 });
 
-// =====================================================
-// UPDATE APPLICATION STATUS
-// =====================================================
+/* =====================================================
+   UPDATE STATUS
+===================================================== */
 
 router.put("/:id", async (req, res) => {
     try {
-        const {
-            status
-        } = req.body;
+        const { status } = req.body;
 
         const allowedStatuses = [
             "Applied",
@@ -224,13 +198,10 @@ router.put("/:id", async (req, res) => {
             "Selected"
         ];
 
-        if (
-            !allowedStatuses.includes(status)
-        ) {
+        if (!allowedStatuses.includes(status)) {
             return res.status(400).json({
                 success: false,
-                message:
-                    "Invalid application status"
+                message: "Invalid application status"
             });
         }
 
@@ -241,8 +212,7 @@ router.put("/:id", async (req, res) => {
         ) {
             return res.status(400).json({
                 success: false,
-                message:
-                    "Invalid application ID"
+                message: "Invalid application ID"
             });
         }
 
@@ -259,8 +229,7 @@ router.put("/:id", async (req, res) => {
         if (!application) {
             return res.status(404).json({
                 success: false,
-                message:
-                    "Application not found"
+                message: "Application not found"
             });
         }
 
@@ -270,6 +239,7 @@ router.put("/:id", async (req, res) => {
                 "Application status updated",
             application
         });
+
     } catch (error) {
         res.status(500).json({
             success: false,
