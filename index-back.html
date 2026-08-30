@@ -2172,7 +2172,6 @@ const API_URL =
 ===================================================== */
 
 let internships = [];
-
 let currentResults = [];
 
 
@@ -2181,7 +2180,6 @@ let currentResults = [];
 ===================================================== */
 
 const commonLocations = [
-
     "Any Location",
     "Delhi",
     "New Delhi",
@@ -2238,7 +2236,6 @@ const commonLocations = [
     "Vijayawada",
     "Rishikesh",
     "Remote"
-
 ];
 
 
@@ -2473,7 +2470,6 @@ const nearbyLocations = {
         "surat",
         "remote"
     ]
-
 };
 
 
@@ -2494,10 +2490,8 @@ async function loadInternships() {
             </div>
         `;
 
-
         const response =
             await fetch(API_URL);
-
 
         if (!response.ok) {
 
@@ -2505,78 +2499,65 @@ async function loadInternships() {
                 "Server returned HTTP " +
                 response.status
             );
-
         }
-
 
         const data =
             await response.json();
-
 
         if (!Array.isArray(data)) {
 
             throw new Error(
                 "Backend did not return an internship list."
             );
-
         }
-
 
         internships = data;
 
+        /*
+         * No fake 70% scores.
+         * Before the student enters their profile,
+         * score remains null.
+         */
 
         currentResults =
             internships.map(internship => ({
                 ...internship,
-                score: 70
+                score: null,
+                breakdown: null
             }));
-
 
         updateLocationSuggestions();
 
         renderResults(currentResults);
-
-
-        /* INTERNSHIP COUNT */
 
         const count =
             document.getElementById(
                 "internshipCount"
             );
 
-
         if (count) {
 
             count.textContent =
                 internships.length + "+";
-
         }
-
-
-        /* DASHBOARD */
 
         const dashboardMatches =
             document.getElementById(
                 "dashboardMatches"
             );
 
-
         if (dashboardMatches) {
 
             dashboardMatches.textContent =
                 internships.length;
-
         }
 
-
         updateRecentMatches();
-
 
         console.log(
             "Internships loaded successfully:",
             internships
         );
-
 
         console.log(
             "Total internships:",
@@ -2584,7 +2565,6 @@ async function loadInternships() {
         );
 
     }
-
     catch (error) {
 
         console.error(
@@ -2592,9 +2572,7 @@ async function loadInternships() {
             error
         );
 
-
         results.innerHTML = `
-
             <div class="card error-box">
 
                 <h3>
@@ -2623,11 +2601,8 @@ async function loadInternships() {
                 </button>
 
             </div>
-
         `;
-
     }
-
 }
 
 
@@ -2642,33 +2617,26 @@ function updateLocationSuggestions() {
             "locationSuggestions"
         );
 
-
     if (!datalist) {
         return;
     }
 
-
     const backendLocations =
         internships
-
             .map(
                 internship =>
                     internship.location
             )
-
             .filter(Boolean)
-
             .map(
                 location =>
                     String(location).trim()
             );
 
-
     const allLocations = [
         ...commonLocations,
         ...backendLocations
     ];
-
 
     const uniqueLocations =
         [
@@ -2677,30 +2645,23 @@ function updateLocationSuggestions() {
             )
         ];
 
-
     uniqueLocations.sort(
         (a, b) =>
             a.localeCompare(b)
     );
 
-
     datalist.innerHTML = "";
-
 
     uniqueLocations.forEach(location => {
 
         const option =
             document.createElement("option");
 
-
         option.value =
             location;
 
-
         datalist.appendChild(option);
-
     });
-
 }
 
 
@@ -2716,23 +2677,18 @@ function showPage(id) {
             page.classList.remove("active")
         );
 
-
     const page =
         document.getElementById(id);
-
 
     if (page) {
 
         page.classList.add("active");
-
     }
-
 
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     });
-
 
     if (id === "find") {
 
@@ -2741,9 +2697,7 @@ function showPage(id) {
                 ? currentResults
                 : internships
         );
-
     }
-
 }
 
 
@@ -2757,12 +2711,10 @@ function normalizeLocation(location) {
         return "";
     }
 
-
     let value =
         String(location)
             .trim()
             .toLowerCase();
-
 
     value =
         value.replace(
@@ -2770,36 +2722,27 @@ function normalizeLocation(location) {
             " "
         );
 
-
     value =
         value.replace(
             /,\s*india$/i,
             ""
         );
 
-
     if (
         value === "bangalore" ||
         value === "bengaluru"
     ) {
-
         return "bangalore";
-
     }
-
 
     if (
         value === "gurgaon" ||
         value === "gurugram"
     ) {
-
         return "gurugram";
-
     }
 
-
     return value;
-
 }
 
 
@@ -2816,76 +2759,49 @@ function locationMatches(
         !selectedLocation ||
         !internshipLocation
     ) {
-
         return false;
-
     }
-
 
     const selected =
         normalizeLocation(
             selectedLocation
         );
 
-
     const internship =
         normalizeLocation(
             internshipLocation
         );
 
-
-    /* ANY LOCATION */
-
     if (
         selected === "any location" ||
         selected === "any"
     ) {
-
         return true;
-
     }
-
-
-    /* EXACT MATCH */
 
     if (
         selected === internship
     ) {
-
         return true;
-
     }
-
-
-    /* PARTIAL MATCH */
 
     if (
         internship.includes(selected) ||
         selected.includes(internship)
     ) {
-
         return true;
-
     }
-
-
-    /* NEARBY CITY MATCH */
 
     const nearby =
         nearbyLocations[selected] || [];
 
-
     if (
         nearby.includes(internship)
     ) {
-
         return true;
-
     }
 
-
     return false;
-
 }
 
 
@@ -2900,21 +2816,17 @@ function showLocationMessage(message) {
             "locationMessage"
         );
 
-
     if (!box) {
         return;
     }
 
-
     box.textContent =
         message || "";
-
 
     box.classList.toggle(
         "show",
         Boolean(message)
     );
-
 }
 
 
@@ -2939,13 +2851,542 @@ function getSearchableText(internship) {
             : [])
 
     ]
-
         .filter(Boolean)
-
         .join(" ")
-
         .toLowerCase();
+}
 
+
+/* =====================================================
+   INTEREST RELATIONSHIP
+===================================================== */
+
+const relatedInterestGroups = [
+
+    [
+        "web development",
+        "frontend development",
+        "backend development",
+        "full stack development",
+        "full stack",
+        "frontend",
+        "backend"
+    ],
+
+    [
+        "software development",
+        "software engineering",
+        "application development"
+    ],
+
+    [
+        "data science",
+        "data analytics",
+        "data analysis",
+        "machine learning",
+        "artificial intelligence",
+        "ai"
+    ],
+
+    [
+        "cyber security",
+        "cybersecurity",
+        "information security",
+        "network security"
+    ],
+
+    [
+        "mobile development",
+        "android development",
+        "ios development",
+        "app development"
+    ],
+
+    [
+        "cloud computing",
+        "cloud",
+        "devops"
+    ]
+];
+
+
+function interestsRelated(
+    studentInterest,
+    internshipInterest
+) {
+
+    if (
+        !studentInterest ||
+        !internshipInterest
+    ) {
+        return false;
+    }
+
+    const student =
+        studentInterest
+            .trim()
+            .toLowerCase();
+
+    const internship =
+        internshipInterest
+            .trim()
+            .toLowerCase();
+
+    if (
+        student === internship
+    ) {
+        return true;
+    }
+
+    if (
+        student.includes(internship) ||
+        internship.includes(student)
+    ) {
+        return true;
+    }
+
+    return relatedInterestGroups.some(
+        group => {
+
+            const studentInGroup =
+                group.some(item =>
+                    student.includes(item) ||
+                    item.includes(student)
+                );
+
+            const internshipInGroup =
+                group.some(item =>
+                    internship.includes(item) ||
+                    item.includes(internship)
+                );
+
+            return (
+                studentInGroup &&
+                internshipInGroup
+            );
+        }
+    );
+}
+
+
+/* =====================================================
+   SKILL NORMALIZATION
+===================================================== */
+
+function normalizeSkill(skill) {
+
+    return String(skill || "")
+        .trim()
+        .toLowerCase()
+        .replace(/[._-]/g, " ")
+        .replace(/\s+/g, " ");
+}
+
+
+/* =====================================================
+   SKILL MATCH
+===================================================== */
+
+function skillsMatch(
+    userSkill,
+    internshipSkill
+) {
+
+    const user =
+        normalizeSkill(userSkill);
+
+    const required =
+        normalizeSkill(internshipSkill);
+
+    if (!user || !required) {
+        return false;
+    }
+
+    if (user === required) {
+        return true;
+    }
+
+    if (
+        user.includes(required) ||
+        required.includes(user)
+    ) {
+        return true;
+    }
+
+    /*
+     * Related skill mapping.
+     * This prevents overly strict matching.
+     */
+
+    const skillGroups = [
+
+        [
+            "html",
+            "html5"
+        ],
+
+        [
+            "css",
+            "css3"
+        ],
+
+        [
+            "javascript",
+            "js"
+        ],
+
+        [
+            "react",
+            "reactjs",
+            "react js"
+        ],
+
+        [
+            "node",
+            "node js",
+            "nodejs"
+        ],
+
+        [
+            "mongodb",
+            "mongo db",
+            "mongo"
+        ],
+
+        [
+            "python",
+            "python programming"
+        ],
+
+        [
+            "java",
+            "java programming"
+        ],
+
+        [
+            "c++",
+            "cpp"
+        ],
+
+        [
+            "c",
+            "c programming"
+        ]
+    ];
+
+    return skillGroups.some(
+        group => {
+
+            const userInGroup =
+                group.some(item =>
+                    user === item
+                );
+
+            const requiredInGroup =
+                group.some(item =>
+                    required === item
+                );
+
+            return (
+                userInGroup &&
+                requiredInGroup
+            );
+        }
+    );
+}
+
+
+/* =====================================================
+   CALCULATE MATCH SCORE
+=====================================================
+
+   TOTAL = 100
+
+   Skills     = 50
+   Interest   = 20
+   Education  = 15
+   Location   = 15
+
+   SEARCH DOES NOT ADD SCORE.
+===================================================== */
+
+function calculateMatchScore(
+    internship,
+    rawSkills,
+    education,
+    interest,
+    selectedLocation
+) {
+
+    const internshipSkills =
+        Array.isArray(internship.skills)
+            ? internship.skills
+                .map(skill =>
+                    String(skill)
+                        .trim()
+                        .toLowerCase()
+                )
+                .filter(Boolean)
+            : [];
+
+    const userSkills =
+        rawSkills
+            .map(skill =>
+                String(skill)
+                    .trim()
+                    .toLowerCase()
+            )
+            .filter(Boolean);
+
+    /*
+     * =================================================
+     * SKILLS - 50 POINTS
+     * =================================================
+     */
+
+    let matchedSkills = [];
+
+    userSkills.forEach(
+        userSkill => {
+
+            const matched =
+                internshipSkills.find(
+                    internshipSkill =>
+                        skillsMatch(
+                            userSkill,
+                            internshipSkill
+                        )
+                );
+
+            if (
+                matched &&
+                !matchedSkills.includes(matched)
+            ) {
+
+                matchedSkills.push(
+                    matched
+                );
+            }
+        }
+    );
+
+    let skillScore = 0;
+
+    if (
+        internshipSkills.length > 0 &&
+        userSkills.length > 0
+    ) {
+
+        skillScore =
+            Math.round(
+                (
+                    matchedSkills.length /
+                    internshipSkills.length
+                ) * 50
+            );
+
+        /*
+         * Never allow skills to exceed 50.
+         */
+
+        skillScore =
+            Math.min(
+                skillScore,
+                50
+            );
+    }
+
+    /*
+     * =================================================
+     * INTEREST - 20 POINTS
+     * =================================================
+     */
+
+    let interestScore = 0;
+    let interestMatch = false;
+
+    if (
+        interest &&
+        internship.interest
+    ) {
+
+        interestMatch =
+            interestsRelated(
+                interest,
+                String(
+                    internship.interest
+                )
+            );
+
+        if (interestMatch) {
+
+            interestScore = 20;
+        }
+    }
+
+    /*
+     * =================================================
+     * EDUCATION - 15 POINTS
+     * =================================================
+     */
+
+    let educationScore = 0;
+    let educationMatch = false;
+
+    if (
+        education &&
+        education !== "any"
+    ) {
+
+        const studentEducation =
+            education
+                .trim()
+                .toLowerCase();
+
+        if (
+            Array.isArray(
+                internship.education
+            )
+        ) {
+
+            educationMatch =
+                internship.education.some(
+                    item => {
+
+                        const itemEducation =
+                            String(item)
+                                .trim()
+                                .toLowerCase();
+
+                        return (
+                            itemEducation.includes(
+                                studentEducation
+                            ) ||
+                            studentEducation.includes(
+                                itemEducation
+                            )
+                        );
+                    }
+                );
+        }
+
+        else if (
+            internship.education
+        ) {
+
+            const itemEducation =
+                String(
+                    internship.education
+                )
+                    .trim()
+                    .toLowerCase();
+
+            educationMatch =
+                itemEducation.includes(
+                    studentEducation
+                ) ||
+                studentEducation.includes(
+                    itemEducation
+                );
+        }
+
+        if (educationMatch) {
+
+            educationScore = 15;
+        }
+    }
+
+    /*
+     * =================================================
+     * LOCATION - 15 POINTS
+     * =================================================
+     */
+
+    let locationScore = 0;
+    let locationMatch = false;
+
+    if (
+        selectedLocation &&
+        internship.location
+    ) {
+
+        locationMatch =
+            locationMatches(
+                selectedLocation,
+                internship.location
+            );
+
+        if (locationMatch) {
+
+            locationScore = 15;
+        }
+    }
+
+    /*
+     * =================================================
+     * FINAL SCORE
+     * =================================================
+     */
+
+    const totalScore =
+        Math.min(
+            100,
+            skillScore +
+            interestScore +
+            educationScore +
+            locationScore
+        );
+
+    /*
+     * Missing skills
+     */
+
+    const missingSkills =
+        internshipSkills.filter(
+            requiredSkill =>
+                !matchedSkills.includes(
+                    requiredSkill
+                )
+        );
+
+    return {
+
+        score: totalScore,
+
+        breakdown: {
+
+            skills: skillScore,
+
+            interest: interestScore,
+
+            education: educationScore,
+
+            location: locationScore,
+
+            matchedSkills:
+                matchedSkills,
+
+            missingSkills:
+                missingSkills,
+
+            skillTotal: 50,
+
+            interestTotal: 20,
+
+            educationTotal: 15,
+
+            locationTotal: 15,
+
+            interestMatch:
+                interestMatch,
+
+            educationMatch:
+                educationMatch,
+
+            locationMatch:
+                locationMatch
+        }
+    };
 }
 
 
@@ -2955,46 +3396,67 @@ function getSearchableText(internship) {
 
 function findMatches() {
 
-    const rawSkills =
-        document
-            .getElementById("skills")
-            .value
-            .toLowerCase()
-            .split(",")
-            .map(skill => skill.trim())
-            .filter(Boolean);
+    const skillsElement =
+        document.getElementById(
+            "skills"
+        );
 
+    const educationElement =
+        document.getElementById(
+            "education"
+        );
+
+    const interestElement =
+        document.getElementById(
+            "interest"
+        );
+
+    const locationElement =
+        document.getElementById(
+            "location"
+        );
+
+    const searchElement =
+        document.getElementById(
+            "search"
+        );
+
+    const rawSkills =
+        skillsElement
+            ? skillsElement.value
+                .toLowerCase()
+                .split(",")
+                .map(skill =>
+                    skill.trim()
+                )
+                .filter(Boolean)
+            : [];
 
     const education =
-        document
-            .getElementById("education")
-            .value
-            .trim()
-            .toLowerCase();
-
+        educationElement
+            ? educationElement.value
+                .trim()
+                .toLowerCase()
+            : "";
 
     const interest =
-        document
-            .getElementById("interest")
-            .value
-            .trim()
-            .toLowerCase();
-
+        interestElement
+            ? interestElement.value
+                .trim()
+                .toLowerCase()
+            : "";
 
     const locationInput =
-        document
-            .getElementById("location")
-            .value
-            .trim();
-
+        locationElement
+            ? locationElement.value.trim()
+            : "";
 
     const search =
-        document
-            .getElementById("search")
-            .value
-            .trim()
-            .toLowerCase();
-
+        searchElement
+            ? searchElement.value
+                .trim()
+                .toLowerCase()
+            : "";
 
     const selectedLocation =
         locationInput &&
@@ -3003,279 +3465,107 @@ function findMatches() {
             ? locationInput
             : "";
 
+    /*
+     * =================================================
+     * CHECK WHETHER PROFILE EXISTS
+     * =================================================
+     */
+
+    const hasProfile =
+        rawSkills.length > 0 ||
+        Boolean(education) ||
+        Boolean(interest) ||
+        Boolean(selectedLocation);
+
+    /*
+     * =================================================
+     * CALCULATE SCORE
+     * =================================================
+     */
 
     let data =
-        internships.map(internship => {
+        internships.map(
+            internship => {
 
-            const internshipSkills =
-                Array.isArray(
-                    internship.skills
-                )
-                    ? internship.skills.map(
-                        skill =>
-                            String(skill)
-                                .trim()
-                                .toLowerCase()
-                    )
-                    : [];
+                /*
+                 * No profile:
+                 * don't invent a match score.
+                 */
 
+                if (!hasProfile) {
 
-            let matchedSkills = 0;
+                    return {
 
+                        ...internship,
 
-            rawSkills.forEach(userSkill => {
+                        score: null,
 
-                const found =
-                    internshipSkills.some(
-                        internshipSkill =>
+                        breakdown: null
+                    };
+                }
 
-                            internshipSkill.includes(
-                                userSkill
-                            ) ||
-
-                            userSkill.includes(
-                                internshipSkill
-                            )
+                const match =
+                    calculateMatchScore(
+                        internship,
+                        rawSkills,
+                        education,
+                        interest,
+                        selectedLocation
                     );
 
+                return {
 
-                if (found) {
-                    matchedSkills++;
-                }
+                    ...internship,
 
-            });
+                    score:
+                        match.score,
 
-
-            let score = 0;
-
-
-            /* SKILLS */
-
-            if (rawSkills.length > 0) {
-
-                score += Math.round(
-                    (
-                        matchedSkills /
-                        rawSkills.length
-                    ) * 50
-                );
-
+                    breakdown:
+                        match.breakdown
+                };
             }
-
-            else {
-
-                score += 20;
-
-            }
-
-
-            /* EDUCATION */
-
-            if (
-                education &&
-                education !== "any"
-            ) {
-
-                let educationMatch = false;
-
-
-                if (
-                    Array.isArray(
-                        internship.education
-                    )
-                ) {
-
-                    educationMatch =
-                        internship.education.some(
-                            item => {
-
-                                const itemEducation =
-                                    String(item)
-                                        .trim()
-                                        .toLowerCase();
-
-
-                                return (
-                                    itemEducation.includes(
-                                        education
-                                    ) ||
-
-                                    education.includes(
-                                        itemEducation
-                                    )
-                                );
-
-                            }
-                        );
-
-                }
-
-                else if (
-                    internship.education
-                ) {
-
-                    const itemEducation =
-                        String(
-                            internship.education
-                        )
-                            .trim()
-                            .toLowerCase();
-
-
-                    educationMatch =
-                        itemEducation.includes(
-                            education
-                        ) ||
-
-                        education.includes(
-                            itemEducation
-                        );
-
-                }
-
-
-                if (educationMatch) {
-
-                    score += 15;
-
-                }
-
-            }
-
-            else {
-
-                score += 10;
-
-            }
-
-
-            /* INTEREST */
-
-            if (
-                interest &&
-                internship.interest
-            ) {
-
-                const internshipInterest =
-                    String(
-                        internship.interest
-                    )
-                        .trim()
-                        .toLowerCase();
-
-
-                if (
-                    internshipInterest.includes(
-                        interest
-                    ) ||
-
-                    interest.includes(
-                        internshipInterest
-                    )
-                ) {
-
-                    score += 20;
-
-                }
-
-            }
-
-
-            /* LOCATION */
-
-            if (
-                selectedLocation &&
-                internship.location
-            ) {
-
-                if (
-                    locationMatches(
-                        selectedLocation,
-                        internship.location
-                    )
-                ) {
-
-                    score += 15;
-
-                }
-
-            }
-
-            else {
-
-                score += 5;
-
-            }
-
-
-            /* SEARCH */
-
-            if (search) {
-
-                const searchableText =
-                    getSearchableText(
-                        internship
-                    );
-
-
-                if (
-                    searchableText.includes(
-                        search
-                    )
-                ) {
-
-                    score += 10;
-
-                }
-
-            }
-
-
-            score =
-                Math.min(
-                    Math.round(score),
-                    100
-                );
-
-
-            return {
-                ...internship,
-                score: score
-            };
-
-        });
+        );
 
 
     /* =================================================
-       SMART LOCATION FILTER
+       LOCATION FILTER
     ================================================= */
 
     if (selectedLocation) {
 
+        const normalizedSelected =
+            normalizeLocation(
+                selectedLocation
+            );
+
         const exactResults =
-            data.filter(internship => {
+            data.filter(
+                internship => {
 
-                const selected =
-                    normalizeLocation(
-                        selectedLocation
+                    const internshipLocation =
+                        normalizeLocation(
+                            internship.location
+                        );
+
+                    return (
+                        internshipLocation ===
+                            normalizedSelected ||
+
+                        internshipLocation.includes(
+                            normalizedSelected
+                        ) ||
+
+                        normalizedSelected.includes(
+                            internshipLocation
+                        )
                     );
-
-                const internshipLocation =
-                    normalizeLocation(
-                        internship.location
-                    );
+                }
+            );
 
 
-                return (
-                    internshipLocation === selected ||
-                    internshipLocation.includes(selected) ||
-                    selected.includes(internshipLocation)
-                );
-
-            });
-
-
-        /* EXACT LOCATION AVAILABLE */
+        /*
+         * EXACT LOCATION AVAILABLE
+         */
 
         if (
             exactResults.length > 0
@@ -3284,29 +3574,32 @@ function findMatches() {
             data =
                 exactResults;
 
-
             showLocationMessage(
                 "Showing internships available in " +
                 selectedLocation + "."
             );
-
         }
 
 
-        /* NO EXACT LOCATION */
+        /*
+         * NO EXACT LOCATION
+         */
 
         else {
 
             const nearbyResults =
-                data.filter(internship =>
-                    locationMatches(
-                        selectedLocation,
-                        internship.location
-                    )
+                data.filter(
+                    internship =>
+                        locationMatches(
+                            selectedLocation,
+                            internship.location
+                        )
                 );
 
 
-            /* NEARBY AVAILABLE */
+            /*
+             * NEARBY AVAILABLE
+             */
 
             if (
                 nearbyResults.length > 0
@@ -3315,40 +3608,42 @@ function findMatches() {
                 data =
                     nearbyResults;
 
-
                 showLocationMessage(
                     "No internships directly in " +
                     selectedLocation +
                     ". Showing nearby and remote opportunities."
                 );
-
             }
 
 
-            /* NO NEARBY */
+            /*
+             * NO NEARBY
+             */
 
             else {
 
                 const remoteResults =
-                    data.filter(internship => {
+                    data.filter(
+                        internship => {
 
-                        const location =
-                            normalizeLocation(
-                                internship.location
+                            const location =
+                                normalizeLocation(
+                                    internship.location
+                                );
+
+                            return (
+                                location ===
+                                    "remote" ||
+
+                                location.includes(
+                                    "remote"
+                                )
                             );
-
-
-                        return (
-                            location === "remote" ||
-                            location.includes("remote")
-                        );
-
-                    });
-
+                        }
+                    );
 
                 data =
                     remoteResults;
-
 
                 if (
                     remoteResults.length > 0
@@ -3357,7 +3652,6 @@ function findMatches() {
                     showLocationMessage(
                         "No nearby internships found. Showing available remote opportunities."
                     );
-
                 }
 
                 else {
@@ -3365,13 +3659,9 @@ function findMatches() {
                     showLocationMessage(
                         "No internships found for this location."
                     );
-
                 }
-
             }
-
         }
-
     }
 
     else {
@@ -3379,42 +3669,45 @@ function findMatches() {
         showLocationMessage(
             "Showing internships from all available locations."
         );
-
     }
 
 
-    /* SEARCH FILTER */
+    /* =================================================
+       SEARCH FILTER
+       SEARCH DOES NOT CHANGE MATCH SCORE
+    ================================================= */
 
     if (search) {
 
         data =
-            data.filter(internship => {
+            data.filter(
+                internship => {
 
-                const searchableText =
-                    getSearchableText(
-                        internship
+                    const searchableText =
+                        getSearchableText(
+                            internship
+                        );
+
+                    return searchableText.includes(
+                        search
                     );
-
-
-                return searchableText.includes(
-                    search
-                );
-
-            });
-
+                }
+            );
     }
 
 
+    /*
+     * Sort by match score
+     */
+
     data.sort(
         (a, b) =>
-            (b.score || 0) -
-            (a.score || 0)
+            (b.score ?? -1) -
+            (a.score ?? -1)
     );
-
 
     currentResults =
         data;
-
 
     renderResults(data);
 
@@ -3424,17 +3717,13 @@ function findMatches() {
             "dashboardMatches"
         );
 
-
     if (dashboardMatches) {
 
         dashboardMatches.textContent =
             data.length;
-
     }
 
-
     updateRecentMatches();
-
 }
 
 
@@ -3449,14 +3738,12 @@ function renderResults(data) {
             "results"
         );
 
-
     if (
         !Array.isArray(data) ||
         data.length === 0
     ) {
 
         results.innerHTML = `
-
             <div
                 class="card"
                 style="
@@ -3486,164 +3773,171 @@ function renderResults(data) {
                 </button>
 
             </div>
-
         `;
 
         return;
-
     }
 
 
     results.innerHTML =
-        data.map(internship => {
+        data.map(
+            internship => {
 
-            const company =
-                internship.company ||
-                "Company";
+                const company =
+                    internship.company ||
+                    "Company";
 
+                const title =
+                    internship.title ||
+                    "Internship";
 
-            const title =
-                internship.title ||
-                "Internship";
+                const logo =
+                    company
+                        .substring(0, 2)
+                        .toUpperCase();
 
+                const skills =
+                    Array.isArray(
+                        internship.skills
+                    )
+                        ? internship.skills
+                        : [];
 
-            const logo =
-                company
-                    .substring(0, 2)
-                    .toUpperCase();
-
-
-            const skills =
-                Array.isArray(
-                    internship.skills
-                )
-                    ? internship.skills
-                    : [];
-
-
-            const id =
-                String(
-                    internship._id || ""
-                );
+                const id =
+                    String(
+                        internship._id || ""
+                    );
 
 
-            return `
+                /*
+                 * Score display
+                 */
 
-                <div class="internship">
+                const scoreDisplay =
+                    internship.score === null ||
+                    internship.score === undefined
+                        ? "—"
+                        : internship.score + "%";
 
-                    <div class="company-logo">
-                        ${escapeHTML(logo)}
-                    </div>
 
+                return `
 
-                    <div>
+                    <div class="internship">
 
-                        <h3>
-                            ${escapeHTML(title)}
-                        </h3>
-
-                        <div class="company">
-                            ${escapeHTML(company)}
+                        <div class="company-logo">
+                            ${escapeHTML(logo)}
                         </div>
 
 
-                        <div class="meta">
+                        <div>
 
-                            <span>
-                                📍
-                                ${escapeHTML(
-                                    internship.location ||
-                                    "Not specified"
-                                )}
-                            </span>
+                            <h3>
+                                ${escapeHTML(title)}
+                            </h3>
 
-                            <span>
-                                ⏱
-                                ${escapeHTML(
-                                    internship.duration ||
-                                    "Not specified"
-                                )}
-                            </span>
+                            <div class="company">
+                                ${escapeHTML(company)}
+                            </div>
 
-                            <span>
-                                💰
-                                ${escapeHTML(
-                                    internship.stipend ||
-                                    "Not specified"
-                                )}
-                            </span>
+
+                            <div class="meta">
+
+                                <span>
+                                    📍
+                                    ${escapeHTML(
+                                        internship.location ||
+                                        "Not specified"
+                                    )}
+                                </span>
+
+                                <span>
+                                    ⏱
+                                    ${escapeHTML(
+                                        internship.duration ||
+                                        "Not specified"
+                                    )}
+                                </span>
+
+                                <span>
+                                    💰
+                                    ${escapeHTML(
+                                        internship.stipend ||
+                                        "Not specified"
+                                    )}
+                                </span>
+
+                            </div>
+
+
+                            <div class="tags">
+
+                                ${
+                                    skills.length
+                                        ? skills
+                                            .map(
+                                                skill =>
+                                                    `
+                                                    <span class="tag">
+                                                        ${escapeHTML(skill)}
+                                                    </span>
+                                                    `
+                                            )
+                                            .join("")
+                                        :
+                                            `
+                                            <span class="tag">
+                                                Skills not specified
+                                            </span>
+                                            `
+                                }
+
+                            </div>
 
                         </div>
 
 
-                        <div class="tags">
+                        <div class="match">
 
-                            ${
-                                skills.length
+                            <strong>
+                                ${scoreDisplay}
+                            </strong>
 
-                                    ? skills
-                                        .map(
-                                            skill =>
-                                                `
-                                                <span class="tag">
-                                                    ${escapeHTML(skill)}
-                                                </span>
-                                                `
-                                        )
-                                        .join("")
+                            <small>
+                                ${
+                                    internship.score === null ||
+                                    internship.score === undefined
+                                        ? "Match"
+                                        : "Match"
+                                }
+                            </small>
 
-                                    :
+                        </div>
 
-                                        `
-                                        <span class="tag">
-                                            Skills not specified
-                                        </span>
-                                        `
-                            }
+
+                        <div class="actions">
+
+                            <button
+                                class="btn primary"
+                                onclick="openDetailsById('${escapeHTML(id)}')"
+                            >
+                                View Details
+                            </button>
+
+
+                            <button
+                                class="btn outline"
+                                onclick="applyInternshipById('${escapeHTML(id)}')"
+                            >
+                                Apply Now
+                            </button>
 
                         </div>
 
                     </div>
 
-
-                    <div class="match">
-
-                        <strong>
-                            ${internship.score ?? 70}%
-                        </strong>
-
-                        <small>
-                            Match
-                        </small>
-
-                    </div>
-
-
-                    <div class="actions">
-
-                        <button
-                            class="btn primary"
-                            onclick="openDetailsById('${escapeHTML(id)}')"
-                        >
-                            View Details
-                        </button>
-
-
-                        <button
-                            class="btn outline"
-                            onclick="applyInternshipById('${escapeHTML(id)}')"
-                        >
-                            Apply Now
-                        </button>
-
-                    </div>
-
-                </div>
-
-            `;
-
-        }).join("");
-
+                `;
+            }
+        ).join("");
 }
 
 
@@ -3653,29 +3947,26 @@ function renderResults(data) {
 
 function clearFilters() {
 
-    document.getElementById(
-        "skills"
-    ).value = "";
-
-
-    document.getElementById(
-        "education"
-    ).value = "";
-
-
-    document.getElementById(
-        "interest"
-    ).value = "";
-
-
-    document.getElementById(
-        "location"
-    ).value = "";
-
-
-    document.getElementById(
+    const fields = [
+        "skills",
+        "education",
+        "interest",
+        "location",
         "search"
-    ).value = "";
+    ];
+
+    fields.forEach(
+        id => {
+
+            const element =
+                document.getElementById(id);
+
+            if (element) {
+
+                element.value = "";
+            }
+        }
+    );
 
 
     showLocationMessage(
@@ -3686,8 +3977,12 @@ function clearFilters() {
     currentResults =
         internships.map(
             internship => ({
+
                 ...internship,
-                score: 70
+
+                score: null,
+
+                breakdown: null
             })
         );
 
@@ -3697,14 +3992,18 @@ function clearFilters() {
     );
 
 
-    document.getElementById(
-        "dashboardMatches"
-    ).textContent =
-        currentResults.length;
+    const dashboardMatches =
+        document.getElementById(
+            "dashboardMatches"
+        );
 
+    if (dashboardMatches) {
+
+        dashboardMatches.textContent =
+            currentResults.length;
+    }
 
     updateRecentMatches();
-
 }
 
 
@@ -3720,7 +4019,186 @@ function getInternshipById(id) {
                 internship._id
             ) === String(id)
     );
+}
 
+
+/* =====================================================
+   MATCH BREAKDOWN HTML
+===================================================== */
+
+function getMatchBreakdownHTML(
+    internship
+) {
+
+    if (
+        !internship.breakdown
+    ) {
+
+        return `
+            <div class="ai-box">
+
+                <b>
+                    🤖 AI Match Explanation
+                </b>
+
+                <br><br>
+
+                Enter your skills, education,
+                interest and location to calculate
+                a personalized match score.
+
+            </div>
+        `;
+    }
+
+
+    const breakdown =
+        internship.breakdown;
+
+
+    const matchedSkills =
+        Array.isArray(
+            breakdown.matchedSkills
+        )
+            ? breakdown.matchedSkills
+            : [];
+
+
+    const missingSkills =
+        Array.isArray(
+            breakdown.missingSkills
+        )
+            ? breakdown.missingSkills
+            : [];
+
+
+    return `
+
+        <div class="ai-box">
+
+            <b>
+                🤖 Match Score Explanation
+            </b>
+
+            <br><br>
+
+
+            <div style="
+                display:flex;
+                flex-direction:column;
+                gap:10px;
+            ">
+
+                <div>
+                    <b>🛠 Skills:</b>
+                    ${breakdown.skills}/50
+                </div>
+
+                <div>
+                    <b>🎯 Interest:</b>
+                    ${breakdown.interest}/20
+                </div>
+
+                <div>
+                    <b>🎓 Education:</b>
+                    ${breakdown.education}/15
+                </div>
+
+                <div>
+                    <b>📍 Location:</b>
+                    ${breakdown.location}/15
+                </div>
+
+            </div>
+
+
+            <hr style="
+                margin:15px 0;
+                border:0;
+                border-top:1px solid rgba(128,128,128,0.25);
+            ">
+
+
+            <div>
+
+                <b>
+                    Total Match:
+                </b>
+
+                <strong>
+                    ${internship.score}%
+                </strong>
+
+            </div>
+
+
+            ${
+                matchedSkills.length
+                    ? `
+                        <div style="margin-top:15px">
+
+                            <b>
+                                ✅ Matched Skills
+                            </b>
+
+                            <p style="
+                                margin-top:6px;
+                                color:var(--muted);
+                            ">
+                                ${matchedSkills
+                                    .map(skill =>
+                                        escapeHTML(skill)
+                                    )
+                                    .join(", ")}
+                            </p>
+
+                        </div>
+                    `
+                    : ""
+            }
+
+
+            ${
+                missingSkills.length
+                    ? `
+                        <div style="margin-top:15px">
+
+                            <b>
+                                📚 Skills to Improve
+                            </b>
+
+                            <p style="
+                                margin-top:6px;
+                                color:var(--muted);
+                            ">
+                                ${missingSkills
+                                    .map(skill =>
+                                        escapeHTML(skill)
+                                    )
+                                    .join(", ")}
+                            </p>
+
+                        </div>
+                    `
+                    : ""
+            }
+
+
+            <p style="
+                margin-top:15px;
+                font-size:13px;
+                color:var(--muted);
+                line-height:1.6;
+            ">
+
+                Score is calculated using:
+                Skills 50% + Interest 20% +
+                Education 15% + Location 15%.
+
+            </p>
+
+        </div>
+    `;
 }
 
 
@@ -3733,7 +4211,6 @@ function openDetailsById(id) {
     const internship =
         getInternshipById(id);
 
-
     if (!internship) {
 
         showApplicationMessage(
@@ -3742,7 +4219,31 @@ function openDetailsById(id) {
         );
 
         return;
+    }
 
+
+    /*
+     * Important:
+     * get the scored version from currentResults
+     */
+
+    const scoredInternship =
+        currentResults.find(
+            item =>
+                String(item._id) ===
+                String(id)
+        );
+
+
+    if (
+        scoredInternship
+    ) {
+
+        internship.score =
+            scoredInternship.score;
+
+        internship.breakdown =
+            scoredInternship.breakdown;
     }
 
 
@@ -3763,6 +4264,13 @@ function openDetailsById(id) {
                 internship.education ||
                 "Not specified"
             );
+
+
+    const scoreDisplay =
+        internship.score === null ||
+        internship.score === undefined
+            ? "—"
+            : internship.score + "%";
 
 
     document.getElementById(
@@ -3806,7 +4314,8 @@ function openDetailsById(id) {
 
         <h3 style="color:var(--green)">
 
-            ${internship.score ?? 70}%
+            ${scoreDisplay}
+
             Match
 
         </h3>
@@ -3832,7 +4341,9 @@ function openDetailsById(id) {
                 Education:
             </b>
 
-            ${escapeHTML(education)}
+            ${escapeHTML(
+                education
+            )}
 
         </p>
 
@@ -3885,29 +4396,9 @@ function openDetailsById(id) {
         </p>
 
 
-        <div class="ai-box">
-
-            <b>
-                🤖 AI Match Explanation
-            </b>
-
-            <br>
-            <br>
-
-            This internship is recommended
-            based on your selected skills,
-            education, interest and location.
-
-            <br>
-            <br>
-
-            <b>
-                Matching Score:
-            </b>
-
-            ${internship.score ?? 70}%
-
-        </div>
+        ${getMatchBreakdownHTML(
+            internship
+        )}
 
 
         <button
@@ -3925,7 +4416,6 @@ function openDetailsById(id) {
     document
         .getElementById("modal")
         .classList.add("open");
-
 }
 
 
@@ -3938,7 +4428,6 @@ function applyInternshipById(id) {
     const internship =
         getInternshipById(id);
 
-
     if (!internship) {
 
         showApplicationMessage(
@@ -3947,7 +4436,6 @@ function applyInternshipById(id) {
         );
 
         return;
-
     }
 
 
@@ -3970,28 +4458,33 @@ function applyInternshipById(id) {
     ) {
 
         window.open(
-            String(applicationUrl).trim(),
+            String(
+                applicationUrl
+            ).trim(),
+
             "_blank",
+
             "noopener,noreferrer"
         );
 
         return;
-
     }
 
 
     showApplicationMessage(
-
         "Application Information",
 
         `
+
         The application link for
+
         <b>
             ${escapeHTML(
                 internship.title ||
                 "this internship"
             )}
         </b>
+
         is not available in the internship database yet.
 
         <br><br>
@@ -4002,13 +4495,14 @@ function applyInternshipById(id) {
         <br><br>
 
         <small>
+
             This internship is available in the
             PM Internship Assistant database.
+
         </small>
+
         `
-
     );
-
 }
 
 
@@ -4067,7 +4561,6 @@ function showApplicationMessage(
     document
         .getElementById("modal")
         .classList.add("open");
-
 }
 
 
@@ -4077,30 +4570,38 @@ function showApplicationMessage(
 
 function sortResults() {
 
+    const sortElement =
+        document.getElementById(
+            "sortSelect"
+        );
+
+    if (!sortElement) {
+        return;
+    }
+
     const sort =
-        document
-            .getElementById(
-                "sortSelect"
-            )
-            .value;
+        sortElement.value;
 
 
     let data =
         [...currentResults];
 
 
-    if (sort === "match") {
+    if (
+        sort === "match"
+    ) {
 
         data.sort(
             (a, b) =>
-                (b.score || 0) -
-                (a.score || 0)
+                (b.score ?? -1) -
+                (a.score ?? -1)
         );
-
     }
 
 
-    else if (sort === "title") {
+    else if (
+        sort === "title"
+    ) {
 
         data.sort(
             (a, b) =>
@@ -4112,11 +4613,12 @@ function sortResults() {
                     )
                 )
         );
-
     }
 
 
-    else if (sort === "stipend") {
+    else if (
+        sort === "stipend"
+    ) {
 
         data.sort(
             (a, b) => {
@@ -4146,19 +4648,15 @@ function sortResults() {
 
 
                 return bValue - aValue;
-
             }
         );
-
     }
 
 
     currentResults =
         data;
 
-
     renderResults(data);
-
 }
 
 
@@ -4172,7 +4670,6 @@ function updateRecentMatches() {
         document.getElementById(
             "recentMatches"
         );
-
 
     if (!container) {
         return;
@@ -4193,47 +4690,55 @@ function updateRecentMatches() {
         `;
 
         return;
-
     }
 
 
     const recent =
-        [...currentResults].slice(0, 3);
+        [...currentResults]
+            .slice(0, 3);
 
 
     container.innerHTML =
         recent
             .map(
-                internship =>
-                    `
+                internship => {
 
-                    <p
-                        style="
-                        margin:15px 0;
-                        overflow:hidden"
-                    >
+                    const score =
+                        internship.score === null ||
+                        internship.score === undefined
+                            ? "—"
+                            : internship.score + "%";
 
-                        ${escapeHTML(
-                            internship.title ||
-                            "Internship"
-                        )}
 
-                        <b
+                    return `
+
+                        <p
                             style="
-                            float:right;
-                            color:var(--green)"
+                            margin:15px 0;
+                            overflow:hidden"
                         >
 
-                            ${internship.score ?? 70}%
+                            ${escapeHTML(
+                                internship.title ||
+                                "Internship"
+                            )}
 
-                        </b>
+                            <b
+                                style="
+                                float:right;
+                                color:var(--green)"
+                            >
 
-                    </p>
+                                ${score}
 
-                    `
+                            </b>
+
+                        </p>
+
+                    `;
+                }
             )
             .join("");
-
 }
 
 
@@ -4243,10 +4748,17 @@ function updateRecentMatches() {
 
 function closeModal() {
 
-    document
-        .getElementById("modal")
-        .classList.remove("open");
+    const modal =
+        document.getElementById(
+            "modal"
+        );
 
+    if (modal) {
+
+        modal.classList.remove(
+            "open"
+        );
+    }
 }
 
 
@@ -4254,9 +4766,14 @@ function closeModal() {
    CLICK OUTSIDE MODAL
 ===================================================== */
 
-document
-    .getElementById("modal")
-    .addEventListener(
+const modalElement =
+    document.getElementById(
+        "modal"
+    );
+
+if (modalElement) {
+
+    modalElement.addEventListener(
         "click",
         function(event) {
 
@@ -4266,11 +4783,10 @@ document
             ) {
 
                 closeModal();
-
             }
-
         }
     );
+}
 
 
 /* =====================================================
@@ -4285,7 +4801,6 @@ function escapeHTML(value) {
     ) {
 
         return "";
-
     }
 
 
@@ -4315,7 +4830,6 @@ function escapeHTML(value) {
             /'/g,
             "&#039;"
         );
-
 }
 
 
@@ -4323,9 +4837,14 @@ function escapeHTML(value) {
    LOCATION ENTER
 ===================================================== */
 
-document
-    .getElementById("location")
-    .addEventListener(
+const locationInputElement =
+    document.getElementById(
+        "location"
+    );
+
+if (locationInputElement) {
+
+    locationInputElement.addEventListener(
         "keydown",
         function(event) {
 
@@ -4336,20 +4855,24 @@ document
                 event.preventDefault();
 
                 findMatches();
-
             }
-
         }
     );
+}
 
 
 /* =====================================================
    SEARCH ENTER
 ===================================================== */
 
-document
-    .getElementById("search")
-    .addEventListener(
+const searchInputElement =
+    document.getElementById(
+        "search"
+    );
+
+if (searchInputElement) {
+
+    searchInputElement.addEventListener(
         "keydown",
         function(event) {
 
@@ -4360,11 +4883,10 @@ document
                 event.preventDefault();
 
                 findMatches();
-
             }
-
         }
     );
+}
 
 
 /* =====================================================
@@ -4377,16 +4899,13 @@ document.addEventListener(
 
         loadInternships();
 
-
         showLocationMessage(
             "Showing internships from all available locations."
         );
-
     }
 );
 
 </script>
-
 </body>
 
 </html>
